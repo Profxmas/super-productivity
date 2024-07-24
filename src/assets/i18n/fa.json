@@ -1,4 +1,9 @@
 {
+  "ANDROID": {
+    "NOTIFICATIONS": {
+      "SYNC_CONFLICT_TITLE": "یک تضاد همگام سازی رخ داد"
+    }
+  },
   "APP": {
     "B_INSTALL": {
       "IGNORE": "نادیده گرفتن",
@@ -197,26 +202,6 @@
       },
       "S": {
         "ERR_UNKNOWN": "GitLab: خطای ناشناخته {{statusCode}} {{errorMsg}}"
-      }
-    },
-    "GOOGLE": {
-      "BANNER": {
-        "AUTH_FAIL": "GoogleApi: تأیید هویت انجام نشد ، لطفاً دوباره وارد سیستم شوید!"
-      },
-      "DIALOG": {
-        "CREATE_SYNC_FILE": "Google Drive: No file with the name <strong>\"{{fileName}}\"</strong> was found. <strong>Create</strong> it as sync file on Google Drive?",
-        "USE_EXISTING_SYNC_FILE": "Google Drive: Use <strong>existing</strong> file <strong>\"{{fileName}}\"</strong> as sync file? If not please change the Sync file name."
-      },
-      "S": {
-        "MULTIPLE_SYNC_FILES_WITH_SAME_NAME": "Multiple files with the name \"{{newFileName}}\" found. Please delete all but one or choose a different name.",
-        "SYNC_FILE_CREATION_ERROR": "Google Drive: هنگام ایجاد پرونده همگام سازی خطایی رخ داد. {{err}}",
-        "UPDATED_SYNC_FILE_NAME": "Google Drive: نام فایل همگام سازی به روز شده است"
-      },
-      "S_API": {
-        "ERR": "خطای GoogleApi : {{errStr}}",
-        "ERR_NO_FILE_ID": "GoogleApi: آیدی فایل مشخص نشده است",
-        "ERR_NO_FILE_NAME": "GoogleApi: نام فایل مشخص نشده است",
-        "SUCCESS_LOGIN": "GoogleApi: ورود موفق به سیستم"
       }
     },
     "ISSUE": {
@@ -425,7 +410,6 @@
       "D_ADD": {
         "NOTE_LABEL": "متنی برای دخیره به عنوان یادداشت وارد کنید..."
       },
-      "EDIT_FULLSCREEN": "ویرایش در تمام صفحه",
       "NOTES_CMP": {
         "ADD_BTN": "اضافه کردن کار جدید",
         "DROP_TO_ADD": "برای اضافه کردن کارجدید اینجا رها کنید",
@@ -434,7 +418,8 @@
       "NOTE_CMP": {
         "DISABLE_PARSE": "Disable markdown parsing",
         "ENABLE_PARSE": "Enable markdown parse"
-      }
+      },
+      "EDIT_FULLSCREEN": "ویرایش در تمام صفحه"
     },
     "OPEN_PROJECT": {
       "DIALOG_INITIAL": {
@@ -655,12 +640,8 @@
           "L_ACCESS_TOKEN": "Access Token (تولید شده از کد Auth)"
         },
         "GOOGLE": {
-          "L_IS_COMPRESS_DATA": "فشرده سازی داده ها",
-          "L_SYNC_FILE_NAME": "نام پرونده همگام سازی کنید"
-        },
-        "LOCAL_FILE": {
-          "L_SYNC_FILE_PATH": "مسیر پرونده همگام سازی",
-          "L_SYNC_FILE_PATH_DESCRIPTION": "مسیر مطلق به پرونده که باید برای همگام سازی استفاده شود (ایجاد می شود)."
+          "L_SYNC_FILE_NAME": "نام پرونده همگام سازی کنید",
+          "L_IS_COMPRESS_DATA": "فشرده سازی داده ها"
         },
         "L_ENABLE_SYNCING": "همگام سازی را فعال کنید",
         "L_SYNC_INTERVAL": "فاصله همگام سازی",
@@ -670,8 +651,12 @@
           "CORS_INFO": "<strong>آزمایشی !!</strong> برای انجام این کار باید CORS را برای نمونه Nextcloud خود غیرفعال یا محدود کنید ، که این امر می تواند پیامدهای امنیتی منفی داشته باشد! لطفاً برای اطلاعات بیشتر <a href='https://github.com/nextcloud/server/issues/3131'>به این بخش مراجعه کنید</a> . با مسئولیت خود استفاده کنید!",
           "L_BASE_URL": "آدرس پایگاه",
           "L_PASSWORD": "کلمه عبور",
+          "L_USER_NAME": "نام کاربری",
+          "L_SYNC_FILE_PATH": "مسیر پرونده همگام سازی"
+        },
+        "LOCAL_FILE": {
           "L_SYNC_FILE_PATH": "مسیر پرونده همگام سازی",
-          "L_USER_NAME": "نام کاربری"
+          "L_SYNC_FILE_PATH_DESCRIPTION": "مسیر مطلق به پرونده که باید برای همگام سازی استفاده شود (ایجاد می شود)."
         }
       },
       "S": {
@@ -781,6 +766,7 @@
         "RO_30M": "30 دقیقه قبل از شروع آن",
         "RO_5M": "5 دقیقه قبل از شروع آن",
         "RO_START": "وقتی شروع می شود",
+        "RO_NEVER": "Never",
         "SCHEDULE": "Schedule",
         "UNSCHEDULE": "Unschedule"
       },
@@ -884,11 +870,12 @@
       "MENU_TITLE": "جدول زمانی",
       "NOW": "اکنون",
       "NO_TASKS": "در حال حاضر هیچ وظیفه ای وجود ندارد. لطفاً برخی از کارها را از طریق دکمه + در نوار بالا اضافه کنید.",
+      "START": "شروع کار",
+      "TASK_PROJECTION_INFO": "پیش بینی آینده یک کار تکراری برنامه ریزی شده",
+      "LUNCH_BREAK": "استراحت ناهار",
       "S": {
         "CAL_PROVIDER_ERROR": "خط زمان خطای ارائه دهنده Cal: {{errTxt}}"
-      },
-      "START": "شروع کار",
-      "TASK_PROJECTION_INFO": "پیش بینی آینده یک کار تکراری برنامه ریزی شده"
+      }
     },
     "TIME_TRACKING": {
       "B": {
@@ -910,8 +897,8 @@
         "SIMPLE_COUNTER_TOOLTIP_DISABLE": "برای عدم ردیابی به {{title}}کلیک کنید",
         "SKIP": "رد شدن",
         "TASK": "کار",
-        "TASK_BREAK": "کار+استراحت",
-        "TRACK_TO": "تایین کنید:"
+        "TRACK_TO": "تایین کنید:",
+        "TASK_BREAK": "کار+استراحت"
       },
       "D_TRACKING_REMINDER": {
         "CREATE_AND_TRACK": "<em>ایجاد کنید</em> و پیگیری کنید",
@@ -976,6 +963,26 @@
         "NO_DATA": "هیچ کاری در این هفته انجام نشده است.",
         "TITLE": "عنوان"
       }
+    },
+    "GOOGLE": {
+      "BANNER": {
+        "AUTH_FAIL": "GoogleApi: تأیید هویت انجام نشد ، لطفاً دوباره وارد سیستم شوید!"
+      },
+      "DIALOG": {
+        "CREATE_SYNC_FILE": "Google Drive: No file with the name <strong>\"{{fileName}}\"</strong> was found. <strong>Create</strong> it as sync file on Google Drive?",
+        "USE_EXISTING_SYNC_FILE": "Google Drive: Use <strong>existing</strong> file <strong>\"{{fileName}}\"</strong> as sync file? If not please change the Sync file name."
+      },
+      "S": {
+        "MULTIPLE_SYNC_FILES_WITH_SAME_NAME": "Multiple files with the name \"{{newFileName}}\" found. Please delete all but one or choose a different name.",
+        "SYNC_FILE_CREATION_ERROR": "Google Drive: هنگام ایجاد پرونده همگام سازی خطایی رخ داد. {{err}}",
+        "UPDATED_SYNC_FILE_NAME": "Google Drive: نام فایل همگام سازی به روز شده است"
+      },
+      "S_API": {
+        "ERR": "خطای GoogleApi : {{errStr}}",
+        "ERR_NO_FILE_ID": "GoogleApi: آیدی فایل مشخص نشده است",
+        "ERR_NO_FILE_NAME": "GoogleApi: نام فایل مشخص نشده است",
+        "SUCCESS_LOGIN": "GoogleApi: ورود موفق به سیستم"
+      }
     }
   },
   "FILE_IMEX": {
@@ -985,13 +992,13 @@
   },
   "G": {
     "CANCEL": "لغو",
-    "CLICK_TO_EDIT": "برای ویرایش کلیک کنید",
     "CLOSE": "بستن",
     "DELETE": "حذف",
     "DISMISS": "رد کردن",
     "DO_IT": "انجام بدهید!",
     "EDIT": "ویرایش",
     "ENABLED": "فعال شده است",
+    "EXAMPLE_VAL": "برای ویرایش کلیک کنید",
     "EXTENSION_INFO": "لطفا برای ارتباط با جیرا و مدیریت زمان <a target=\"_blank\" href=\"https://chrome.google.com/webstore/detail/super-productivity/ljkbjodfmekklcoibdnhahlaalhihmlb\"> افزونه گوگل کروم</a> را دانلود کنید. توجه این افزونه برای نسخه موبایل کروم کار نمی کند.",
     "LOGIN": "وارد شدن",
     "LOGOUT": "خارج شدن",
@@ -1025,9 +1032,9 @@
       "HELP": "<div><p>When idle time handling is enabled a dialog will open after a specified amount of time to check if and on which task you want to track your time, when you have been idle.</p></div>",
       "IS_ENABLE_IDLE_TIME_TRACKING": "Enable idle time handling",
       "IS_ONLY_OPEN_IDLE_WHEN_CURRENT_TASK": "Only trigger idle time dialog when a current task is selected",
-      "IS_UN_TRACKED_IDLE_RESETS_BREAK_TIMER": "Untracked idle time resets take a break timer",
       "MIN_IDLE_TIME": "Trigger idle after X",
-      "TITLE": "Idle Handling"
+      "TITLE": "Idle Handling",
+      "IS_UN_TRACKED_IDLE_RESETS_BREAK_TIMER": "Untracked idle time resets take a break timer"
     },
     "IMEX": {
       "HELP": "<p>Here you can export all your data as a <strong>JSON</strong> for backups, but also to use it in a different context (e.g. you might want to export your projects in the browser and import them into the desktop version). </p> <p>The import expects valid JSON to be copied into the text area. <strong>NOTE: Once you hit the import button all your current settings and data will be overwritten!</strong></p>",
@@ -1136,9 +1143,9 @@
     "SOUND": {
       "DONE_SOUND": "وظیفه تمام شد صدا",
       "IS_INCREASE_DONE_PITCH": "برای انجام هر کاری سطح صدا را افزایش دهید",
-      "IS_PLAY_DONE_SOUND": "وقتی کار به پایان رسید ، صدا را پخش کنید",
       "TITLE": "صدا",
-      "VOLUME": "جلد"
+      "VOLUME": "جلد",
+      "IS_PLAY_DONE_SOUND": "وقتی کار به پایان رسید ، صدا را پخش کنید"
     },
     "TAKE_A_BREAK": {
       "HELP": "<div> <p>Allows you to configure a reoccurring reminder when you have worked for a specified amount of time without taking a break.</p> <p>You can modify the message displayed. ${duration} will be replaced with the time spent without a break.</p> </div>",
@@ -1153,16 +1160,16 @@
       "TITLE": "یادآوری استراحت"
     },
     "TIMELINE": {
-      "CAL_PROVIDERS": "ارائه دهندگان تقویم (تجربی و اختیاری)",
-      "CAL_PROVIDERS_ADD": "منبع ical اضافه کنید",
-      "CAL_PROVIDERS_INFO": "می‌توانید به‌صورت اختیاری جدول زمانی را برای بارگیری و نمایش داده‌ها از iCal (مانند Google Calendar) پیکربندی کنید.",
       "HELP": "ویژگی جدول زمانی باید مروری سریع درباره چگونگی انجام کارهای برنامه ریزی شده شما در طول زمان داشته باشد. می توانید آن را در فهرست سمت چپ در زیر <a href='#/timeline'>'Timeline'</a>پیدا کنید.",
-      "L_CAL_PATH": "مسیر URL/فایل برای تقویم ICAL (اختیاری)",
       "L_IS_WORK_START_END_ENABLED": "جریان کار بدون برنامه را به زمانهای خاص کار محدود کنید",
       "L_WORK_END": "پایان روز کار",
       "L_WORK_START": "شروع روز کار",
       "TITLE": "جدول زمانی",
-      "WORK_START_END_DESCRIPTION": "به عنوان مثال، ساعت 17:00"
+      "WORK_START_END_DESCRIPTION": "به عنوان مثال، ساعت 17:00",
+      "CAL_PROVIDERS": "ارائه دهندگان تقویم (تجربی و اختیاری)",
+      "CAL_PROVIDERS_ADD": "منبع ical اضافه کنید",
+      "CAL_PROVIDERS_INFO": "می‌توانید به‌صورت اختیاری جدول زمانی را برای بارگیری و نمایش داده‌ها از iCal (مانند Google Calendar) پیکربندی کنید.",
+      "L_CAL_PATH": "مسیر URL/فایل برای تقویم ICAL (اختیاری)"
     },
     "TRACKING_REMINDER": {
       "HELP": "در صورتی که فراموش نکنید ردیابی زمان را شروع کنید ، یک بنر را پیکربندی کنید تا در آن نشان داده شود.",
@@ -1188,13 +1195,13 @@
     "DBX_GEN_TOKEN": "Dropbox: ایجاد نشانه ...",
     "DBX_META": "Dropbox: دریافت متا پرونده ...",
     "DBX_UPLOAD": "Dropbox: بارگذاری پرونده ...",
-    "GDRIVE_DOWNLOAD": "Google Drive: بارگیری فایل ...",
-    "GDRIVE_UPLOAD": "Google Drive: بارگذاری پرونده ...",
     "GITHUB_LOAD_ISSUE": "GitHub: بارگیری داده های شماره ...",
     "JIRA_LOAD_ISSUE": "جیرا: بارگیری داده های شماره ...",
     "UNKNOWN": "بارگیری داده های از راه دور",
     "WEB_DAV_DOWNLOAD": "WebDAV: در حال بارگیری داده ها ...",
-    "WEB_DAV_UPLOAD": "WebDAV: در حال بارگذاری داده ها ..."
+    "WEB_DAV_UPLOAD": "WebDAV: در حال بارگذاری داده ها ...",
+    "GDRIVE_DOWNLOAD": "Google Drive: بارگیری فایل ...",
+    "GDRIVE_UPLOAD": "Google Drive: بارگذاری پرونده ..."
   },
   "MH": {
     "ADD_NEW_TASK": "اضافه کردن کار جدید",

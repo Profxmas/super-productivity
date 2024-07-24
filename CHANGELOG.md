@@ -1,3 +1,596 @@
+## [9.0.5](https://github.com/johannesjo/super-productivity/compare/v9.0.4...v9.0.5) (2024-07-22)
+
+### Bug Fixes
+
+- **webDAV:** content being double stringified [#3269](https://github.com/johannesjo/super-productivity/issues/3269) ([a24f5d6](https://github.com/johannesjo/super-productivity/commit/a24f5d65e43bac35e9364eb048c17dc761708e93))
+- **webDAV:** disable lazy loaded dep to fix problem [#3269](https://github.com/johannesjo/super-productivity/issues/3269) ([a02d6de](https://github.com/johannesjo/super-productivity/commit/a02d6debd6e59cf54fbce28235fa847b7bfb0c21))
+
+## [9.0.4](https://github.com/johannesjo/super-productivity/compare/v9.0.3...v9.0.4) (2024-07-22)
+
+### Bug Fixes
+
+- button edge case ([6680fff](https://github.com/johannesjo/super-productivity/commit/6680fff5d0e593886ee4084d953c627547c86f0c))
+- fieldGroup inputs updating instantly when typing ([239949a](https://github.com/johannesjo/super-productivity/commit/239949ae92a30adc5985b3f4d3bae7be2f0b5610))
+- folder path getting synced for local file sync [#3268](https://github.com/johannesjo/super-productivity/issues/3268) ([c250254](https://github.com/johannesjo/super-productivity/commit/c2502540ce136f532e82bfdbca37e6f1ba352ed3))
+- missing czech locale [#3262](https://github.com/johannesjo/super-productivity/issues/3262) ([fa72339](https://github.com/johannesjo/super-productivity/commit/fa7233974f851867ea62e687c3ae61b511cf8b76))
+- move to backlog checkbox having no effect ([c45aee4](https://github.com/johannesjo/super-productivity/commit/c45aee429485fc2c681ed7ff73df1a3f482c43aa))
+- shepherd tour error [#3270](https://github.com/johannesjo/super-productivity/issues/3270) ([9fa0da0](https://github.com/johannesjo/super-productivity/commit/9fa0da076270f3375aa81f1f8167cf4d27aa7ad4))
+- **timeline:** no error for edge case [#3276](https://github.com/johannesjo/super-productivity/issues/3276) ([cf1d460](https://github.com/johannesjo/super-productivity/commit/cf1d460113fb44111f9d29ae318e2d75c60243e6))
+
+### Features
+
+- improve sync indication ([760e6f2](https://github.com/johannesjo/super-productivity/commit/760e6f24337cb69c7d3ab01756870b2e651b12a1))
+- style angular mentions for dark theme ([041ac63](https://github.com/johannesjo/super-productivity/commit/041ac63f42773352628592a33fa3847d02e7e2be))
+- wait longer for sync folder path changes ([38a5652](https://github.com/johannesjo/super-productivity/commit/38a565213981023e56734ac62f802a118ec1a920))
+- **webDAV:** add extra logging ([bed545a](https://github.com/johannesjo/super-productivity/commit/bed545ac16484b588697268cb1855f566ee453f2))
+- **webDAV:** create folder automatically ([fcfed40](https://github.com/johannesjo/super-productivity/commit/fcfed407b5025386eb311c83f7b18df07100b41b))
+- **webDAV:** improve error handling for web dav [#3269](https://github.com/johannesjo/super-productivity/issues/3269) ([f2e4ebc](https://github.com/johannesjo/super-productivity/commit/f2e4ebcc335a71c9f012e7a447828e0d04bcc89a))
+
+## [9.0.3](https://github.com/johannesjo/super-productivity/compare/v9.0.2...v9.0.3) (2024-07-18)
+
+## [9.0.2](https://github.com/johannesjo/super-productivity/compare/v9.0.1...v9.0.2) (2024-07-17)
+
+### Features
+
+- **timeline:** make up down arrows a little less prominent ([9326811](https://github.com/johannesjo/super-productivity/commit/93268118e1728af5b3e6502bbc1900bf82d3e0c3))
+
+## [9.0.1](https://github.com/johannesjo/super-productivity/compare/v9.0.0...v9.0.1) (2024-07-17)
+
+### Bug Fixes
+
+- error with task schedule ([1a57202](https://github.com/johannesjo/super-productivity/commit/1a57202e5ca06b525dc819954d6bdfcfe1a03f58))
+
+### Features
+
+- handle no project or tag by moving to special no list tag ([05f4cf7](https://github.com/johannesjo/super-productivity/commit/05f4cf7d2c960e7709255a4e7d7562452215a413))
+
+# [9.0.0](https://github.com/johannesjo/super-productivity/compare/v9.0.0-rc.0...v9.0.0) (2024-07-17)
+
+### Bug Fixes
+
+- add task button overlapping with finish day button ([82e6835](https://github.com/johannesjo/super-productivity/commit/82e6835a1722bf360c8527f22def3eb6969e183b))
+- backlog task nr position ([573985c](https://github.com/johannesjo/super-productivity/commit/573985c7ca3e21fd091e2397e1f849ec7dfde268))
+- prevent add task bar overlapping over buttons to input ([50ec1bd](https://github.com/johannesjo/super-productivity/commit/50ec1bd26a5032caf210a25aedce4484b80a506c))
+- **repeat:** edge case leading to many wrong creations ([888534d](https://github.com/johannesjo/super-productivity/commit/888534dbaf51c59cd50829a9634b14219609c746))
+- sync show gitlab issue detail [#2115](https://github.com/johannesjo/super-productivity/issues/2115) ([9577c3e](https://github.com/johannesjo/super-productivity/commit/9577c3e76917218a38ec76fdfe3d0a6ed86b14fa))
+- **sync:** improve isReady handling ([e23e8cb](https://github.com/johannesjo/super-productivity/commit/e23e8cbb60e267098ef16878a47ad01232b796ea))
+- **sync:** initial sync not working ([47514d2](https://github.com/johannesjo/super-productivity/commit/47514d2b9edf74aed922582182009ab6c28f2fc7))
+- **sync:** issue when data when dropbox access token is saved initially which leads to a sync conflict ([8459e07](https://github.com/johannesjo/super-productivity/commit/8459e07704026c459ce44de62d8b8e3d8cc1737c))
+- **sync:** make using legacy dropbox token work ([a244d3f](https://github.com/johannesjo/super-productivity/commit/a244d3fb4cee307cf92903b448ac02f69899d939))
+
+### Features
+
+- add better solution for multi instance warning ([21e23ba](https://github.com/johannesjo/super-productivity/commit/21e23baa1bc4e7a3403d850f70cfa0c57e417054))
+- add shortcut for sync ([4f9effc](https://github.com/johannesjo/super-productivity/commit/4f9effcc2bb199934cd8343272b5f4a045aba06d))
+- always remove from today if scheduled for other day ([cd1ce32](https://github.com/johannesjo/super-productivity/commit/cd1ce32759b0357713b4443ae38eb54bae52a27f))
+- hide disabled notes button for very small mobile ([72ddf91](https://github.com/johannesjo/super-productivity/commit/72ddf9175445ff332c348f2fd2c35d35d362592b))
+- hide dot menu for very small mobile ([2133a16](https://github.com/johannesjo/super-productivity/commit/2133a163b5f724bcd404c74fe32c6a60580a9235))
+- improve show logic for add to backlog during schedule ([314cbb5](https://github.com/johannesjo/super-productivity/commit/314cbb5394ad2ae8ab86f027cca3502a6b72cb5a))
+- make dialogs wider on mobile ([d8f8017](https://github.com/johannesjo/super-productivity/commit/d8f80175545343ff10277cf5287f69fc424f72f3))
+- make mobile suer small even smaller ([5fda8c3](https://github.com/johannesjo/super-productivity/commit/5fda8c3c235f24b913aff6837e3b374b6b918411))
+- make ultra small screen smaller ([aaadf07](https://github.com/johannesjo/super-productivity/commit/aaadf07119aa50d1b6d50a1e461863c26aacd828))
+- properly hide key indicator for mobile ([896cbfb](https://github.com/johannesjo/super-productivity/commit/896cbfb0e39551afc56d01b925510234e4b0be28))
+- reverse history week items on mobile ([7fabae3](https://github.com/johannesjo/super-productivity/commit/7fabae390447660772a07408f42b74a952659092))
+- **sync:** prompt to delete dropbox tokens when sync is disabled ([642984a](https://github.com/johannesjo/super-productivity/commit/642984a85448a35e4b3bac89c18b8816c70b5175))
+- **sync:** remove compression and encryption strings from sync file ([75ec8c8](https://github.com/johannesjo/super-productivity/commit/75ec8c82388854d778adeb2226aceb63abb864de))
+- **timeline:** improve mobile styles ([fd66e7b](https://github.com/johannesjo/super-productivity/commit/fd66e7ba7960bc54e27a1c29425d6e449ad1172d))
+- **timeline:** improve mobile styles 2 ([73c56af](https://github.com/johannesjo/super-productivity/commit/73c56afe9e6b2d9e9eb88d2ed3afbc5a068a5802))
+
+# [9.0.0-rc.0](https://github.com/johannesjo/super-productivity/compare/v8.0.10...v9.0.0-rc.0) (2024-07-08)
+
+### Bug Fixes
+
+- **2FileSync:** tooltip not shown ([44dcf18](https://github.com/johannesjo/super-productivity/commit/44dcf1895519377463f0890ada8c40f65fa6cd05))
+- add task bar click on item not working ([10ccd07](https://github.com/johannesjo/super-productivity/commit/10ccd073c822cae53d74083b73ac36215117a862))
+- also handle task sub tasks tags for task deletion [#3205](https://github.com/johannesjo/super-productivity/issues/3205) ([4e2add5](https://github.com/johannesjo/super-productivity/commit/4e2add51b70f2a15cb10dbce7b2ba4dd091180e4))
+- autocomplete items being two lines ([7da8b85](https://github.com/johannesjo/super-productivity/commit/7da8b85b710724aaa24d88d5db7d464768c478f8))
+- cannot read properties of undefined reading color [#3208](https://github.com/johannesjo/super-productivity/issues/3208) ([cc193a0](https://github.com/johannesjo/super-productivity/commit/cc193a072cea6d381c74bf28d1048673c115a840))
+- don't error when deleting sub tasks ([54c0537](https://github.com/johannesjo/super-productivity/commit/54c05371d73c52f16fab7479dd5098ef9a4ab6bb))
+- focus mode styles ([70d1eab](https://github.com/johannesjo/super-productivity/commit/70d1eab7f735ca1cc8724ce4c408b57c9b9fd14c))
+- icons not always being centered ([b393d99](https://github.com/johannesjo/super-productivity/commit/b393d99274f040300e243d7a7965801cf385ac94))
+- mac icon [#3213](https://github.com/johannesjo/super-productivity/issues/3213) ([0763e2d](https://github.com/johannesjo/super-productivity/commit/0763e2dbcfb417eb002df8572ca5a53b7d2590a1))
+- markdown content not being parsed correctly ([0a78fc2](https://github.com/johannesjo/super-productivity/commit/0a78fc2ee86bc06de8a6f361cbddd5dd3c286acc))
+- metric page chart reloads when tracking ([5d58c53](https://github.com/johannesjo/super-productivity/commit/5d58c53fe1d514139d8e6b7b975c6cb735f2ca8d))
+- open issue not working anymore ([114cf5a](https://github.com/johannesjo/super-productivity/commit/114cf5a0cd86976ca5093d72e00d4a7455ee881b))
+- play indicator interfering with task drag ([cdffb5c](https://github.com/johannesjo/super-productivity/commit/cdffb5cb40106d4da8511d63bc4eeedd165d7a9f))
+- refocus after add task btn ([b3f0647](https://github.com/johannesjo/super-productivity/commit/b3f0647c4a592be56040501a2c143dfaf595af5f))
+- remove idle dialog showing every time ([8c04322](https://github.com/johannesjo/super-productivity/commit/8c043223ff8c70f2b0c050298d7e1c931e384309))
+- scroll jump after closing right panel ([01a8d4b](https://github.com/johannesjo/super-productivity/commit/01a8d4bc8448805962878f9fc4dcb37ed9ba4a23))
+- search bar not working as expected ([2dc08bd](https://github.com/johannesjo/super-productivity/commit/2dc08bde7c1768d729c3c82a8cb292f6df626381))
+- search bar not working correctly ([dbac733](https://github.com/johannesjo/super-productivity/commit/dbac733178cc3b281881eb441b42e1f449406595))
+- shepherd navigating initially ([6f6c626](https://github.com/johannesjo/super-productivity/commit/6f6c6266838f7738c3c2c26400d6c50dcb42bf93))
+- shepherd onboarding unwanted route change ([3e2f21d](https://github.com/johannesjo/super-productivity/commit/3e2f21d9dd8f7778c35635be44fd3f8095e67fa2))
+- styling for summary table ([2d01ec5](https://github.com/johannesjo/super-productivity/commit/2d01ec5b0942f94f0bb2f2c6aec584e91a6a6dcd))
+- task attachment btns ([3461bf6](https://github.com/johannesjo/super-productivity/commit/3461bf63a5d07cbb866519a0379b5941d9afe45f))
+- zoomFactor error value [#3218](https://github.com/johannesjo/super-productivity/issues/3218) ([24448e8](https://github.com/johannesjo/super-productivity/commit/24448e813ac181a42632f3ab16174c011310b31b))
+
+### Features
+
+- **2FileSync:** add first draft for \_importMainFileAppDataAndArchiveIfNecessary ([85057d2](https://github.com/johannesjo/super-productivity/commit/85057d2b80f6558e36a319c93887cdb435a3599b))
+- **2FileSync:** add first draft for upload data code ([d292c79](https://github.com/johannesjo/super-productivity/commit/d292c7916efc22baa08a2025d39394c49860ef51))
+- **2FileSync:** add more rigid error handling ([725609c](https://github.com/johannesjo/super-productivity/commit/725609c31859e7a9bd96100481c5ef3ffa2177f7))
+- **2FileSync:** allow for longer sync errors ([d0cfbf8](https://github.com/johannesjo/super-productivity/commit/d0cfbf845105af892ad0fb61bb93c20608a6e3a3))
+- **2FileSync:** also consider archive only changes for sync ([c33e5d1](https://github.com/johannesjo/super-productivity/commit/c33e5d16f830a92f77588480c58bd819a31983cb))
+- **2FileSync:** always force archive update after conflict ([c193243](https://github.com/johannesjo/super-productivity/commit/c193243a45d00d655f3d2ad559a47188abe6f726))
+- **2FileSync:** fix error with upload ([5af7ad2](https://github.com/johannesjo/super-productivity/commit/5af7ad296c66537e3f38a980b6895169fcd7ae26))
+- **2FileSync:** improve error msgs ([c53e049](https://github.com/johannesjo/super-productivity/commit/c53e0498d0d7eda6ba2e401585bea59d20af7745))
+- **2FileSync:** improve logging ([7612466](https://github.com/johannesjo/super-productivity/commit/7612466b764a84fe4100271c447a3c5ece997934))
+- **2FileSync:** improve wording ([3c26000](https://github.com/johannesjo/super-productivity/commit/3c260003f62885e05fd817e01e83ad856c80e15e))
+- **2FileSync:** make archive rev update in main file work properly ([a4dc4f4](https://github.com/johannesjo/super-productivity/commit/a4dc4f4d8c4708d98ca4c83ebfbd0dac78d017a2))
+- **2FileSync:** make basic conflict handling work again ([ab624ab](https://github.com/johannesjo/super-productivity/commit/ab624ab0b0a6865e043780531b42de4a4a57d5ab))
+- **2FileSync:** make new sync work for webDav and localFile ([3efe7b2](https://github.com/johannesjo/super-productivity/commit/3efe7b2e68e4b16b8c8d54387454010da2ecf06e))
+- **2FileSync:** make special edge case work ([1271392](https://github.com/johannesjo/super-productivity/commit/12713922f043a001ceb339a0eb73eb298e26db15))
+- **2FileSync:** make upload error actually error ([4fb3c5b](https://github.com/johannesjo/super-productivity/commit/4fb3c5b6c158d4ed0846ae6447343e075065696e))
+- **2FileSync:** make upload file behavior work better ([004d9ea](https://github.com/johannesjo/super-productivity/commit/004d9ead55288c376e79fc35446c272b3d398078))
+- **2FileSync:** more rigid error handling for all ([daf902d](https://github.com/johannesjo/super-productivity/commit/daf902d63aad307e0bb3ca5ffeffa854c921302a))
+- **2FileSync:** only ask once to force update ([0991b48](https://github.com/johannesjo/super-productivity/commit/0991b48c0d04dde274c672e398d96d223deae4eb))
+- **2FileSync:** outline basic stuff ([83ae398](https://github.com/johannesjo/super-productivity/commit/83ae398f3ec93aae0cfaa46ade6d4d5b65707755))
+- **2FileSync:** outline folder based sync flow ([0a889cb](https://github.com/johannesjo/super-productivity/commit/0a889cb50633f9cec9b3e106f9a6476f77a9f755))
+- **2FileSync:** outline more stuff ([30b71a1](https://github.com/johannesjo/super-productivity/commit/30b71a1f7de10dba34a63ca9557e6c798368833e))
+- **2FileSync:** prevent multiple conflict dialogs ([3f27de5](https://github.com/johannesjo/super-productivity/commit/3f27de585ea1d7caaccfef7a0c4bb491280a9c4f))
+- **2FileSync:** reduce precision for workStart and workEnd times ([857b53a](https://github.com/johannesjo/super-productivity/commit/857b53a5f1fbdae529c320d1a4d8b493b8760f99))
+- **2FileSync:** replace remaining occurrences of syncFilePath ([9fcc5c9](https://github.com/johannesjo/super-productivity/commit/9fcc5c92719a8a447a8170a08c7282e6e0dc7e51))
+- **2FileSync:** save update last archive update somewhere ([6ac46de](https://github.com/johannesjo/super-productivity/commit/6ac46dea349349a703b486fc5067f6d2ff58cff2))
+- **2FileSync:** show special warning when able to upload archive but not main file ([dc3bd6a](https://github.com/johannesjo/super-productivity/commit/dc3bd6aae56d56a1532dfd15c0527d7819a6c75a))
+- **2FileSync:** show warning to users that might have legacy data in the old cloud file and also force archive update for several conflict cases ([352f62a](https://github.com/johannesjo/super-productivity/commit/352f62acf8f5331c4bc520a68c53b3d25e4df4c6))
+- **2FileSync:** throw error when remote archive revs do not match ([d2c264b](https://github.com/johannesjo/super-productivity/commit/d2c264ba1d3d9af3643e2b4546d6f6330553d8ff))
+- **2FileSync:** write new sync provider functions for dropbox ([1fd1916](https://github.com/johannesjo/super-productivity/commit/1fd19169d03dfede642f6a7ecacf02bdc1458ea1))
+- Add current keyboard shortcuts to app menu's [#3063](https://github.com/johannesjo/super-productivity/issues/3063) ([7af695b](https://github.com/johannesjo/super-productivity/commit/7af695b04e95595cbf3957c48d56528e6ee6b0ce))
+- adjust label text for estimate dialog ([2b3450c](https://github.com/johannesjo/super-productivity/commit/2b3450c04008e8a1797f26b336c7cb422d84a7f6))
+- adjust scroll bar styles ([c9ff195](https://github.com/johannesjo/super-productivity/commit/c9ff195da2f46d9b6a673ad2d6bffed0d4e6b585))
+- change default accent color ([418ec54](https://github.com/johannesjo/super-productivity/commit/418ec547d08925e7888f311873c39b6c5db140b7))
+- don't show keyboard shortcuts on mobile ([242bae5](https://github.com/johannesjo/super-productivity/commit/242bae5acc246074149895898577d644e8f2830a))
+- hide focus mode on mobile ([3027c87](https://github.com/johannesjo/super-productivity/commit/3027c87e360f9da5d543688e8fc5cd4e8ec5aa82))
+- hide idle handling cfg on android ([579b643](https://github.com/johannesjo/super-productivity/commit/579b64336eaabd5f695702231c1f54db78396d45))
+- **idle:** change order of buttons ([d9cc580](https://github.com/johannesjo/super-productivity/commit/d9cc5807d741394cda642971259d9a8a2b2208d2))
+- **idle:** make reset break timer from idle dialog work again ([ff504e3](https://github.com/johannesjo/super-productivity/commit/ff504e321391acfcd923b035ad00887f52751468))
+- improve ani flow on pages with spinner ([21d9de9](https://github.com/johannesjo/super-productivity/commit/21d9de9aa5c663be1c4dab7c52392bfee502b6d6))
+- improve idle dialog by removing task + break case ([8b770b2](https://github.com/johannesjo/super-productivity/commit/8b770b286fa5ab11b8bc42eb61efd26c3a6883eb))
+- improve schedule styling ([a2accca](https://github.com/johannesjo/super-productivity/commit/a2accca0e46147c0cc969fd0a09adaced01e29ee))
+- improve shortcut preview styling ([63ea2c4](https://github.com/johannesjo/super-productivity/commit/63ea2c417149df6a0f5bca6e7ac7f399be906cf6))
+- improve styling 2 ([a8e4ab5](https://github.com/johannesjo/super-productivity/commit/a8e4ab55b30d750eb41d7ec88e0e705a708f0826))
+- improve task additional info mobile subtask and title styles ([12056ce](https://github.com/johannesjo/super-productivity/commit/12056ce48c4e7f1312382a9e7d92a063af08e46f))
+- make keyboard shortcuts less intense ([33e24e4](https://github.com/johannesjo/super-productivity/commit/33e24e4682cf413d9c14061da0eabf8b99681347))
+- never show multi instance warning on android ([10f8407](https://github.com/johannesjo/super-productivity/commit/10f84070b98fb08ef5bf3b01745517439ca225bb))
+- remove number of divs ([9b4b4b8](https://github.com/johannesjo/super-productivity/commit/9b4b4b82819f407eb5504ece0149c419fc0e2183))
+- **task:** improve styling ([19f39c4](https://github.com/johannesjo/super-productivity/commit/19f39c4226493d32383d4a89986fd44939166af0))
+- **timeline:** base item size on duration ([4f449a1](https://github.com/johannesjo/super-productivity/commit/4f449a17aa6f2d21b80cec2b52dbc09a51e332ce))
+
+## [8.0.10](https://github.com/johannesjo/super-productivity/compare/v8.0.9...v8.0.10) (2024-06-17)
+
+### Bug Fixes
+
+- cannot read properties of undefined reading color [#3208](https://github.com/johannesjo/super-productivity/issues/3208) ([72a625a](https://github.com/johannesjo/super-productivity/commit/72a625ae7037ba03442c19c0477793a16e224b61))
+- zoomFactor error value [#3218](https://github.com/johannesjo/super-productivity/issues/3218) ([70f1f72](https://github.com/johannesjo/super-productivity/commit/70f1f725550a66f1a3390e0777bfaef4a0b71947))
+
+## [8.0.9](https://github.com/johannesjo/super-productivity/compare/v8.0.8...v8.0.9) (2024-6-13)
+
+## [8.0.8](https://github.com/johannesjo/super-productivity/compare/v8.0.7...v8.0.8) (2024-6-13)
+
+### Bug Fixes
+
+- also consider subtask tags when restoring from archive [#3205](https://github.com/johannesjo/super-productivity/issues/3205) ([1057466](https://github.com/johannesjo/super-productivity/commit/10574665e7bff2131ddf92658bf6a55beefdc366))
+- also filter out subtask tags when moving a task to archive [#3205](https://github.com/johannesjo/super-productivity/issues/3205) ([eb2b08c](https://github.com/johannesjo/super-productivity/commit/eb2b08c73e97c678c0a7c3e9c58b1a2cc5515f20))
+- auto prefixer warning ([5026fcb](https://github.com/johannesjo/super-productivity/commit/5026fcb1f2956bcc979736c370a0420fb382dd77))
+- creation not working [#2694](https://github.com/johannesjo/super-productivity/issues/2694) ([8ddd703](https://github.com/johannesjo/super-productivity/commit/8ddd703a188cd4c96ad483af8b70d0bb1b9bcc90))
+- inconsistent display of info ([2a444f8](https://github.com/johannesjo/super-productivity/commit/2a444f80f949952d095f4686e78d79bd1fae537a))
+- mac icon [#3213](https://github.com/johannesjo/super-productivity/issues/3213) ([9a3de92](https://github.com/johannesjo/super-productivity/commit/9a3de9282fdaf3ab04d5c84764218b6b09055bbb))
+- remove copying over legacy snap data to avoid SingletonCookie issue [#326](https://github.com/johannesjo/super-productivity/issues/326) [#3069](https://github.com/johannesjo/super-productivity/issues/3069) [#3159](https://github.com/johannesjo/super-productivity/issues/3159) ([337a5fd](https://github.com/johannesjo/super-productivity/commit/337a5fd9d7d5afaff1b6af97c9aec88811cf9616))
+- some parts not being clickable for mac os ([a8a7d2e](https://github.com/johannesjo/super-productivity/commit/a8a7d2e07a6f83c201da833d0fe769f9a6d98fb1))
+
+### Features
+
+- add for YEARS [#2694](https://github.com/johannesjo/super-productivity/issues/2694) ([2e5b7e8](https://github.com/johannesjo/super-productivity/commit/2e5b7e89291f34a1ed35e6612044771e9cf0bd89))
+- add quote ([f3ecc74](https://github.com/johannesjo/super-productivity/commit/f3ecc74501d4bf73cba23744bb82e7ab8bdffd5a))
+- change wording [#3141](https://github.com/johannesjo/super-productivity/issues/3141) ([408cc77](https://github.com/johannesjo/super-productivity/commit/408cc7721ee5541f4c66a254bfd71fae7102a408))
+- implement new function into existing flows [#2694](https://github.com/johannesjo/super-productivity/issues/2694) ([d7ac79c](https://github.com/johannesjo/super-productivity/commit/d7ac79c3be7756fc13818c52c40847583f036c21))
+- improve test cases and fix edge case [#2694](https://github.com/johannesjo/super-productivity/issues/2694) ([2ad4b88](https://github.com/johannesjo/super-productivity/commit/2ad4b880b9a8e515c6d0a61867017eeb9733aa2e))
+- include overdue repeatable tasks in daily creation [#2694](https://github.com/johannesjo/super-productivity/issues/2694) ([8fab0f2](https://github.com/johannesjo/super-productivity/commit/8fab0f2e4ba111218797f6c9e683dd4123903070))
+- make another edge case work [#2694](https://github.com/johannesjo/super-productivity/issues/2694) ([f85fe28](https://github.com/johannesjo/super-productivity/commit/f85fe280eb0f1344c7d8ff12cbebb2b7f8d51710))
+- make it more clear when adding a task ([69540e4](https://github.com/johannesjo/super-productivity/commit/69540e41c69a36ed80fd2ed0f9dc8dc48157ff1b))
+- make weekly work [#2694](https://github.com/johannesjo/super-productivity/issues/2694) ([69a5fec](https://github.com/johannesjo/super-productivity/commit/69a5fec4ce328ffc9357e8d66141de49d362cccb))
+- make weekly work as it should [#2694](https://github.com/johannesjo/super-productivity/issues/2694) ([b91f6db](https://github.com/johannesjo/super-productivity/commit/b91f6db006139db6936db5f132d57752960844b6))
+- make yearly work and add test cases [#2694](https://github.com/johannesjo/super-productivity/issues/2694) ([2d405a0](https://github.com/johannesjo/super-productivity/commit/2d405a080a549d1d023dbe4d9f75b332eaa71df8))
+- outline monthly check [#2694](https://github.com/johannesjo/super-productivity/issues/2694) ([a7971e7](https://github.com/johannesjo/super-productivity/commit/a7971e706d6d2f8e5f7c9c6b0f9ff2e1bfab1574))
+- prevent multi instance in web [#2987](https://github.com/johannesjo/super-productivity/issues/2987) ([14fcefa](https://github.com/johannesjo/super-productivity/commit/14fcefaafa652492ab6c4db8125f85db95fdbb26))
+- update short description ([e59631b](https://github.com/johannesjo/super-productivity/commit/e59631bbb1526e793ba232085e648c5c054fb614))
+
+## [8.0.7](https://github.com/johannesjo/super-productivity/compare/v8.0.6...v8.0.7) (2024-05-31)
+
+## [8.0.6](https://github.com/johannesjo/super-productivity/compare/v8.0.4...v8.0.6) (2024-05-31)
+
+### Bug Fixes
+
+- accessibility issue [#3129](https://github.com/johannesjo/super-productivity/issues/3129) ([4557a5f](https://github.com/johannesjo/super-productivity/commit/4557a5f2a18a52657da4d40d8c0cc922fc4562fc))
+- make current work context title clickable on mac ([e914397](https://github.com/johannesjo/super-productivity/commit/e91439701870a610775e62dcf23f3118d93090e0))
+- status bar flickering [#3131](https://github.com/johannesjo/super-productivity/issues/3131) ([fc3dcc7](https://github.com/johannesjo/super-productivity/commit/fc3dcc7f07d5dc4573bdbba3869ffeb0ce32c314))
+- wrong task on focus mode [#3194](https://github.com/johannesjo/super-productivity/issues/3194) ([cba0b9f](https://github.com/johannesjo/super-productivity/commit/cba0b9f442c0d46c35e94767ac1ba522fcc0824e))
+
+### Features
+
+- add getNewestPossibleDueDate utility function for DAILY [#2694](https://github.com/johannesjo/super-productivity/issues/2694) ([3e5e305](https://github.com/johannesjo/super-productivity/commit/3e5e305e9fea2acf913e7d0c90d3fe1c397b4582))
+- added lunch break to timeline [#3125](https://github.com/johannesjo/super-productivity/issues/3125) ([03ade7e](https://github.com/johannesjo/super-productivity/commit/03ade7e5128ce7f26a7290aab87e494d361a0816))
+- also include done tasks for idle time dialog [#3135](https://github.com/johannesjo/super-productivity/issues/3135) ([2d04ede](https://github.com/johannesjo/super-productivity/commit/2d04ede28d25446f5574d41b29231a0efb07babb))
+- filter out undone tasks without time for worklog [#3122](https://github.com/johannesjo/super-productivity/issues/3122) ([840c243](https://github.com/johannesjo/super-productivity/commit/840c2438f6c4ff95273735c02f048e96be2c671a))
+- improve on add button [#3129](https://github.com/johannesjo/super-productivity/issues/3129) ([0920c8a](https://github.com/johannesjo/super-productivity/commit/0920c8af5e45287137958b94bdb54841c0a48676))
+- make add task bar smarter ([087be06](https://github.com/johannesjo/super-productivity/commit/087be0615cfb861ca50d8378f4ae0c06ffbb4434))
+- outline getNewestPossibleDueDate utility function for WEEKLY [#2694](https://github.com/johannesjo/super-productivity/issues/2694) ([eaac9b3](https://github.com/johannesjo/super-productivity/commit/eaac9b3fadd740145ebf41fa678d68e68bc61ef4))
+- set doneOn date as parent date if sub task was not done when moving to archive [#3122](https://github.com/johannesjo/super-productivity/issues/3122) ([fb50e26](https://github.com/johannesjo/super-productivity/commit/fb50e26e7c6f82317b7bee71a2c6bf292334298f))
+- show project color and title for today tag worklog ([5528cdd](https://github.com/johannesjo/super-productivity/commit/5528cdd6d56b3c5a5fa8072380cfc343046735d4)), closes [#2933](https://github.com/johannesjo/super-productivity/issues/2933)
+- use doneOn over created date when creating worklog items [#3122](https://github.com/johannesjo/super-productivity/issues/3122) ([f3b0c66](https://github.com/johannesjo/super-productivity/commit/f3b0c665e6a505b392865cc4c1964e64e49a0e4b))
+
+## [8.0.5](https://github.com/johannesjo/super-productivity/compare/v8.0.4...v8.0.5) (2024-04-12)
+
+### Features
+
+- also include done tasks for idle time dialog [#3135](https://github.com/johannesjo/super-productivity/issues/3135) ([2d04ede](https://github.com/johannesjo/super-productivity/commit/2d04ede28d25446f5574d41b29231a0efb07babb))
+- filter out undone tasks without time for worklog [#3122](https://github.com/johannesjo/super-productivity/issues/3122) ([840c243](https://github.com/johannesjo/super-productivity/commit/840c2438f6c4ff95273735c02f048e96be2c671a))
+- set doneOn date as parent date if sub task was not done when moving to archive [#3122](https://github.com/johannesjo/super-productivity/issues/3122) ([fb50e26](https://github.com/johannesjo/super-productivity/commit/fb50e26e7c6f82317b7bee71a2c6bf292334298f))
+- use doneOn over created date when creating worklog items [#3122](https://github.com/johannesjo/super-productivity/issues/3122) ([f3b0c66](https://github.com/johannesjo/super-productivity/commit/f3b0c665e6a505b392865cc4c1964e64e49a0e4b))
+
+## [8.0.4](https://github.com/johannesjo/super-productivity/compare/v8.0.3...v8.0.4) (2024-04-10)
+
+## [8.0.3](https://github.com/johannesjo/super-productivity/compare/v8.0.1...v8.0.3) (2024-04-09)
+
+### Bug Fixes
+
+- cursor positioning error for special case [#3104](https://github.com/johannesjo/super-productivity/issues/3104) ([c4bf4b0](https://github.com/johannesjo/super-productivity/commit/c4bf4b0cb3668321fdb0d1ee0994287f1b808d62))
+- restore task button appearing for every task [#3121](https://github.com/johannesjo/super-productivity/issues/3121) ([b312050](https://github.com/johannesjo/super-productivity/commit/b312050b8433f7e659567a0d56a89b7b0918ccd5))
+- schedule of task is removed when another tag is added [#2937](https://github.com/johannesjo/super-productivity/issues/2937) ([7ef1fa9](https://github.com/johannesjo/super-productivity/commit/7ef1fa9decd9a51fe8d5443a2fd4eb3db4b5fb00))
+- select content not being scrollable ([cf032ee](https://github.com/johannesjo/super-productivity/commit/cf032eed56fe4ad11998cce7ea7fe8ab45d05b6a))
+- simple counter btns not working on mac [#3075](https://github.com/johannesjo/super-productivity/issues/3075) ([9fd8679](https://github.com/johannesjo/super-productivity/commit/9fd86796d9e19fec6372f761316caecc5f268367))
+
+### Features
+
+- adjust default values ([ea32b6d](https://github.com/johannesjo/super-productivity/commit/ea32b6d831ebc12384892e3d075389a13fb119d6))
+- **encryption:** add config form ([21de69a](https://github.com/johannesjo/super-productivity/commit/21de69ad22f1d2930c1144902801cc3fc3ec3d1b))
+- **encryption:** handle special case ([48032e6](https://github.com/johannesjo/super-productivity/commit/48032e6625b40c030bb2083e40adb3c56721bee7))
+- **encryption:** handle special case 2 ([a5837e1](https://github.com/johannesjo/super-productivity/commit/a5837e179ce43e20c2fecc7a629c51dc31a073cf))
+- **encryption:** improve wording ([3a767dd](https://github.com/johannesjo/super-productivity/commit/3a767dd4eb15fa4e179c37984ea0a7495c288c62))
+- **encryption:** improve wording 2 ([7f32086](https://github.com/johannesjo/super-productivity/commit/7f320865f379cdfe324e75f709e3b6d1d17f10f1))
+- **encryption:** make basic encryption work ([6aa0e0b](https://github.com/johannesjo/super-productivity/commit/6aa0e0b2d7675d89e0f1bf16f2a398083a444f0e))
+- **i18n:** update Chinese translation ([3d3fb77](https://github.com/johannesjo/super-productivity/commit/3d3fb77d0d584d6a65be0688ab82d4c4ec5df47d))
+- improve behavior on touch primary devices ([07e5d05](https://github.com/johannesjo/super-productivity/commit/07e5d05aa94927edd47ad5d79880987069ee3c79))
+
+## [8.0.2](https://github.com/johannesjo/super-productivity/compare/v8.0.1...v8.0.2) (2024-04-09)
+
+### Bug Fixes
+
+- cursor positioning error for special case [#3104](https://github.com/johannesjo/super-productivity/issues/3104) ([c4bf4b0](https://github.com/johannesjo/super-productivity/commit/c4bf4b0cb3668321fdb0d1ee0994287f1b808d62))
+- restore task button appearing for every task [#3121](https://github.com/johannesjo/super-productivity/issues/3121) ([b312050](https://github.com/johannesjo/super-productivity/commit/b312050b8433f7e659567a0d56a89b7b0918ccd5))
+- schedule of task is removed when another tag is added [#2937](https://github.com/johannesjo/super-productivity/issues/2937) ([7ef1fa9](https://github.com/johannesjo/super-productivity/commit/7ef1fa9decd9a51fe8d5443a2fd4eb3db4b5fb00))
+- select content not being scrollable ([cf032ee](https://github.com/johannesjo/super-productivity/commit/cf032eed56fe4ad11998cce7ea7fe8ab45d05b6a))
+
+### Features
+
+- adjust default values ([ea32b6d](https://github.com/johannesjo/super-productivity/commit/ea32b6d831ebc12384892e3d075389a13fb119d6))
+- **encryption:** add config form ([21de69a](https://github.com/johannesjo/super-productivity/commit/21de69ad22f1d2930c1144902801cc3fc3ec3d1b))
+- **encryption:** handle special case ([48032e6](https://github.com/johannesjo/super-productivity/commit/48032e6625b40c030bb2083e40adb3c56721bee7))
+- **encryption:** handle special case 2 ([a5837e1](https://github.com/johannesjo/super-productivity/commit/a5837e179ce43e20c2fecc7a629c51dc31a073cf))
+- **encryption:** improve wording ([3a767dd](https://github.com/johannesjo/super-productivity/commit/3a767dd4eb15fa4e179c37984ea0a7495c288c62))
+- **encryption:** improve wording 2 ([7f32086](https://github.com/johannesjo/super-productivity/commit/7f320865f379cdfe324e75f709e3b6d1d17f10f1))
+- **encryption:** make basic encryption work ([6aa0e0b](https://github.com/johannesjo/super-productivity/commit/6aa0e0b2d7675d89e0f1bf16f2a398083a444f0e))
+- **i18n:** update Chinese translation ([3d3fb77](https://github.com/johannesjo/super-productivity/commit/3d3fb77d0d584d6a65be0688ab82d4c4ec5df47d))
+- improve behavior on touch primary devices ([07e5d05](https://github.com/johannesjo/super-productivity/commit/07e5d05aa94927edd47ad5d79880987069ee3c79))
+
+## [8.0.1](https://github.com/johannesjo/super-productivity/compare/v8.0.0...v8.0.1) (2024-03-04)
+
+### Bug Fixes
+
+- calendar disable not working ([34ba6ae](https://github.com/johannesjo/super-productivity/commit/34ba6aec956cc1d61ef677eca31bc7a03129a9db))
+- issue when trying to move sub-task to archive [#3059](https://github.com/johannesjo/super-productivity/issues/3059) ([ba2cc3c](https://github.com/johannesjo/super-productivity/commit/ba2cc3c81a806150d3b7922941d56b230846f6f9))
+- issue when trying to remove last tag [#3060](https://github.com/johannesjo/super-productivity/issues/3060) ([b40397a](https://github.com/johannesjo/super-productivity/commit/b40397a7b5135e31c2fe65e5345e9d4852fdbdce))
+
+### Features
+
+- add productivity tip ([03b0080](https://github.com/johannesjo/super-productivity/commit/03b0080a41f1d0aa967ebac79ae9b0304306a873))
+- close app if user selects NOT to fix data [#3052](https://github.com/johannesjo/super-productivity/issues/3052) ([67a5758](https://github.com/johannesjo/super-productivity/commit/67a57580661dffbe34e22b2b41aa04e05e0cad6f))
+- **i18n:** update Croatian translation [#3044](https://github.com/johannesjo/super-productivity/issues/3044) ([398ef21](https://github.com/johannesjo/super-productivity/commit/398ef217764cf3e350f547449d4901c869557555))
+- improve error handling for failed pkce challenge [#3039](https://github.com/johannesjo/super-productivity/issues/3039) ([7ccf5b3](https://github.com/johannesjo/super-productivity/commit/7ccf5b3c7d99f7ed53485899f7244b70e9222ee6))
+- improve new tag handling [#3035](https://github.com/johannesjo/super-productivity/issues/3035) ([1bbe671](https://github.com/johannesjo/super-productivity/commit/1bbe6712c276239eebaf1c3ccedc007a4205cff4))
+- improve windows store icon [#2549](https://github.com/johannesjo/super-productivity/issues/2549) ([3c94c81](https://github.com/johannesjo/super-productivity/commit/3c94c810fbc955fcc4aeade534d26004f4abec2c))
+- **sync:** retry upload once without confirm and only then ask [#3058](https://github.com/johannesjo/super-productivity/issues/3058) ([9d30b32](https://github.com/johannesjo/super-productivity/commit/9d30b3211ba12c98382c7d8bfe6f1472c9aba49d))
+- **sync:** show snack if already in sync ([1394e43](https://github.com/johannesjo/super-productivity/commit/1394e437253d0623ba6d45bf7a5a8124915bbabb))
+- use different icon for mac and linux [#3033](https://github.com/johannesjo/super-productivity/issues/3033) ([53f57dc](https://github.com/johannesjo/super-productivity/commit/53f57dcf0360d2049561046d2498e5230665ee65))
+
+# [8.0.0](https://github.com/johannesjo/super-productivity/compare/v8.0.0-rc.0...v8.0.0) (2024-02-09)
+
+### Bug Fixes
+
+- privacy export not masking all the properties [#3005](https://github.com/johannesjo/super-productivity/issues/3005) ([632b0cb](https://github.com/johannesjo/super-productivity/commit/632b0cbf557f7c524c9244bd0f7da50dddfa5f6f))
+- redmine initial dialog btn ([fc7ef3f](https://github.com/johannesjo/super-productivity/commit/fc7ef3f9bf18b96d1c60867215c6bc2424f8658c))
+- **reminderCountdown:** not reacting right away to skipped reminders ([b8ef950](https://github.com/johannesjo/super-productivity/commit/b8ef9509b7d5bc8b2839d3099750a095ac611eb3))
+- task data not ready for calendar issue tasks [#3004](https://github.com/johannesjo/super-productivity/issues/3004) ([d7124ca](https://github.com/johannesjo/super-productivity/commit/d7124cabb4dcad6f1904769a7e021060ee24a293))
+- **tour:** weird modal container pushing content bug ([60a3423](https://github.com/johannesjo/super-productivity/commit/60a34233b0dd9e32cd23eb40140384efe1fb252c))
+- wrong short syntax style ([17cdbfe](https://github.com/johannesjo/super-productivity/commit/17cdbfebe11de055e415944cd91a8255f6bcb495))
+
+### Features
+
+- improve repeat section styling ([0cbdb1c](https://github.com/johannesjo/super-productivity/commit/0cbdb1c789c64a22836417c6a6195e2a1b0695c9))
+- **shortSyntax:** ask before creating new tags ([d362783](https://github.com/johannesjo/super-productivity/commit/d36278331ebcaceb9d78e11ce78a47f096c4dc90))
+
+# [8.0.0-rc.0](https://github.com/johannesjo/super-productivity/compare/v7.17.2...v8.0.0-rc.0) (2024-01-31)
+
+### Bug Fixes
+
+- avoid too many calendar requests when tracking ([110607d](https://github.com/johannesjo/super-productivity/commit/110607d9f7bbdaaafbd5bf576c7441b05ad9ffe2))
+- **calendarIntegration:** migration not working ([452c480](https://github.com/johannesjo/super-productivity/commit/452c480da1ef992d82dc28fd44946a697cfcfa50))
+- **calendarIntegration:** skipped events not working ([a6a8ec3](https://github.com/johannesjo/super-productivity/commit/a6a8ec3901ea8c2967728337bde573955ea630b6))
+- **calendarIntegration:** wrong component name ([b562471](https://github.com/johannesjo/super-productivity/commit/b562471c2dd306ca465db18782d71441b33a67d1))
+- checklist not working anymore inside markdown [#2988](https://github.com/johannesjo/super-productivity/issues/2988) ([bbfa937](https://github.com/johannesjo/super-productivity/commit/bbfa937666fc562ea3bd58d6e5abef13263632d5))
+- **countdownReminder:** make edge cases work when tracking ([869f721](https://github.com/johannesjo/super-productivity/commit/869f72145c5e643aeb1a7f6c5102b0d64ac574ed))
+- debounce for config form not always working ([64ba20a](https://github.com/johannesjo/super-productivity/commit/64ba20a227fe87bde8a11ba80fc857bb5be1063a))
+- default project error [#2950](https://github.com/johannesjo/super-productivity/issues/2950) ([567a55c](https://github.com/johannesjo/super-productivity/commit/567a55c27ac27412373e60551b9599cc73cc619d))
+- dismiss banners if no stuff to show ([22324d7](https://github.com/johannesjo/super-productivity/commit/22324d7b91833e965fd8537934761ea2365b4f17))
+- domina mode leading to issues [#2992](https://github.com/johannesjo/super-productivity/issues/2992) ([865dab0](https://github.com/johannesjo/super-productivity/commit/865dab07aa9dd30109c06b37cf43749d4379d8f8))
+- don't show countdown when task is deleted and react to changes ([dc9c4ab](https://github.com/johannesjo/super-productivity/commit/dc9c4ab57c68e6b27ad8bea37ef44f5f191ba1c4))
+- don't show domina mode on snap and for firefox [#2977](https://github.com/johannesjo/super-productivity/issues/2977) ([2e30b8b](https://github.com/johannesjo/super-productivity/commit/2e30b8bc74f43f3d0ed0074fbbbb0bd86de957c4))
+- error when there is no task archive yet ([0e8ffc3](https://github.com/johannesjo/super-productivity/commit/0e8ffc37710e253342d426b48d8824d65dff8f0c))
+- error when there is no task archive yet 2 ([16da66b](https://github.com/johannesjo/super-productivity/commit/16da66b90d345e53b0adebce44ada8ddf42d9ea1))
+- focus not being restored for repeat task dialog ([af794b3](https://github.com/johannesjo/super-productivity/commit/af794b350ffde0f33c4d5ca006b21a746a25b3e6))
+- lint ([daa8459](https://github.com/johannesjo/super-productivity/commit/daa84596e742778693c8f21279fc50274b1975f9))
+- motivational image cfg not being shown [#2971](https://github.com/johannesjo/super-productivity/issues/2971) ([9c3a566](https://github.com/johannesjo/super-productivity/commit/9c3a56680829bb9e4d4a085a60a8918068f2a9cc))
+- planning mode issues ([15b8f52](https://github.com/johannesjo/super-productivity/commit/15b8f522996949b2d617d2eb74285bcdddfaaf13))
+- remove leftover wrong code ([13c1338](https://github.com/johannesjo/super-productivity/commit/13c1338a104e634918f65cfb83d173cb5d68c647))
+- save and go home marking tasks as done before confirmation in dialog ([90cff79](https://github.com/johannesjo/super-productivity/commit/90cff790b708894a8264d425e13cca3ac4cc3523))
+- show simple counter title on hover [#2660](https://github.com/johannesjo/super-productivity/issues/2660) ([d661fad](https://github.com/johannesjo/super-productivity/commit/d661fad32bd550e512728a4a142a4f110571d798))
+- styling for procrastination helper ([33b2b90](https://github.com/johannesjo/super-productivity/commit/33b2b9000b094f319283bef045e119e88d12bfac))
+- styling issue ([eb2cfbf](https://github.com/johannesjo/super-productivity/commit/eb2cfbff932a8e9f031d5007a2739c7b58aa6e97))
+- task focus behavior edge case ([d066976](https://github.com/johannesjo/super-productivity/commit/d066976217b36b98cd0b1e1cd59f20dca4f5d399))
+- today string not always being translated ([301cbde](https://github.com/johannesjo/super-productivity/commit/301cbded0c5885b1b9cdc93d98d3377e7d9ebfc6))
+- tooltip not visible ([0eeb2fa](https://github.com/johannesjo/super-productivity/commit/0eeb2fa88f0058b6a3f3b8d9de5915c65f8e5359))
+- typo ([33eeb22](https://github.com/johannesjo/super-productivity/commit/33eeb22374f5e2207f1ad63cf427e97b50baddea))
+
+### Features
+
+- add hash fn ([a9dd944](https://github.com/johannesjo/super-productivity/commit/a9dd944c00ec9ff2c735fc791ef31f0f4db7fe68))
+- add info on how to add tags ([1833593](https://github.com/johannesjo/super-productivity/commit/183359380aec1f44e7d14200fffdb2c554a2deeb))
+- add outlook info for ical cfg ([9adc538](https://github.com/johannesjo/super-productivity/commit/9adc5380e7f5d6af7c253b830877dcd86129453b))
+- add quick way to access timeline settings ([1d7e394](https://github.com/johannesjo/super-productivity/commit/1d7e39484c5d04352d04f3bde4f51cadb8d688c7))
+- add subtle play animation ([df59101](https://github.com/johannesjo/super-productivity/commit/df5910189cf01c9425cbd650c9caee78a243412c))
+- add warning in browser for ical cfg ([a245950](https://github.com/johannesjo/super-productivity/commit/a2459501b48c1bcade0dfb537005bba9d7969a10))
+- also close additional info panel on ESCAPE ([cb53906](https://github.com/johannesjo/super-productivity/commit/cb53906019ec22a3c864e949d6f5a2638958cedf))
+- also show time worked today for archived tasks [#2939](https://github.com/johannesjo/super-productivity/issues/2939) ([3c63874](https://github.com/johannesjo/super-productivity/commit/3c6387431eb3d44ccc056e15637914b4414350f0))
+- **calendarIntegration:** add add as task for timeline itself ([b7d1914](https://github.com/johannesjo/super-productivity/commit/b7d1914970cb1246a1af24192c8fcd250d8ff68f))
+- **calendarIntegration:** add calendar tasks as issue tasks ([1798295](https://github.com/johannesjo/super-productivity/commit/1798295395eb42ff670481aa483b82bacc8896a6))
+- **calendarIntegration:** add checking in interval ([df81df4](https://github.com/johannesjo/super-productivity/commit/df81df499e8963bdb94a6cff011c621cd61ec842))
+- **calendarIntegration:** add config form ([97b92a6](https://github.com/johannesjo/super-productivity/commit/97b92a6a68a7d3e955b46cbc01e3d98420089415))
+- **calendarIntegration:** add isueProviderId for calendar tasks and make adding from timeline work correctly ([4cbb523](https://github.com/johannesjo/super-productivity/commit/4cbb52347246191afd4c89ba5cdc05116d2a4bf4))
+- **calendarIntegration:** add migration for calendars from timeline to new integration ([6a24f0f](https://github.com/johannesjo/super-productivity/commit/6a24f0fed54d599f88398b0d076617976d85abeb))
+- **calendarIntegration:** add service to use for caching later ([e43d875](https://github.com/johannesjo/super-productivity/commit/e43d875b7d784004e9e87d317d4e3817d1ceeb82))
+- **calendarIntegration:** add smart threshold for events ([d79f586](https://github.com/johannesjo/super-productivity/commit/d79f58601b98dcb635477413853ea9e284bc35bf))
+- **calendarIntegration:** add translations ([0841d83](https://github.com/johannesjo/super-productivity/commit/0841d83a8e23d7510b595c7acf645a7456e11be2))
+- **calendarIntegration:** adjust msg for past ([8822222](https://github.com/johannesjo/super-productivity/commit/8822222cf11a454f0ac52dc24407e3fd1dc8fdd5))
+- **calendarIntegration:** filter added calendar events from timeline ([23587ff](https://github.com/johannesjo/super-productivity/commit/23587ffe53928e7a4d892daea7a7108b8382e697))
+- **calendarIntegration:** hide icon for now ([c093aeb](https://github.com/johannesjo/super-productivity/commit/c093aeb1fea97d327f8d5b63e3da835ef01527d8))
+- **calendarIntegration:** make banner behave smarter for multiple entries ([1da0d07](https://github.com/johannesjo/super-productivity/commit/1da0d07fd9e736204f2551b0bebad956caf48e85))
+- **calendarIntegration:** make banner react smartly to already added tasks ([cce9424](https://github.com/johannesjo/super-productivity/commit/cce9424525cdd648e33e7f993cfd1faa79b58181))
+- **calendarIntegration:** make most basic displaying of events work ([f3019ca](https://github.com/johannesjo/super-productivity/commit/f3019caa0a5c609f4dd7322ee835ce8bdf89c556))
+- **calendarIntegration:** make navigate to task accessible from anywhere ([78da133](https://github.com/johannesjo/super-productivity/commit/78da1331e5ed13611396e2026e3e2722da62c452))
+- **calendarIntegration:** persist skipped events for a day ([f585be9](https://github.com/johannesjo/super-productivity/commit/f585be99fe906b721edc3cd206250e8273613d69))
+- **calendarIntegration:** polish ([cc2a6e1](https://github.com/johannesjo/super-productivity/commit/cc2a6e174911ec4f0f505337cafdb0caeaac7f99))
+- **calendarIntegration:** show notes button in a normal fashion ([d74cb00](https://github.com/johannesjo/super-productivity/commit/d74cb008d3d85877bfca0c1f7355167269bd32f4))
+- **calendarIntegration:** update description text ([0f9aafe](https://github.com/johannesjo/super-productivity/commit/0f9aafeaa77165eb3eb1eed07443fe6384288e26))
+- disable spellcheck for duration input ([82908ce](https://github.com/johannesjo/super-productivity/commit/82908ce2484e8d37f7e6682aa5bb4af53ab137b4))
+- disable spellcheck for task title ([3f3ebd1](https://github.com/johannesjo/super-productivity/commit/3f3ebd1f8b73d1b493c6ec59b31336342429b354))
+- **electron:** avoid weird shortcuts being able to crash the app ([1e05cf2](https://github.com/johannesjo/super-productivity/commit/1e05cf2c61795c5c379492fd28a2268f1007e8d8))
+- **focusMode:** make x close procrastination mode instead of focus mode ([ec6cce8](https://github.com/johannesjo/super-productivity/commit/ec6cce8747209fc167b8e998cb22c8b4740be190))
+- make goToWorkView shortcut configurable and also focus first task if possible ([b09b074](https://github.com/johannesjo/super-productivity/commit/b09b0740aedfaa123038e850875a7b0cf9260b53))
+- **reminderCountdown:** fine tune ([a7c9a29](https://github.com/johannesjo/super-productivity/commit/a7c9a29da7975f24ef7532af69b116573d03e5a5))
+- **reminderCountdown:** fine tune 2 ([3145a40](https://github.com/johannesjo/super-productivity/commit/3145a40cad1a6ba1493c7016442fc65172dbba7c))
+- **reminderCountdown:** make countdown progress work ([08e72d3](https://github.com/johannesjo/super-productivity/commit/08e72d39de98d64edb2f2e8f017ea7d124a81971))
+- **reminderCountdown:** make math work better ([a370ca2](https://github.com/johannesjo/super-productivity/commit/a370ca24a1fc0897771916d62381d7a11235ae37))
+- **reminderCountdown:** outline feature ([6c1e697](https://github.com/johannesjo/super-productivity/commit/6c1e6978fb870ba38093501d02f2945f19ff2fb2))
+- set default values for form checkbox ([ed29f23](https://github.com/johannesjo/super-productivity/commit/ed29f2315cbb508ea5ff44d642e5e8284de47a03))
+- show icon for icon selector component ([6d09a35](https://github.com/johannesjo/super-productivity/commit/6d09a351f25755a44001d26304652ec4c655d686))
+- **tagsForSubTasks:** avoid problematic error case ([b7a3fe7](https://github.com/johannesjo/super-productivity/commit/b7a3fe7898c7ee4c50bbe81ae847c09dbc3ceac3))
+- **tagsForSubTasks:** display add and remove my day btns work better ([351d50e](https://github.com/johannesjo/super-productivity/commit/351d50eac25afa1c95823af542b06812b87285e0))
+- **tagsForSubTasks:** display add and remove my day btns work better 2 ([d273894](https://github.com/johannesjo/super-productivity/commit/d273894a625382dd55f936d72b6643ba5435cc72))
+- **tagsForSubTasks:** improve handling and auto add and remove tags for parent or sub task if necessary ([7863975](https://github.com/johannesjo/super-productivity/commit/78639751ba9e0f182b92e161030b070e2ca2bef3))
+- **tagsForSubTasks:** make drag & drop work ([fea088f](https://github.com/johannesjo/super-productivity/commit/fea088f4b004f698c22e5d1db469b714497a9e01))
+- **tagsForSubTasks:** make most basic stuff work ([29a47ab](https://github.com/johannesjo/super-productivity/commit/29a47abd18541df7483d99dc49874b0e3eb3e1c3))
+- **tagsForSubTasks:** make up & down work in timeline ([0eb87f0](https://github.com/johannesjo/super-productivity/commit/0eb87f0ed1626fd13f4e521ef2c44bf6e799740a))
+- **tagsForSubTasks:** navigate to parent task context if necessary ([9c9d7bd](https://github.com/johannesjo/super-productivity/commit/9c9d7bd461b1d5151fb0c916ea972699bc957e98))
+- **tour:** add advanced tutorial choice ([0424aea](https://github.com/johannesjo/super-productivity/commit/0424aea692858e22760e40b3107c09d2a6d84882))
+- **tour:** add basic steps ([74d1c40](https://github.com/johannesjo/super-productivity/commit/74d1c409644ce682daabeaca076ef31b0bfcdc97))
+- **tour:** add basic steps2 ([721aa86](https://github.com/johannesjo/super-productivity/commit/721aa86271c2aa7cb79b9631377f29874d857670))
+- **tour:** add basic steps3 ([9578a58](https://github.com/johannesjo/super-productivity/commit/9578a58661642b46c637d64aa190b9741dcbbec3))
+- **tour:** add for advanced keyboard stuff ([f592d1d](https://github.com/johannesjo/super-productivity/commit/f592d1daf3b50a964923a989d5d55f9505216775))
+- **tour:** add for advanced keyboard stuff 2 ([b6d227e](https://github.com/johannesjo/super-productivity/commit/b6d227efd5d8ad51fa3939119617168e11c1589e))
+- **tour:** add mechanism to show tours again ([e1534fa](https://github.com/johannesjo/super-productivity/commit/e1534fa24c32fbd28b7ab5222f5a13ed6aa2c4cf))
+- **tour:** add more menu entries for help ([2bdda43](https://github.com/johannesjo/super-productivity/commit/2bdda43d21633871ff15efcf633a53eda388b525))
+- **tour:** add simple intro for projects ([77fdc51](https://github.com/johannesjo/super-productivity/commit/77fdc514bff211a3e0a97f7934988b029972b9ef))
+- **tour:** add tour for calendar and productivity helpers ([b125f8d](https://github.com/johannesjo/super-productivity/commit/b125f8d025591b62e0a1ecb5e9c285be3d7b2369))
+- **tour:** add tour for sync ([bea725d](https://github.com/johannesjo/super-productivity/commit/bea725d3581cb6805d6db7a1bbe9ac3eba182304))
+- **tour:** add translations ([6f729f8](https://github.com/johannesjo/super-productivity/commit/6f729f85a5fec97297722f79ef00a581dab695f4))
+- **tour:** also add swipe tutorial ([95ac2e4](https://github.com/johannesjo/super-productivity/commit/95ac2e484e3bbaec00a7ac1bbadbc67afc5d8837))
+- **tour:** better hover menu experience ([51da1b9](https://github.com/johannesjo/super-productivity/commit/51da1b997109cd2bb92a294a68422c1aaa65a85c))
+- **tour:** disable default focus behavior ([9434408](https://github.com/johannesjo/super-productivity/commit/9434408bfe21e1a8594bfbc3f62bc924aef50491))
+- **tour:** fine tune ([57ab150](https://github.com/johannesjo/super-productivity/commit/57ab150e6ad5b51eee72e08994dd5c1857027147))
+- **tour:** further polish <3 ([daeb42e](https://github.com/johannesjo/super-productivity/commit/daeb42e75d4383075649b5c29cfb1c6a638ccdf0))
+- **tour:** further polish <3 2 ([05d0cbd](https://github.com/johannesjo/super-productivity/commit/05d0cbd77b50cef36d06d3876e36ff53f1d247de))
+- **tour:** further polish <3 3 ([4f01c04](https://github.com/johannesjo/super-productivity/commit/4f01c04f1012139bf351c89c925c6fd4e58456f2))
+- **tour:** further polish <3 4 ([2d01322](https://github.com/johannesjo/super-productivity/commit/2d01322484d5cb46d3914799cce8894d52e2cc30))
+- **tour:** improve basic steps ([8a83786](https://github.com/johannesjo/super-productivity/commit/8a83786f7f9091aec6d81223c7376946dba88142))
+- **tour:** improve basic steps 2 ([5d71b5a](https://github.com/johannesjo/super-productivity/commit/5d71b5acf1abb875bd1d801021e537d345a7fc9e))
+- **tour:** improve basic steps 3 ([8958e14](https://github.com/johannesjo/super-productivity/commit/8958e146fba2e5705bbb4540c31a0ca10e456208))
+- **tour:** improve button styling ([abf9dce](https://github.com/johannesjo/super-productivity/commit/abf9dcefbd4d78b33fcea8e76fb813ba3c788c6c))
+- **tour:** improve styling ([d43dd25](https://github.com/johannesjo/super-productivity/commit/d43dd250380fb397a4964b7048a41791d2550b10))
+- **tour:** improve styling ([7721960](https://github.com/johannesjo/super-productivity/commit/77219602ba5d29654bf2e3876dde52ce36137cb1))
+- **tour:** make a little more robust for edge cases ([0c9c670](https://github.com/johannesjo/super-productivity/commit/0c9c6708659837f39ceaff97f41eb2fc4f879e0d))
+- **tour:** make waitForEl more robust ([3e410bb](https://github.com/johannesjo/super-productivity/commit/3e410bb98923d760d3a8525ad78e530b701c1c27))
+- **tour:** polish ([9cf2ec2](https://github.com/johannesjo/super-productivity/commit/9cf2ec2225716aea4a045a905dc0d7bab2ec1191))
+- **tour:** polish ([e292563](https://github.com/johannesjo/super-productivity/commit/e29256389f530aa68fa656f5ab0af15a6478f8ab))
+- **tour:** polish ([69f0f6c](https://github.com/johannesjo/super-productivity/commit/69f0f6cd0d4e922eebd4c33165fa95284ba605ba))
+- **tour:** polish ([48587b5](https://github.com/johannesjo/super-productivity/commit/48587b59423bbe2a48824eb0c6d1e5234e7a2039))
+- **tour:** polish ([a8fd093](https://github.com/johannesjo/super-productivity/commit/a8fd093e0b4f5983388c760cb870df2511fdb77a))
+- **tour:** polish ([c87fae3](https://github.com/johannesjo/super-productivity/commit/c87fae301d5961a143fb959aad4b02bd427705c6))
+- **tour:** polish ([c777cd9](https://github.com/johannesjo/super-productivity/commit/c777cd9a43cfa4124413dadfee2005421a7c313e))
+- **tour:** polish ([23583e9](https://github.com/johannesjo/super-productivity/commit/23583e94372747c1ee258315a276fd90795789af))
+- **tour:** polish ([386a283](https://github.com/johannesjo/super-productivity/commit/386a283fde2f46481f9415a9fe392e480e897077))
+- **tour:** polish ([fcaf2a2](https://github.com/johannesjo/super-productivity/commit/fcaf2a2ebe3ab583af6e94f98592676420e3c1ba))
+- **tour:** polish styles ([2f4f3fc](https://github.com/johannesjo/super-productivity/commit/2f4f3fcea3ca40b1fafe4d75263599c87b156468))
+- **tour:** polish wh ([c9dee14](https://github.com/johannesjo/super-productivity/commit/c9dee148aec93172c3ab80b50c4b60215f35f074))
+- **tour:** use custom shepherd service ([c3e006f](https://github.com/johannesjo/super-productivity/commit/c3e006fb96e41b37b55ae00ea975f40efab23b82))
+- unify markdown styles ([df220e5](https://github.com/johannesjo/super-productivity/commit/df220e519ff5bfdbe2247f1bdb931793287294ef))
+- update pulse ani ([c74c989](https://github.com/johannesjo/super-productivity/commit/c74c9898181e61fec41c0421145f73c79b3b59fc))
+
+## [7.17.2](https://github.com/johannesjo/super-productivity/compare/v7.17.1...v7.17.2) (2023-12-30)
+
+### Bug Fixes
+
+- default project issue [#2950](https://github.com/johannesjo/super-productivity/issues/2950) ([500189b](https://github.com/johannesjo/super-productivity/commit/500189b971f1f42bb101e82fa33c7512f7d58d46))
+- problematic ipcEvent$ case [#2949](https://github.com/johannesjo/super-productivity/issues/2949) ([127a597](https://github.com/johannesjo/super-productivity/commit/127a5976be02971a6e110185b76ec84f62217786))
+
+## [7.17.1](https://github.com/johannesjo/super-productivity/compare/v7.16.0...v7.17.1) (2023-12-29)
+
+### Bug Fixes
+
+- backup path [#2910](https://github.com/johannesjo/super-productivity/issues/2910) ([5242ed2](https://github.com/johannesjo/super-productivity/commit/5242ed2c59ca11f768fbc30cab716edf7a286c3c))
+- debounce issue in a better way ([5d300e1](https://github.com/johannesjo/super-productivity/commit/5d300e1e47eb7f8b225211add453198aae43e582))
+- **electronSecurity:** problem with ipcEvent unsubscription ([e6388a2](https://github.com/johannesjo/super-productivity/commit/e6388a26bcbc62b396e220d37927943be60b1cf3))
+- **gitlab:** dialog submission for values below 1m ([ac011ca](https://github.com/johannesjo/super-productivity/commit/ac011cabd75eb0da98b664c799680113315c676a))
+- help btn styling ([422d775](https://github.com/johannesjo/super-productivity/commit/422d7757f0f609375dab6c0d1b88f93059bc7e1b))
+- input debounce delay causing problems ([5ebd1d7](https://github.com/johannesjo/super-productivity/commit/5ebd1d7bf3b361d37d9f2e5cbc0c2d349abd12f0))
+- prevent double execution of short syntax [#2940](https://github.com/johannesjo/super-productivity/issues/2940) ([59b560f](https://github.com/johannesjo/super-productivity/commit/59b560f727efecca34d204e9663f4f3314e9082c))
+- shortcuts not working [#2887](https://github.com/johannesjo/super-productivity/issues/2887) ([7200fcb](https://github.com/johannesjo/super-productivity/commit/7200fcbd7046e0e079f1beb31e23b9169776bab3))
+- **shortSyntax:** don't parse bla#bla as tag ([6bd0d9b](https://github.com/johannesjo/super-productivity/commit/6bd0d9b8e586d75aded765eb74b17a2927b3f5c5))
+- typing issue ([f2fa950](https://github.com/johannesjo/super-productivity/commit/f2fa9504f9413be64a9f5f4613629d3f8a9f00c3))
+- wrong backup path being used [#2910](https://github.com/johannesjo/super-productivity/issues/2910) ([dec2eb7](https://github.com/johannesjo/super-productivity/commit/dec2eb702c4a303b2299126616a5a0c56f38ebe7))
+
+### Features
+
+- allow for usage of system dark mode ([c6d76c6](https://github.com/johannesjo/super-productivity/commit/c6d76c6a170f71b0315deb90205342c4cbd216b6))
+- cleaner startup for electron [#2942](https://github.com/johannesjo/super-productivity/issues/2942) [#1678](https://github.com/johannesjo/super-productivity/issues/1678) ([f4c8aa9](https://github.com/johannesjo/super-productivity/commit/f4c8aa988ff979fee9d7dd369af1166070da9c44))
+- **electronSecurity:** add security layer for exec commands ([87ad3d5](https://github.com/johannesjo/super-productivity/commit/87ad3d59b58644be7e52ef0d0fb13f2c91783591))
+- **electronSecurity:** enable security for marked stuff again ([038fed6](https://github.com/johannesjo/super-productivity/commit/038fed6795012b7679000ffd97c013e00575d1c7))
+- **electronSecurity:** make app relaunch work ([f9d74f5](https://github.com/johannesjo/super-productivity/commit/f9d74f5762c77b1e422efb7928d591df37723c3d))
+- **electronSecurity:** make app.getPath work ([849c232](https://github.com/johannesjo/super-productivity/commit/849c232d42439d30201548ec76189d82e8d20b7e))
+- **electronSecurity:** make apple theme switch work again ([eaeb833](https://github.com/johannesjo/super-productivity/commit/eaeb833e96f0827fe9c37ad5aae269167ef2b2bc))
+- **electronSecurity:** make dev tools and reload work again ([145de2f](https://github.com/johannesjo/super-productivity/commit/145de2fba6025dde3d03cc82d2a56307f43c2075))
+- **electronSecurity:** make electron log work ([4fb040f](https://github.com/johannesjo/super-productivity/commit/4fb040f6191c260651209d55d623c1a4acb345e6))
+- **electronSecurity:** make electron log work again ([e2b9f82](https://github.com/johannesjo/super-productivity/commit/e2b9f8241191208a5209402726cfc7c7198917b6))
+- **electronSecurity:** make idle stuff work again ([1768d30](https://github.com/johannesjo/super-productivity/commit/1768d30d578723f64fa70eb6c11a236aafe7ac45))
+- **electronSecurity:** make invoke stuff work on electron side ([8002e20](https://github.com/johannesjo/super-productivity/commit/8002e20bea9029567dec26912f859e4f5b93e572))
+- **electronSecurity:** make mac os dark moode stuff work ([a32281e](https://github.com/johannesjo/super-productivity/commit/a32281e07ff6ec454651cf977fe37ea61bf90876))
+- **electronSecurity:** make node integration disabled work for now ([e21df2a](https://github.com/johannesjo/super-productivity/commit/e21df2a87b16b2dbaf3c34eb20edf1511f1b1490))
+- **electronSecurity:** make on method more secure ([c3cba4d](https://github.com/johannesjo/super-productivity/commit/c3cba4d9b3a7dfbf5f366bb83e2805b687bd4f4f))
+- **electronSecurity:** make open path and open external work ([f946607](https://github.com/johannesjo/super-productivity/commit/f94660719433f70be54b570a47d2ea046c535fad))
+- **electronSecurity:** replace electron service completely ([4a3d333](https://github.com/johannesjo/super-productivity/commit/4a3d333030ba7b6a445cd7d682d1a2f0fb3e327c))
+- **electronSecurity:** replace electron service remote ([4fc7fd2](https://github.com/johannesjo/super-productivity/commit/4fc7fd2bdec68aacb005e41e5b3f31f64cc95e19))
+- **electronSecurity:** replace IPC event stuff ([4b5ad80](https://github.com/johannesjo/super-productivity/commit/4b5ad80d26676cf140db1e5fcf9ce249f04cf410))
+- **electronSecurity:** replace other electron stuff ([49839bf](https://github.com/johannesjo/super-productivity/commit/49839bf6605ae381ab09758d4a4e753fe0d35e1b))
+- **electronSecurity:** replace shell stuff ([4005c74](https://github.com/johannesjo/super-productivity/commit/4005c74aee0134fe6001e6f1e5cf5ae0ec7742cd))
+- **electronSecurity:** throw error for ipcEvents$ cleanup since not possible ([a1c0d7d](https://github.com/johannesjo/super-productivity/commit/a1c0d7d2205b8d2c03688b53c6217d9a68c92c34))
+- **electronSecurity:** update electron ([7fe4d63](https://github.com/johannesjo/super-productivity/commit/7fe4d63ea470f7a151ca82d0fb2ecd4fbf0b1793))
+- **electronSecurity:** wrap all invoke handlers ([058f85b](https://github.com/johannesjo/super-productivity/commit/058f85bae5af84f6c681b625233b5dc21a68c3c8))
+- **electronSecurity:** wrap all send handlers ([c6abc8f](https://github.com/johannesjo/super-productivity/commit/c6abc8f96566e8508f5ccd4bac54f44d786efd10))
+- **electronSecurity:** wrap exec before close stuff ([0760e8e](https://github.com/johannesjo/super-productivity/commit/0760e8eb95c1208931cfd00b03cf26ec981738e5))
+- **fileSync:** auto update path with file name if none is given ([2bf04b4](https://github.com/johannesjo/super-productivity/commit/2bf04b4e56b777b9307efebf0ac93d3d359eb047))
+- **gitlab:** add special info when submitting data from past days ([2e77ef9](https://github.com/johannesjo/super-productivity/commit/2e77ef923cc801cf2ad5a0967ab5da144e364289))
+- **gitlab:** save and use info about already tracked data for issue provider tracking ([b34886d](https://github.com/johannesjo/super-productivity/commit/b34886de6d7ca77c70814dce4a0a7c722e7ccf49))
+- **i18n:** add czech language ([2bdf8ca](https://github.com/johannesjo/super-productivity/commit/2bdf8cac7e9ec422583a697dfbb3a42fa9492cd6))
+- improve task ui for close btn ([35d8eff](https://github.com/johannesjo/super-productivity/commit/35d8effb0cb88a74c6aea99a22ec65d38379c2b8))
+- **issue:** add links with info on how to get token etc ([0803173](https://github.com/johannesjo/super-productivity/commit/0803173e34446e77a91e60eb35f9f2ec658985b8))
+- make all config changes live ([341d658](https://github.com/johannesjo/super-productivity/commit/341d658d3b251b712282865cafba1e0ab810b250))
+- make forms more consistent ([d3b6ce5](https://github.com/johannesjo/super-productivity/commit/d3b6ce5db683f288eaa12d591c72d79448b4f196))
+- never show install pwa snack again if ignore is selected ([9529165](https://github.com/johannesjo/super-productivity/commit/952916535e797e85b7ccafd29113c6bb15eef803))
+- rename default project to inbox ([630b202](https://github.com/johannesjo/super-productivity/commit/630b2023aed00c693e4b9eb4693b71de7be2a9de))
+- **shortSyntax:** don't parse taskTitle+pro as project ([187ac08](https://github.com/johannesjo/super-productivity/commit/187ac08517eddcc8507d87ec03b51100a368e1a1))
+- use toggle instead of checkboxes ([4cf8d8d](https://github.com/johannesjo/super-productivity/commit/4cf8d8d370d5eba7ae3bfcf0fb426fb05b26c889))
+
+# [7.17.0](https://github.com/johannesjo/super-productivity/compare/v7.16.0...v7.17.0) (2023-12-27)
+
+### Bug Fixes
+
+- backup path [#2910](https://github.com/johannesjo/super-productivity/issues/2910) ([5242ed2](https://github.com/johannesjo/super-productivity/commit/5242ed2c59ca11f768fbc30cab716edf7a286c3c))
+- debounce issue in a better way ([5d300e1](https://github.com/johannesjo/super-productivity/commit/5d300e1e47eb7f8b225211add453198aae43e582))
+- **electronSecurity:** problem with ipcEvent unsubscription ([e6388a2](https://github.com/johannesjo/super-productivity/commit/e6388a26bcbc62b396e220d37927943be60b1cf3))
+- **gitlab:** dialog submission for values below 1m ([ac011ca](https://github.com/johannesjo/super-productivity/commit/ac011cabd75eb0da98b664c799680113315c676a))
+- help btn styling ([422d775](https://github.com/johannesjo/super-productivity/commit/422d7757f0f609375dab6c0d1b88f93059bc7e1b))
+- input debounce delay causing problems ([5ebd1d7](https://github.com/johannesjo/super-productivity/commit/5ebd1d7bf3b361d37d9f2e5cbc0c2d349abd12f0))
+- shortcuts not working [#2887](https://github.com/johannesjo/super-productivity/issues/2887) ([7200fcb](https://github.com/johannesjo/super-productivity/commit/7200fcbd7046e0e079f1beb31e23b9169776bab3))
+- **shortSyntax:** don't parse bla#bla as tag ([6bd0d9b](https://github.com/johannesjo/super-productivity/commit/6bd0d9b8e586d75aded765eb74b17a2927b3f5c5))
+- typing issue ([f2fa950](https://github.com/johannesjo/super-productivity/commit/f2fa9504f9413be64a9f5f4613629d3f8a9f00c3))
+
+### Features
+
+- allow for usage of system dark mode ([c6d76c6](https://github.com/johannesjo/super-productivity/commit/c6d76c6a170f71b0315deb90205342c4cbd216b6))
+- **electronSecurity:** add security layer for exec commands ([87ad3d5](https://github.com/johannesjo/super-productivity/commit/87ad3d59b58644be7e52ef0d0fb13f2c91783591))
+- **electronSecurity:** enable security for marked stuff again ([038fed6](https://github.com/johannesjo/super-productivity/commit/038fed6795012b7679000ffd97c013e00575d1c7))
+- **electronSecurity:** make app relaunch work ([f9d74f5](https://github.com/johannesjo/super-productivity/commit/f9d74f5762c77b1e422efb7928d591df37723c3d))
+- **electronSecurity:** make app.getPath work ([849c232](https://github.com/johannesjo/super-productivity/commit/849c232d42439d30201548ec76189d82e8d20b7e))
+- **electronSecurity:** make apple theme switch work again ([eaeb833](https://github.com/johannesjo/super-productivity/commit/eaeb833e96f0827fe9c37ad5aae269167ef2b2bc))
+- **electronSecurity:** make dev tools and reload work again ([145de2f](https://github.com/johannesjo/super-productivity/commit/145de2fba6025dde3d03cc82d2a56307f43c2075))
+- **electronSecurity:** make electron log work ([4fb040f](https://github.com/johannesjo/super-productivity/commit/4fb040f6191c260651209d55d623c1a4acb345e6))
+- **electronSecurity:** make electron log work again ([e2b9f82](https://github.com/johannesjo/super-productivity/commit/e2b9f8241191208a5209402726cfc7c7198917b6))
+- **electronSecurity:** make idle stuff work again ([1768d30](https://github.com/johannesjo/super-productivity/commit/1768d30d578723f64fa70eb6c11a236aafe7ac45))
+- **electronSecurity:** make invoke stuff work on electron side ([8002e20](https://github.com/johannesjo/super-productivity/commit/8002e20bea9029567dec26912f859e4f5b93e572))
+- **electronSecurity:** make mac os dark moode stuff work ([a32281e](https://github.com/johannesjo/super-productivity/commit/a32281e07ff6ec454651cf977fe37ea61bf90876))
+- **electronSecurity:** make node integration disabled work for now ([e21df2a](https://github.com/johannesjo/super-productivity/commit/e21df2a87b16b2dbaf3c34eb20edf1511f1b1490))
+- **electronSecurity:** make on method more secure ([c3cba4d](https://github.com/johannesjo/super-productivity/commit/c3cba4d9b3a7dfbf5f366bb83e2805b687bd4f4f))
+- **electronSecurity:** make open path and open external work ([f946607](https://github.com/johannesjo/super-productivity/commit/f94660719433f70be54b570a47d2ea046c535fad))
+- **electronSecurity:** replace electron service completely ([4a3d333](https://github.com/johannesjo/super-productivity/commit/4a3d333030ba7b6a445cd7d682d1a2f0fb3e327c))
+- **electronSecurity:** replace electron service remote ([4fc7fd2](https://github.com/johannesjo/super-productivity/commit/4fc7fd2bdec68aacb005e41e5b3f31f64cc95e19))
+- **electronSecurity:** replace IPC event stuff ([4b5ad80](https://github.com/johannesjo/super-productivity/commit/4b5ad80d26676cf140db1e5fcf9ce249f04cf410))
+- **electronSecurity:** replace other electron stuff ([49839bf](https://github.com/johannesjo/super-productivity/commit/49839bf6605ae381ab09758d4a4e753fe0d35e1b))
+- **electronSecurity:** replace shell stuff ([4005c74](https://github.com/johannesjo/super-productivity/commit/4005c74aee0134fe6001e6f1e5cf5ae0ec7742cd))
+- **electronSecurity:** throw error for ipcEvents$ cleanup since not possible ([a1c0d7d](https://github.com/johannesjo/super-productivity/commit/a1c0d7d2205b8d2c03688b53c6217d9a68c92c34))
+- **electronSecurity:** update electron ([7fe4d63](https://github.com/johannesjo/super-productivity/commit/7fe4d63ea470f7a151ca82d0fb2ecd4fbf0b1793))
+- **electronSecurity:** wrap all invoke handlers ([058f85b](https://github.com/johannesjo/super-productivity/commit/058f85bae5af84f6c681b625233b5dc21a68c3c8))
+- **electronSecurity:** wrap all send handlers ([c6abc8f](https://github.com/johannesjo/super-productivity/commit/c6abc8f96566e8508f5ccd4bac54f44d786efd10))
+- **electronSecurity:** wrap exec before close stuff ([0760e8e](https://github.com/johannesjo/super-productivity/commit/0760e8eb95c1208931cfd00b03cf26ec981738e5))
+- **fileSync:** auto update path with file name if none is given ([2bf04b4](https://github.com/johannesjo/super-productivity/commit/2bf04b4e56b777b9307efebf0ac93d3d359eb047))
+- **gitlab:** add special info when submitting data from past days ([2e77ef9](https://github.com/johannesjo/super-productivity/commit/2e77ef923cc801cf2ad5a0967ab5da144e364289))
+- **gitlab:** save and use info about already tracked data for issue provider tracking ([b34886d](https://github.com/johannesjo/super-productivity/commit/b34886de6d7ca77c70814dce4a0a7c722e7ccf49))
+- **i18n:** add czech language ([2bdf8ca](https://github.com/johannesjo/super-productivity/commit/2bdf8cac7e9ec422583a697dfbb3a42fa9492cd6))
+- improve task ui for close btn ([35d8eff](https://github.com/johannesjo/super-productivity/commit/35d8effb0cb88a74c6aea99a22ec65d38379c2b8))
+- **issue:** add links with info on how to get token etc ([0803173](https://github.com/johannesjo/super-productivity/commit/0803173e34446e77a91e60eb35f9f2ec658985b8))
+- make all config changes live ([341d658](https://github.com/johannesjo/super-productivity/commit/341d658d3b251b712282865cafba1e0ab810b250))
+- make forms more consistent ([d3b6ce5](https://github.com/johannesjo/super-productivity/commit/d3b6ce5db683f288eaa12d591c72d79448b4f196))
+- never show install pwa snack again if ignore is selected ([9529165](https://github.com/johannesjo/super-productivity/commit/952916535e797e85b7ccafd29113c6bb15eef803))
+- rename default project to inbox ([630b202](https://github.com/johannesjo/super-productivity/commit/630b2023aed00c693e4b9eb4693b71de7be2a9de))
+- **shortSyntax:** don't parse taskTitle+pro as project ([187ac08](https://github.com/johannesjo/super-productivity/commit/187ac08517eddcc8507d87ec03b51100a368e1a1))
+- use toggle instead of checkboxes ([4cf8d8d](https://github.com/johannesjo/super-productivity/commit/4cf8d8d370d5eba7ae3bfcf0fb426fb05b26c889))
+
+# [7.16.0](https://github.com/johannesjo/super-productivity/compare/v7.15.1...v7.16.0) (2023-12-06)
+
+### Bug Fixes
+
+- **gitlab:** dialog error [#2776](https://github.com/johannesjo/super-productivity/issues/2776) ([b762a4e](https://github.com/johannesjo/super-productivity/commit/b762a4e986b7e1af32d35e5cbae450e3f6576aa7))
+- **gitlab:** wrong error msg [#2776](https://github.com/johannesjo/super-productivity/issues/2776) ([48b9bc6](https://github.com/johannesjo/super-productivity/commit/48b9bc6998bc5ce7bc4e4f184618c2d4ff8d4218))
+
+### Features
+
+- **gitlab:** add loading spinner for submit worklog dialog [#2776](https://github.com/johannesjo/super-productivity/issues/2776) ([9dd0eb6](https://github.com/johannesjo/super-productivity/commit/9dd0eb6559cbe69510f5b96a37238944c595fe19))
+- **gitlab:** add mechanism to trigger dialog before finish day [#2776](https://github.com/johannesjo/super-productivity/issues/2776) ([9f908db](https://github.com/johannesjo/super-productivity/commit/9f908db687246ae45381be0725f4eaa124950701))
+- **gitlab:** add setting for timelogs [#2776](https://github.com/johannesjo/super-productivity/issues/2776) ([752f9cb](https://github.com/johannesjo/super-productivity/commit/752f9cb2e9bcdc2826d1e9705c55fa749414d19e))
+- **gitlab:** add translations [#2776](https://github.com/johannesjo/super-productivity/issues/2776) ([f3fed22](https://github.com/johannesjo/super-productivity/commit/f3fed22e48a45fe94fe98f294c394464b33ed148))
+- **gitlab:** also show already tracked data [#2776](https://github.com/johannesjo/super-productivity/issues/2776) ([fb848e6](https://github.com/johannesjo/super-productivity/commit/fb848e62337c1c00d41d88d2cb71322ea3138531))
+- **gitlab:** make total estimate work [#2776](https://github.com/johannesjo/super-productivity/issues/2776) ([7a4189c](https://github.com/johannesjo/super-productivity/commit/7a4189cc04073fa0684d2096b9c62e4979325a25))
+- **gitlab:** make worklog submit dialog internals work [#2776](https://github.com/johannesjo/super-productivity/issues/2776) ([923c233](https://github.com/johannesjo/super-productivity/commit/923c233f5b0f3150fc5ee25ed640563e9a2088b0))
+- **gitlab:** outline api call [#2776](https://github.com/johannesjo/super-productivity/issues/2776) ([a3d83f3](https://github.com/johannesjo/super-productivity/commit/a3d83f3acfb8310a74b61dacfec065ebba742476))
+- **gitlab:** outline before finish day handler [#2776](https://github.com/johannesjo/super-productivity/issues/2776) ([0f9ceb8](https://github.com/johannesjo/super-productivity/commit/0f9ceb89282b37905ed05e8b3a8e1cb7bc632b2d))
+- **gitlab:** outline dialog ui for worklog submit [#2776](https://github.com/johannesjo/super-productivity/issues/2776) ([3158712](https://github.com/johannesjo/super-productivity/commit/3158712eef33119a55d0de01079debd7d256ae7c))
+- **gitlab:** outline new add worklog feature [#2776](https://github.com/johannesjo/super-productivity/issues/2776) ([4b7ab37](https://github.com/johannesjo/super-productivity/commit/4b7ab37d77b9802c5b544f9124ea41c2121060a7))
+- **gitlab:** polish UI [#2776](https://github.com/johannesjo/super-productivity/issues/2776) ([108891a](https://github.com/johannesjo/super-productivity/commit/108891a7018da3d041278239836637074b5edc36))
+- **gitlab:** submit data to gitlab [#2776](https://github.com/johannesjo/super-productivity/issues/2776) ([f5e3607](https://github.com/johannesjo/super-productivity/commit/f5e3607816e3eb4133c0a6cb64c19265c0edf892))
+
+## [7.15.1](https://github.com/johannesjo/super-productivity/compare/v7.15.0...v7.15.1) (2023-12-05)
+
+### Bug Fixes
+
+- arm64 mac build not working [#2503](https://github.com/johannesjo/super-productivity/issues/2503) ([d1bcba2](https://github.com/johannesjo/super-productivity/commit/d1bcba29df7dba3b59cfec8cee835a7c9d99b68c))
+- bug introduced by PR ([7e57304](https://github.com/johannesjo/super-productivity/commit/7e5730405c6a7de9631d4eee3bcbfb53ed77bda3))
+- error when navigating to non-existing tag or project [#2860](https://github.com/johannesjo/super-productivity/issues/2860) ([069d0d0](https://github.com/johannesjo/super-productivity/commit/069d0d0490a6e67cf1583cc4d8286c7d87e156c0))
+- windows backup path [#2869](https://github.com/johannesjo/super-productivity/issues/2869) ([72be16e](https://github.com/johannesjo/super-productivity/commit/72be16ed35d37ee8827f08749277fed76c423253))
+- windows backup path [#2869](https://github.com/johannesjo/super-productivity/issues/2869) ([fb659dd](https://github.com/johannesjo/super-productivity/commit/fb659ddf26f96d229b41027068c47c00ed70e824))
+
+### Features
+
+- add help to menu ([0bd8490](https://github.com/johannesjo/super-productivity/commit/0bd84909dae3c209137ef7bb4f65e6cf83551cff))
+- **dailySummary:** show time spent by tag ([43ce680](https://github.com/johannesjo/super-productivity/commit/43ce68040d529bc89a9bfbd6fb408f90272632db))
+
 # [7.15.0](https://github.com/johannesjo/super-productivity/compare/v7.14.3...v7.15.0) (2023-11-17)
 
 ### Bug Fixes

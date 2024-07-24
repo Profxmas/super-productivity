@@ -1,10 +1,5 @@
 import { GlobalConfigState } from './global-config.model';
-import { IS_MAC } from '../../util/is-mac';
-
-export const IS_USE_DARK_THEME_AS_DEFAULT: boolean =
-  !IS_MAC ||
-  !window.matchMedia ||
-  window.matchMedia('(prefers-color-scheme: dark)').matches;
+import { DEFAULT_PROJECT_ID } from '../project/project.const';
 
 const minute = 60 * 1000;
 
@@ -14,7 +9,7 @@ export const DEFAULT_GLOBAL_CONFIG: GlobalConfigState = {
     lng: null,
   },
   misc: {
-    isDarkMode: IS_USE_DARK_THEME_AS_DEFAULT,
+    darkMode: 'system',
     isConfirmBeforeExit: false,
     isConfirmBeforeExitWithoutFinishDay: true,
     isNotifyWhenTimeEstimateExceeded: true,
@@ -24,7 +19,7 @@ export const DEFAULT_GLOBAL_CONFIG: GlobalConfigState = {
     isAutoAddWorkedOnToToday: true,
     isMinimizeToTray: false,
     isTrayShowCurrentTask: true,
-    defaultProjectId: null,
+    defaultProjectId: DEFAULT_PROJECT_ID,
     firstDayOfWeek: 1,
     startOfNextDay: 0,
     isDisableAnimations: false,
@@ -42,7 +37,6 @@ export const DEFAULT_GLOBAL_CONFIG: GlobalConfigState = {
     isOnlyOpenIdleWhenCurrentTask: false,
     isEnableIdleTimeTracking: true,
     minIdleTime: 5 * minute,
-    isUnTrackedIdleResetsBreakTimer: true,
   },
   takeABreak: {
     isTakeABreakEnabled: true,
@@ -105,6 +99,8 @@ export const DEFAULT_GLOBAL_CONFIG: GlobalConfigState = {
     zoomIn: 'Ctrl++',
     zoomOut: 'Ctrl+-',
     zoomDefault: 'Ctrl+0',
+    saveNote: 'Ctrl+s',
+    triggerSync: 'Ctrl+s',
     taskEditTitle: null,
     taskToggleAdditionalInfoOpen: 'i',
     taskOpenEstimationDialog: 't',
@@ -141,17 +137,28 @@ export const DEFAULT_GLOBAL_CONFIG: GlobalConfigState = {
     isShowOnMobile: false,
     minTime: minute * 2,
   },
+  calendarIntegration: {
+    calendarProviders: [],
+  },
+  reminder: {
+    isCountdownBannerEnabled: true,
+    countdownDuration: minute * 10,
+  },
   timeline: {
     isWorkStartEndEnabled: true,
     workStart: DEFAULT_DAY_START,
     workEnd: '17:00',
-    calendarProviders: [],
+    isLunchBreakEnabled: false,
+    lunchBreakStart: '13:00',
+    lunchBreakEnd: '14:00',
   },
 
   sync: {
     isEnabled: false,
     // TODO maybe enable later if it works well
     isCompressionEnabled: false,
+    isEncryptionEnabled: false,
+    encryptionPassword: null,
     syncProvider: null,
     syncInterval: minute,
 
@@ -165,11 +172,11 @@ export const DEFAULT_GLOBAL_CONFIG: GlobalConfigState = {
       baseUrl: null,
       userName: null,
       password: null,
-      syncFilePath: 'super-productivity-backup.json',
+      syncFolderPath: 'super-productivity',
     },
 
     localFileSync: {
-      syncFilePath: 'super-productivity-sync.json',
+      syncFolderPath: 'super-productivity',
     },
   },
 };

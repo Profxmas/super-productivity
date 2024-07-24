@@ -3,12 +3,13 @@ import {
   BlockedBlock,
   BlockedBlockType,
   TimelineCalendarMapEntry,
+  TimelineLunchBreakCfg,
   TimelineWorkStartEndCfg,
 } from '../timeline.model';
 import { getTimeLeftForTask } from '../../../util/get-time-left-for-task';
 import { getDateTimeFromClockString } from '../../../util/get-date-time-from-clock-string';
 import { TaskRepeatCfg } from '../../task-repeat-cfg/task-repeat-cfg.model';
-import { selectTaskRepeatCfgsDueOnDay } from '../../task-repeat-cfg/store/task-repeat-cfg.reducer';
+import { selectTaskRepeatCfgsDueOnDayOnly } from '../../task-repeat-cfg/store/task-repeat-cfg.reducer';
 
 const PROJECTION_DAYS: number = 29;
 
@@ -17,6 +18,7 @@ export const createSortedBlockerBlocks = (
   scheduledTaskRepeatCfgs: TaskRepeatCfg[],
   icalEventMap: TimelineCalendarMapEntry[],
   workStartEndCfg?: TimelineWorkStartEndCfg,
+  lunchBreakCfg?: TimelineLunchBreakCfg,
   now?: number,
 ): BlockedBlock[] => {
   if (typeof now !== 'number') {
@@ -30,6 +32,7 @@ export const createSortedBlockerBlocks = (
       scheduledTaskRepeatCfgs,
     ),
     ...createBlockerBlocksForWorkStartEnd(now as number, workStartEndCfg),
+    ...createBlockerBlocksForLunchBreak(now as number, lunchBreakCfg),
   ];
 
   blockedBlocks = mergeBlocksRecursively(blockedBlocks);
@@ -55,7 +58,7 @@ const createBlockerBlocksForScheduledRepeatProjections = (
   while (i <= PROJECTION_DAYS) {
     // eslint-disable-next-line no-mixed-operators
     const currentDayTimestamp = now + i * 24 * 60 * 60 * 1000;
-    const allRepeatableTasksForDay = selectTaskRepeatCfgsDueOnDay.projector(
+    const allRepeatableTasksForDay = selectTaskRepeatCfgsDueOnDayOnly.projector(
       scheduledTaskRepeatCfgs,
       {
         dayDate: currentDayTimestamp,
@@ -115,6 +118,45 @@ const createBlockerBlocksForWorkStartEnd = (
         {
           type: BlockedBlockType.WorkdayStartEnd,
           data: workStartEndCfg,
+          start,
+          end,
+        },
+      ],
+    });
+    i++;
+  }
+
+  return blockedBlocks;
+};
+
+const createBlockerBlocksForLunchBreak = (
+  now: number,
+  lunchBreakCfg?: TimelineLunchBreakCfg,
+): BlockedBlock[] => {
+  const blockedBlocks: BlockedBlock[] = [];
+
+  if (!lunchBreakCfg) {
+    return blockedBlocks;
+  }
+  let i: number = 0;
+  while (i <= PROJECTION_DAYS) {
+    const start = getDateTimeFromClockString(
+      lunchBreakCfg.startTime,
+      // prettier-ignore
+      now + (i * 24 * 60 * 60 * 1000),
+    );
+    const end = getDateTimeFromClockString(
+      lunchBreakCfg.endTime,
+      // prettier-ignore
+      now + (i * 24 * 60 * 60 * 1000),
+    );
+    blockedBlocks.push({
+      start,
+      end,
+      entries: [
+        {
+          type: BlockedBlockType.LunchBreak,
+          data: lunchBreakCfg,
           start,
           end,
         },

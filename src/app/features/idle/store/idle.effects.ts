@@ -2,9 +2,7 @@ import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { ChromeExtensionInterfaceService } from '../../../core/chrome-extension-interface/chrome-extension-interface.service';
 import { WorkContextService } from '../../work-context/work-context.service';
-import { ElectronService } from '../../../core/electron/electron.service';
 import { TaskService } from '../../tasks/task.service';
-import { GlobalConfigService } from '../../config/global-config.service';
 import { MatDialog } from '@angular/material/dialog';
 import { Store } from '@ngrx/store';
 import { UiHelperService } from '../../ui-helper/ui-helper.service';
@@ -29,13 +27,11 @@ import {
   withLatestFrom,
 } from 'rxjs/operators';
 import { lazySetInterval } from '../../../../../electron/shared-with-frontend/lazy-set-interval';
-import { EMPTY, fromEvent, iif, Observable, of } from 'rxjs';
-import { IpcRenderer } from 'electron';
+import { EMPTY, iif, Observable, of } from 'rxjs';
 import { IPC } from '../../../../../electron/shared-with-frontend/ipc-events.const';
 import { SimpleCounterService } from '../../simple-counter/simple-counter.service';
 import { selectIdleTime, selectIsIdle } from './idle.selectors';
 import { turnOffAllSimpleCounterCounters } from '../../simple-counter/store/simple-counter.actions';
-import { IdleService } from '../idle.service';
 import { DialogIdleComponent } from '../dialog-idle/dialog-idle.component';
 import { selectIdleConfig } from '../../config/store/global-config.reducer';
 import { devError } from '../../../util/dev-error';
@@ -49,6 +45,8 @@ import { isNotNullOrUndefined } from '../../../util/is-not-null-or-undefined';
 import { DialogConfirmComponent } from '../../../ui/dialog-confirm/dialog-confirm.component';
 import { T } from '../../../t.const';
 import { DateService } from 'src/app/core/date/date.service';
+import { ipcIdleTime$ } from '../../../core/ipc-events';
+import { TakeABreakService } from '../../take-a-break/take-a-break.service';
 
 const DEFAULT_MIN_IDLE_TIME = 60000;
 const IDLE_POLL_INTERVAL = 1000;
@@ -59,10 +57,12 @@ export class IdleEffects {
   private _clearIdlePollInterval?: () => void;
   private _isDialogOpen: boolean = false;
 
+  // NOTE: needs to live forever since we can't unsubscribe from ipcEvent$
+  // TODO check if this works as expected
+  private _electronIdleTime$: Observable<number> = IS_ELECTRON ? ipcIdleTime$ : EMPTY;
+
   private _triggerIdleApis$ = IS_ELECTRON
-    ? fromEvent(this._electronService.ipcRenderer as IpcRenderer, IPC.IDLE_TIME).pipe(
-        map(([ev, idleTimeInMs]: any) => idleTimeInMs as number),
-      )
+    ? this._electronIdleTime$
     : this._chromeExtensionInterfaceService.onReady$.pipe(
         first(),
         switchMap(() => {
@@ -228,6 +228,7 @@ export class IdleEffects {
           return;
         }
 
+        // TODO remove TASK_AND_BREAK case completely
         const itemsWithMappedIdleTime = trackItems.map((trackItem) => ({
           ...trackItem,
           time: trackItem.time === 'IDLE_TIME' ? idleTime : trackItem.time,
@@ -238,18 +239,20 @@ export class IdleEffects {
         });
 
         const breakItems = itemsWithMappedIdleTime.filter(
-          (item: IdleTrackItem) =>
-            item.type === 'BREAK' || item.type === 'TASK_AND_BREAK',
+          (item: IdleTrackItem) => item.type === 'BREAK',
         );
         if (breakItems.length) {
           this._store.dispatch(triggerResetBreakTimer());
           breakItems.forEach((item) => {
             this._workContextService.addToBreakTimeForActiveContext(undefined, item.time);
           });
+        } else if (itemsWithMappedIdleTime[0]?.isResetBreakTimer) {
+          this._store.dispatch(triggerResetBreakTimer());
+          this._workContextService.addToBreakTimeForActiveContext(undefined, 1);
         }
 
         const taskItems = itemsWithMappedIdleTime.filter(
-          (item: IdleTrackItem) => item.type === 'TASK' || item.type === 'TASK_AND_BREAK',
+          (item: IdleTrackItem) => item.type === 'TASK',
         );
         let taskItemId: string | undefined;
         taskItems.forEach((taskItem) => {
@@ -279,15 +282,14 @@ export class IdleEffects {
     private actions$: Actions,
     private _chromeExtensionInterfaceService: ChromeExtensionInterfaceService,
     private _workContextService: WorkContextService,
-    private _electronService: ElectronService,
     private _taskService: TaskService,
     private _simpleCounterService: SimpleCounterService,
-    private _configService: GlobalConfigService,
     private _matDialog: MatDialog,
     private _store: Store,
     private _uiHelperService: UiHelperService,
-    private _idleService: IdleService,
     private _dateService: DateService,
+    // NOTE needs to be imported somewhere. otherwise won't work
+    private _takeABreakService: TakeABreakService,
   ) {
     // window.setTimeout(() => {
     //   this._store.dispatch(triggerIdle({ idleTime: 60 * 1000 }));

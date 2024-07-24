@@ -6,7 +6,6 @@ import {
   WORK_CONTEXT_DEFAULT_THEME,
 } from '../work-context/work-context.const';
 import { WorkContextThemeCfg } from '../work-context/work-context.model';
-import { IS_USE_DARK_THEME_AS_DEFAULT } from '../config/default-global-config.const';
 
 export const TODAY_TAG: Tag = {
   id: 'TODAY',
@@ -21,7 +20,7 @@ export const TODAY_TAG: Tag = {
     primary: DEFAULT_TODAY_TAG_COLOR,
     backgroundImageDark: 'assets/bg/NIGHT_manuel-will.jpg',
 
-    ...((IS_USE_DARK_THEME_AS_DEFAULT
+    ...((window.matchMedia('(prefers-color-scheme: dark)').matches
       ? {
           isDisableBackgroundGradient: false,
         }
@@ -40,5 +39,26 @@ export const DEFAULT_TAG: Tag = {
   theme: {
     ...WORK_CONTEXT_DEFAULT_THEME,
     primary: DEFAULT_TAG_COLOR,
+  },
+};
+
+export const NO_LIST_TAG: Tag = {
+  id: 'NO_LIST',
+  icon: 'question_mark',
+  title: 'not listed',
+  color: null,
+  created: Date.now(),
+  taskIds: [],
+  ...WORK_CONTEXT_DEFAULT_COMMON,
+  theme: {
+    ...WORK_CONTEXT_DEFAULT_THEME,
+    primary: DEFAULT_TODAY_TAG_COLOR,
+    backgroundImageDark: 'assets/bg/NIGHT_manuel-will.jpg',
+
+    ...((window.matchMedia('(prefers-color-scheme: dark)').matches
+      ? {
+          isDisableBackgroundGradient: false,
+        }
+      : {}) as Partial<WorkContextThemeCfg>),
   },
 };

@@ -19,6 +19,7 @@ export const DEFAULT_GITLAB_CFG: GitlabCfg = {
   scope: 'created-by-me',
   source: 'project',
   filter: null,
+  isEnableTimeTracking: false,
 };
 
 // NOTE: we need a high limit because git has low usage limits :(
@@ -60,7 +61,16 @@ export const GITLAB_CONFIG_FORM: LimitedFormlyFieldConfig<GitlabCfg>[] = [
       // !! is used to get the associated boolean value of a non boolean value
       // It's not a fancy trick using model.project alone gets the required case right but won't remove it
       // if the project field is empty so this is needed for the wanted behavior
+      // eslint-disable-next-line @typescript-eslint/naming-convention
       'templateOptions.required': '!!model.project',
+    },
+  },
+  {
+    type: 'link',
+    hideExpression: (model: any) => !model.isEnabled,
+    templateOptions: {
+      url: 'https://docs.gitlab.com/ee/user/profile/personal_access_tokens.html',
+      txt: T.F.ISSUE.HOW_TO_GET_A_TOKEN,
     },
   },
   {
@@ -144,6 +154,15 @@ export const GITLAB_CONFIG_FORM: LimitedFormlyFieldConfig<GitlabCfg>[] = [
       type: 'text',
       label: T.F.GITLAB.FORM.FILTER,
       description: T.F.GITLAB.FORM.FILTER_DESCRIPTION,
+    },
+  },
+  {
+    key: 'isEnableTimeTracking',
+    type: 'checkbox',
+    hideExpression: (model: any) => !model.isEnabled,
+    templateOptions: {
+      label: T.F.GITLAB.FORM.SUBMIT_TIMELOGS,
+      description: T.F.GITLAB.FORM.SUBMIT_TIMELOGS_DESCRIPTION,
     },
   },
 ];

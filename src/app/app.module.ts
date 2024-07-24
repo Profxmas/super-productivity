@@ -20,7 +20,11 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { FormlyModule } from '@ngx-formly/core';
 import { PagesModule } from './pages/pages.module';
 import { MainHeaderModule } from './core-ui/main-header/main-header.module';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import {
+  HttpClient,
+  provideHttpClient,
+  withInterceptorsFromDi,
+} from '@angular/common/http';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { TasksModule } from './features/tasks/tasks.module';
 import { BookmarkModule } from './features/bookmark/bookmark.module';
@@ -47,22 +51,23 @@ import { IdleModule } from './features/idle/idle.module';
 import { TrackingReminderModule } from './features/tracking-reminder/tracking-reminder.module';
 import { FinishDayBeforeCloseModule } from './features/finish-day-before-close/finish-day-before-close.module';
 import { AndroidModule } from './features/android/android.module';
-import { WelcomeModule } from './features/welcome/welcome.module';
 import { DominaModeModule } from './features/domina-mode/domina-mode.module';
 import { FocusModeModule } from './features/focus-mode/focus-mode.module';
+import { CalendarIntegrationModule } from './features/calendar-integration/calendar-integration.module';
+import { ShepherdComponent } from './features/shepherd/shepherd.component';
 
 // NOTE: export required for aot to work
 export const createTranslateLoader = (http: HttpClient): TranslateHttpLoader =>
   new TranslateHttpLoader(http, './assets/i18n/', '.json');
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, ShepherdComponent],
+  bootstrap: [AppComponent],
   imports: [
     // Those features need to be included first for store not to mess up, probably because we use it initially at many places
     ConfigModule,
     ProjectModule,
     WorkContextModule,
-
     // Local
     CoreModule,
     UiModule,
@@ -78,23 +83,19 @@ export const createTranslateLoader = (http: HttpClient): TranslateHttpLoader =>
     NoteModule,
     BookmarkModule,
     TasksModule,
-    WelcomeModule,
     SyncModule,
     MaterialCssVarsModule.forRoot(),
     SearchBarModule,
     FinishDayBeforeCloseModule,
     DominaModeModule,
     FocusModeModule,
-
+    CalendarIntegrationModule,
     AndroidModule,
-    // throws build error ...(IS_ANDROID_WEB_VIEW ? [AndroidModule] : []),
-
     // External
     BrowserModule,
     BrowserAnimationsModule,
-    HttpClientModule,
     HammerModule,
-    RouterModule.forRoot(APP_ROUTES, { useHash: true, relativeLinkResolution: 'legacy' }),
+    RouterModule.forRoot(APP_ROUTES, { useHash: true }),
     // NOTE: both need to be present to use forFeature stores
     StoreModule.forRoot(reducers, {
       metaReducers: [undoTaskDeleteMetaReducer, actionLoggerReducer],
@@ -117,7 +118,9 @@ export const createTranslateLoader = (http: HttpClient): TranslateHttpLoader =>
           }),
     }),
     EffectsModule.forRoot([]),
-    !environment.production && !environment.stage ? StoreDevtoolsModule.instrument() : [],
+    !environment.production && !environment.stage
+      ? StoreDevtoolsModule.instrument({ connectInZone: true })
+      : [],
     ReactiveFormsModule,
     FormlyModule.forRoot({
       extras: {
@@ -127,6 +130,9 @@ export const createTranslateLoader = (http: HttpClient): TranslateHttpLoader =>
     }),
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: !IS_ELECTRON && (environment.production || environment.stage),
+      // Register the ServiceWorker as soon as the application is stable
+      // or after 30 seconds (whichever comes first).
+      registrationStrategy: 'registerWhenStable:30000',
     }),
     TranslateModule.forRoot({
       loader: {
@@ -137,10 +143,10 @@ export const createTranslateLoader = (http: HttpClient): TranslateHttpLoader =>
     }),
     EntityDataModule,
   ],
-  bootstrap: [AppComponent],
   providers: [
     { provide: ErrorHandler, useClass: GlobalErrorHandler },
     { provide: HAMMER_GESTURE_CONFIG, useClass: MyHammerConfig },
+    provideHttpClient(withInterceptorsFromDi()),
   ],
 })
 export class AppModule {

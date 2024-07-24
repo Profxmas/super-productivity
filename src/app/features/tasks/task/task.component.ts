@@ -1,6 +1,5 @@
 import {
   AfterViewInit,
-  Attribute,
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
@@ -41,7 +40,6 @@ import { TaskAttachmentService } from '../task-attachment/task-attachment.servic
 import { IssueService } from '../../issue/issue.service';
 import { DialogEditTaskAttachmentComponent } from '../task-attachment/dialog-edit-attachment/dialog-edit-task-attachment.component';
 import { swirlAnimation } from '../../../ui/animations/swirl-in-out.ani';
-import { IS_TOUCH_ONLY, isTouchOnly } from '../../../util/is-touch-only';
 import { DialogAddTaskReminderComponent } from '../dialog-add-task-reminder/dialog-add-task-reminder.component';
 import { DialogEditTaskRepeatCfgComponent } from '../../task-repeat-cfg/dialog-edit-task-repeat-cfg/dialog-edit-task-repeat-cfg.component';
 import { ProjectService } from '../../project/project.service';
@@ -52,13 +50,14 @@ import { AddTaskReminderInterface } from '../dialog-add-task-reminder/add-task-r
 import { TODAY_TAG } from '../../tag/tag.const';
 import { DialogEditTagsForTaskComponent } from '../../tag/dialog-edit-tags/dialog-edit-tags-for-task.component';
 import { WorkContextService } from '../../work-context/work-context.service';
-import { environment } from '../../../../environments/environment';
 import { throttle } from 'helpful-decorators';
 import { TaskRepeatCfgService } from '../../task-repeat-cfg/task-repeat-cfg.service';
 import { DialogConfirmComponent } from '../../../ui/dialog-confirm/dialog-confirm.component';
 import { Update } from '@ngrx/entity';
 import { SnackService } from '../../../core/snack/snack.service';
 import { isToday } from '../../../util/is-today.util';
+import { IS_TOUCH_PRIMARY } from '../../../util/is-mouse-primary';
+import { KeyboardConfig } from '../../config/keyboard-config.model';
 
 @Component({
   selector: 'task',
@@ -69,11 +68,11 @@ import { isToday } from '../../../util/is-today.util';
 })
 export class TaskComponent implements OnInit, OnDestroy, AfterViewInit {
   @Input() isBacklog: boolean = false;
-  isShowParentTitle: boolean = !!this.showParentTitle;
+  @Input() isInSubTaskList: boolean = false;
 
   task!: TaskWithSubTasks;
   T: typeof T = T;
-  IS_TOUCH_ONLY: boolean = IS_TOUCH_ONLY;
+  IS_TOUCH_PRIMARY: boolean = IS_TOUCH_PRIMARY;
   isDragOver: boolean = false;
   isLockPanLeft: boolean = false;
   isLockPanRight: boolean = false;
@@ -82,8 +81,10 @@ export class TaskComponent implements OnInit, OnDestroy, AfterViewInit {
   ShowSubTasksMode: typeof ShowSubTasksMode = ShowSubTasksMode;
   contextMenuPosition: { x: string; y: string } = { x: '0px', y: '0px' };
   progress: number = 0;
-  isDev: boolean = !(environment.production || environment.stage);
   isTodayTag: boolean = false;
+  isShowAddToToday: boolean = false;
+  isShowRemoveFromToday: boolean = false;
+
   @ViewChild('contentEditableOnClickEl', { static: true })
   contentEditableOnClickEl?: ElementRef;
   @ViewChild('blockLeftEl') blockLeftElRef?: ElementRef;
@@ -115,23 +116,14 @@ export class TaskComponent implements OnInit, OnDestroy, AfterViewInit {
     switchMap((pid) => this._projectService.getProjectsWithoutId$(pid)),
   );
 
-  parentTitle$: Observable<string> = this.isShowParentTitle
-    ? this._task$.pipe(
-        take(1),
-        switchMap((task) => this._taskService.getByIdLive$(task.parentId as string)),
-        map((task) => task.title),
-      )
-    : EMPTY;
-
-  projectColor$: Observable<string> = this.isShowParentTitle
-    ? this._task$.pipe(
-        take(1),
-        switchMap((task) =>
-          task.projectId ? this._projectService.getByIdOnce$(task.projectId) : EMPTY,
-        ),
-        map((project) => project.theme.primary),
-      )
-    : EMPTY;
+  parentTask$: Observable<TaskCopy | null> = this._task$.pipe(
+    switchMap((task) =>
+      task.parentId ? this._taskService.getByIdLive$(task.parentId) : of(null),
+    ),
+  );
+  parentTitle$: Observable<string | null> = this.parentTask$.pipe(
+    map((task) => task && task.title),
+  );
 
   isShowMoveFromAndToBacklogBtns$: Observable<boolean> = this._task$.pipe(
     take(1),
@@ -162,7 +154,6 @@ export class TaskComponent implements OnInit, OnDestroy, AfterViewInit {
     private readonly _cd: ChangeDetectorRef,
     private readonly _projectService: ProjectService,
     public readonly workContextService: WorkContextService,
-    @Attribute('showParentTitle') private showParentTitle: string,
   ) {}
 
   @Input('task') set taskSet(v: TaskWithSubTasks) {
@@ -171,8 +162,21 @@ export class TaskComponent implements OnInit, OnDestroy, AfterViewInit {
     this.progress = v && v.timeEstimate && (v.timeSpent / v.timeEstimate) * 100;
     this.taskIdWithPrefix = 't-' + this.task.id;
     this.isDone = v.isDone;
-    this.isTodayTag = v.tagIds.includes(TODAY_TAG.id);
     this.isRepeatTaskCreatedToday = !!(this.task.repeatCfgId && isToday(v.created));
+
+    const isTodayTag = v.tagIds.includes(TODAY_TAG.id);
+
+    this.isShowRemoveFromToday = !!(
+      !v.isDone &&
+      isTodayTag &&
+      (v.projectId || v.tagIds?.length > 1 || v.parentId)
+    );
+
+    this.isShowAddToToday =
+      !this.isShowRemoveFromToday &&
+      !(v.parentId && this.workContextService.isToday) &&
+      !isTodayTag;
+
     this._task$.next(v);
   }
 
@@ -296,14 +300,14 @@ export class TaskComponent implements OnInit, OnDestroy, AfterViewInit {
     if (this._isTaskDeleteTriggered) {
       return;
     }
-
-    this._isTaskDeleteTriggered = true;
-    this._taskService.remove(this.task);
     // NOTE: in case we want the focus behaviour on click we could use:
     // this.focusSelf();
     if (!isClick) {
       this.focusNext(true);
     }
+
+    this._isTaskDeleteTriggered = true;
+    this._taskService.remove(this.task);
   }
 
   startTask(): void {
@@ -334,7 +338,7 @@ export class TaskComponent implements OnInit, OnDestroy, AfterViewInit {
     this._matDialog
       .open(DialogTimeEstimateComponent, {
         data: { task: this.task },
-        autoFocus: !isTouchOnly(),
+        autoFocus: !IS_TOUCH_PRIMARY,
       })
       .afterClosed()
       .pipe(takeUntil(this._destroy$))
@@ -363,15 +367,10 @@ export class TaskComponent implements OnInit, OnDestroy, AfterViewInit {
   @throttle(200, { leading: true, trailing: false })
   toggleDoneKeyboard(): void {
     this.toggleTaskDone();
-    if (!this.task.parentId) {
-      this.focusNext(true);
-    }
   }
 
   toggleTaskDone(): void {
-    if (this.task.parentId) {
-      this.focusNext(true);
-    }
+    this.focusNext(true, true);
 
     if (this.task.isDone) {
       this._taskService.setUnDone(this.task.id);
@@ -443,7 +442,7 @@ export class TaskComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   focusPrevious(isFocusReverseIfNotPossible: boolean = false): void {
-    if (IS_TOUCH_ONLY) {
+    if (IS_TOUCH_PRIMARY) {
       return;
     }
 
@@ -468,8 +467,11 @@ export class TaskComponent implements OnInit, OnDestroy, AfterViewInit {
     }
   }
 
-  focusNext(isFocusReverseIfNotPossible: boolean = false): void {
-    if (IS_TOUCH_ONLY) {
+  focusNext(
+    isFocusReverseIfNotPossible: boolean = false,
+    isTaskMovedInList = false,
+  ): void {
+    if (IS_TOUCH_PRIMARY) {
       return;
     }
 
@@ -479,7 +481,18 @@ export class TaskComponent implements OnInit, OnDestroy, AfterViewInit {
         ? document.activeElement
         : document.activeElement?.closest('task');
     const currentIndex = taskEls.findIndex((el) => el === activeEl);
-    const nextEl = taskEls[currentIndex + 1] as HTMLElement;
+    const nextEl = isTaskMovedInList
+      ? (() => {
+          // if a parent task is moved in list, as it is for when toggling done,
+          // we don't want to focus the next sub-task, but the next main task instead
+          if (this.task.subTaskIds.length) {
+            return taskEls.find((el, i) => {
+              return i > currentIndex && el.parentElement?.closest('task');
+            }) as HTMLElement | undefined;
+          }
+          return taskEls[currentIndex + 1] as HTMLElement;
+        })()
+      : (taskEls[currentIndex + 1] as HTMLElement);
 
     if (nextEl) {
       nextEl.focus();
@@ -495,7 +508,7 @@ export class TaskComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   focusSelf(): void {
-    if (IS_TOUCH_ONLY) {
+    if (IS_TOUCH_PRIMARY) {
       return;
     }
 
@@ -534,7 +547,7 @@ export class TaskComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   onPanStart(ev: any): void {
-    if (!IS_TOUCH_ONLY) {
+    if (!IS_TOUCH_PRIMARY) {
       return;
     }
     if (!this.contentEditableOnClickEl) {
@@ -559,7 +572,7 @@ export class TaskComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   onPanEnd(): void {
-    if (!IS_TOUCH_ONLY || (!this.isLockPanLeft && !this.isLockPanRight)) {
+    if (!IS_TOUCH_PRIMARY || (!this.isLockPanLeft && !this.isLockPanRight)) {
       return;
     }
     if (!this.blockLeftElRef || !this.blockRightElRef) {
@@ -628,7 +641,7 @@ export class TaskComponent implements OnInit, OnDestroy, AfterViewInit {
   moveTaskToProject(projectId: string): void {
     if (projectId === this.task.projectId) {
       return;
-    } else if (this.task.issueId) {
+    } else if (this.task.issueId && this.task.issueType !== 'CALENDAR') {
       this._snackService.open({
         type: 'CUSTOM',
         ico: 'block',
@@ -745,7 +758,7 @@ export class TaskComponent implements OnInit, OnDestroy, AfterViewInit {
 
   private _handlePan(ev: any): void {
     if (
-      !IS_TOUCH_ONLY ||
+      !IS_TOUCH_PRIMARY ||
       (!this.isLockPanLeft && !this.isLockPanRight) ||
       ev.eventType === 8
     ) {
@@ -802,6 +815,13 @@ export class TaskComponent implements OnInit, OnDestroy, AfterViewInit {
     this._renderer.removeClass(this.blockLeftElRef.nativeElement, 'isActive');
     this._renderer.removeClass(this.blockRightElRef.nativeElement, 'isActive');
     this._renderer.setStyle(this.innerWrapperElRef.nativeElement, 'transform', ``);
+  }
+
+  get kb(): KeyboardConfig {
+    if (IS_TOUCH_PRIMARY) {
+      return {} as any;
+    }
+    return (this._configService.cfg?.keyboard as KeyboardConfig) || {};
   }
 
   private _handleKeyboardShortcuts(ev: KeyboardEvent): void {
@@ -878,7 +898,7 @@ export class TaskComponent implements OnInit, OnDestroy, AfterViewInit {
         ev.preventDefault();
         // same default shortcut as timeline so we stop propagation
         ev.stopPropagation();
-        this.focusNext(true);
+        this.focusNext(true, true);
         this.moveToToday();
       }
     }

@@ -2,7 +2,7 @@ import { Dictionary } from '@ngrx/entity';
 import { Task, TaskArchive, TaskCopy, TaskState } from './task.model';
 import { GITHUB_TYPE } from '../issue/issue.const';
 import { MODEL_VERSION_KEY, WORKLOG_DATE_STR_FORMAT } from '../../app.constants';
-import * as moment from 'moment';
+import moment from 'moment';
 import { convertToWesternArabic } from '../../util/numeric-converter';
 import { isMigrateModel } from '../../util/model-version';
 import { MODEL_VERSION } from '../../core/model-version';
@@ -30,6 +30,7 @@ export const migrateTaskState = (taskState: TaskState, modelType = 'Task'): Task
 };
 
 export const migrateTaskArchiveState = (taskArchiveState: TaskArchive): TaskArchive => {
+  // @ts-ignore
   return migrateTaskState(taskArchiveState as TaskState, 'Task Archive') as TaskArchive;
 };
 
@@ -74,6 +75,8 @@ const _addNewIssueFields = (task: Task): Task => {
           issueLastUpdated: null,
           // @ts-ignore
           issueWasUpdated: null,
+          // @ts-ignore
+          issueProviderId: null,
           ...task,
         };
   } else {
@@ -153,6 +156,7 @@ const _makeNullAndArraysConsistent = (task: Task): Task => {
     issueLastUpdated: task.issueLastUpdated ?? null,
     issueAttachmentNr: task.issueAttachmentNr ?? null,
     issuePoints: task.issuePoints ?? null,
+    issueTimeTracked: task.issueTimeTracked ?? null,
   };
 };
 

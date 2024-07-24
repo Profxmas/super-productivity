@@ -4,8 +4,10 @@ import { LanguageCode, MODEL_VERSION_KEY } from '../../app.constants';
 import { SyncProvider } from '../../imex/sync/sync-provider.model';
 import { KeyboardConfig } from './keyboard-config.model';
 
+export type DarkModeCfg = 'dark' | 'light' | 'system';
+
 export type MiscConfig = Readonly<{
-  isDarkMode: boolean;
+  darkMode: DarkModeCfg;
   isAutMarkParentAsDone: boolean;
   isAutoStartNextTask: boolean;
   isConfirmBeforeExit: boolean;
@@ -29,7 +31,6 @@ export type EvaluationConfig = Readonly<{
 
 export type IdleConfig = Readonly<{
   isEnableIdleTimeTracking: boolean;
-  isUnTrackedIdleResetsBreakTimer: boolean;
   minIdleTime: number;
   isOnlyOpenIdleWhenCurrentTask: boolean;
 }>;
@@ -65,21 +66,21 @@ export type PomodoroConfig = Readonly<{
 
 // NOTE: needs to be writable due to how we use it
 
-export interface DropboxSyncConfig {
-  accessToken: string | null;
-  refreshToken: string | null;
-  _tokenExpiresAt?: number;
-}
+export type DropboxSyncConfig = object;
 
 export interface WebDavConfig {
   baseUrl: string | null;
   userName: string | null;
   password: string | null;
-  syncFilePath: string | null;
+  // TODO remove and migrate
+  syncFilePath?: string | null;
+  syncFolderPath: string | null;
 }
 
 export interface LocalFileSyncConfig {
-  syncFilePath: string | null;
+  // TODO remove and migrate
+  syncFilePath?: string | null;
+  syncFolderPath: string | null;
 }
 
 export type LocalBackupConfig = Readonly<{
@@ -99,6 +100,8 @@ export type SoundConfig = Readonly<{
 
 export type SyncConfig = Readonly<{
   isEnabled: boolean;
+  isEncryptionEnabled: boolean;
+  encryptionPassword: string | null;
   isCompressionEnabled: boolean;
   syncProvider: SyncProvider | null;
   syncInterval: number;
@@ -108,17 +111,31 @@ export type SyncConfig = Readonly<{
   localFileSync: LocalFileSyncConfig;
 }>;
 
-export type TimelineCalendarProvider = Readonly<{
-  icalUrl: string;
-  icon: string | null;
+export type CalendarIntegrationConfig = Readonly<{
+  calendarProviders: CalendarProvider[];
+}>;
+export type CalendarProvider = Readonly<{
   isEnabled: boolean;
+  id: string;
+  icalUrl: string;
+  icon?: string;
+  defaultProjectId: string | null;
+  checkUpdatesEvery: number;
+  showBannerBeforeThreshold: null | number;
 }>;
 
 export type TimelineConfig = Readonly<{
   isWorkStartEndEnabled: boolean;
   workStart: string;
   workEnd: string;
-  calendarProviders: TimelineCalendarProvider[];
+  isLunchBreakEnabled: boolean;
+  lunchBreakStart: string;
+  lunchBreakEnd: string;
+}>;
+
+export type ReminderConfig = Readonly<{
+  isCountdownBannerEnabled: boolean;
+  countdownDuration: number;
 }>;
 
 export type TrackingReminderConfig = Readonly<{
@@ -151,6 +168,8 @@ export type GlobalConfigState = Readonly<{
   localBackup: LocalBackupConfig;
   sound: SoundConfig;
   trackingReminder: TrackingReminderConfig;
+  calendarIntegration: CalendarIntegrationConfig;
+  reminder: ReminderConfig;
   timeline: TimelineConfig;
   dominaMode: DominaModeConfig;
   focusMode: FocusModeConfig;
@@ -166,7 +185,9 @@ export type GlobalSectionConfig =
   | MiscConfig
   | PomodoroConfig
   | KeyboardConfig
+  | CalendarIntegrationConfig
   | TimelineConfig
+  | ReminderConfig
   | SyncConfig;
 type Omit<T, K extends keyof T> = Pick<T, Exclude<keyof T, K>>;
 
@@ -190,6 +211,7 @@ export interface ConfigFormSection<FormModel> {
   customSection?: CustomCfgSection;
   items?: LimitedFormlyFieldConfig<FormModel>[];
   isElectronOnly?: boolean;
+  isHideForAndroidApp?: boolean;
 }
 
 export interface GenericConfigFormSection

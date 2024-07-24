@@ -8,6 +8,7 @@ import '@angular/common/locales/global/en';
 import '@angular/common/locales/global/es';
 import '@angular/common/locales/global/de';
 import '@angular/common/locales/global/ar';
+import '@angular/common/locales/global/cs';
 import '@angular/common/locales/global/fa';
 import '@angular/common/locales/global/fr';
 import '@angular/common/locales/global/ja';
@@ -47,6 +48,7 @@ export const ALL_THEMES: string[] = [
 export enum LanguageCode {
   ar = 'ar',
   de = 'de',
+  cz = 'cz',
   en = 'en',
   es = 'es',
   fa = 'fa',
@@ -70,6 +72,7 @@ export enum LanguageCode {
 export enum LanguageCodeMomentMap {
   ar = 'ar',
   de = 'de',
+  cz = 'cs',
   en = 'en',
   es = 'es',
   fa = 'fa',
@@ -137,6 +140,7 @@ export const AUTO_SWITCH_LNGS: LanguageCode[] = [
 
 export const RTL_LANGUAGES: LanguageCode[] = [LanguageCode.ar, LanguageCode.fa];
 
+/* eslint-disable @typescript-eslint/naming-convention */
 export enum THEME_COLOR_MAP {
   'light-blue' = '#03a9f4',
   'pink' = '#e91e63',

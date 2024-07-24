@@ -9,14 +9,14 @@ import {
   shell,
 } from 'electron';
 import { errorHandlerWithFrontendInform } from './error-handler-with-frontend-inform';
+import * as path from 'path';
 import { join, normalize } from 'path';
 import { format } from 'url';
 import { IPC } from './shared-with-frontend/ipc-events.const';
 import { getSettings } from './get-settings';
 import { readFileSync, stat } from 'fs';
-import { error, log } from 'electron-log';
+import { error, log } from 'electron-log/main';
 import { GlobalConfigState } from '../src/app/features/config/global-config.model';
-import { enable as enableRemote } from '@electron/remote/main';
 
 let mainWin: BrowserWindow;
 
@@ -83,27 +83,25 @@ export const createWindow = ({
       scrollBounce: true,
       backgroundThrottling: false,
       webSecurity: !IS_DEV,
-      nodeIntegration: true,
+      preload: path.join(__dirname, 'preload.js'),
+      nodeIntegration: false,
       // make remote module work with those two settings
-      contextIsolation: false,
+      contextIsolation: true,
     },
     icon: ICONS_FOLDER + '/icon_256x256.png',
   });
-
-  // enable remote module
-  enableRemote(mainWin.webContents);
 
   mainWindowState.manage(mainWin);
 
   const url = customUrl
     ? customUrl
     : IS_DEV
-    ? 'http://localhost:4200'
-    : format({
-        pathname: normalize(join(__dirname, '../dist/index.html')),
-        protocol: 'file:',
-        slashes: true,
-      });
+      ? 'http://localhost:4200'
+      : format({
+          pathname: normalize(join(__dirname, '../dist/browser/index.html')),
+          protocol: 'file:',
+          slashes: true,
+        });
 
   mainWin.loadURL(url).then(() => {
     // load custom stylesheet if any

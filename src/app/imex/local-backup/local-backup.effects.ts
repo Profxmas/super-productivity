@@ -8,7 +8,7 @@ import { LocalBackupService } from './local-backup.service';
 import { DataImportService } from '../sync/data-import.service';
 import { TranslateService } from '@ngx-translate/core';
 import { T } from '../../t.const';
-import * as moment from 'moment';
+import moment from 'moment';
 import { IS_ANDROID_BACKUP_READY } from '../../features/android/android-interface';
 import { IS_ANDROID_WEB_VIEW } from '../../util/is-android-web-view';
 
@@ -41,7 +41,7 @@ export class LocalBackupEffects {
       appDataComplete.taskArchive.ids.length === 0 &&
       !appDataComplete.lastLocalSyncModelChange
     ) {
-      const backupMeta = await this._localBackupService.isBackupAvailable();
+      const backupMeta = await this._localBackupService.checkBackupAvailable();
 
       // ELECTRON
       // --------

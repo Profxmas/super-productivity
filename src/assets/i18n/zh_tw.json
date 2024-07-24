@@ -772,6 +772,7 @@
         "RO_30M": "開始前 30 分鐘",
         "RO_5M": "開始前 5 分鐘",
         "RO_START": "開始時",
+        "RO_NEVER": "Never",
         "SCHEDULE": "計劃時間",
         "UNSCHEDULE": "取消計劃"
       },
@@ -876,7 +877,8 @@
       "NOW": "Now",
       "NO_TASKS": "Currently there are no tasks. Please add some tasks via the + Button in the top bar.",
       "START": "Work Start",
-      "TASK_PROJECTION_INFO": "Future projection of a scheduled repeatable task"
+      "TASK_PROJECTION_INFO": "Future projection of a scheduled repeatable task",
+      "LUNCH_BREAK": "午休"
     },
     "TIME_TRACKING": {
       "B": {
@@ -973,7 +975,7 @@
   },
   "G": {
     "CANCEL": "取消",
-    "CLICK_TO_EDIT": "點擊編輯",
+    "EXAMPLE_VAL": "點擊編輯",
     "CLOSE": "關",
     "DELETE": "刪除",
     "DISMISS": "取消",

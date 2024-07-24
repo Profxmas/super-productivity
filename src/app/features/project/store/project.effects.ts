@@ -38,10 +38,9 @@ import {
   convertToMainTask,
   deleteTask,
   deleteTasks,
-  moveToArchive,
+  moveToArchive_,
   moveToOtherProject,
   restoreTask,
-  updateTaskTags,
 } from '../../tasks/store/task.actions';
 import { ReminderService } from '../../reminder/reminder.service';
 import { ProjectService } from '../project.service';
@@ -59,7 +58,6 @@ import { TaskService } from '../../tasks/task.service';
 import { Task, TaskArchive, TaskState } from '../../tasks/task.model';
 import { unique } from '../../../util/unique';
 import { TaskRepeatCfgService } from '../../task-repeat-cfg/task-repeat-cfg.service';
-import { TODAY_TAG } from '../../tag/tag.const';
 import { EMPTY, Observable, of } from 'rxjs';
 import { TaskRepeatCfg } from '../../task-repeat-cfg/task-repeat-cfg.model';
 import { projectSelectors } from './project.selectors';
@@ -151,7 +149,7 @@ export class ProjectEffects {
           deleteTask,
           moveToOtherProject,
           restoreTask,
-          moveToArchive,
+          moveToArchive_,
           convertToMainTask,
         ),
         switchMap((a) => {
@@ -166,7 +164,7 @@ export class ProjectEffects {
             case moveToOtherProject.type:
               isChange = !!a.task.projectId;
               break;
-            case moveToArchive.type:
+            case moveToArchive_.type:
               isChange = !!a.tasks.find((task) => !!task.projectId);
               break;
             case restoreTask.type:
@@ -372,31 +370,32 @@ export class ProjectEffects {
     { dispatch: false },
   );
 
-  moveToTodayListOnAddTodayTag: Observable<unknown> = createEffect(() =>
-    this._actions$.pipe(
-      ofType(updateTaskTags),
-      filter(
-        ({ task, newTagIds }) => !!task.projectId && newTagIds.includes(TODAY_TAG.id),
-      ),
-      concatMap(({ task, newTagIds }) =>
-        this._projectService.getByIdOnce$(task.projectId as string).pipe(
-          map((project) => ({
-            project,
-            task,
-            newTagIds,
-          })),
-        ),
-      ),
-      filter(({ project }) => !project.taskIds.includes(TODAY_TAG.id)),
-      map(({ task, newTagIds, project }) =>
-        moveProjectTaskToTodayListAuto({
-          projectId: project.id,
-          taskId: task.id,
-          isMoveToTop: false,
-        }),
-      ),
-    ),
-  );
+  // NOTE: does not seem to be necessary any more
+  // moveToTodayListOnAddTodayTag: Observable<unknown> = createEffect(() =>
+  //   this._actions$.pipe(
+  //     ofType(updateTaskTags),
+  //     filter(
+  //       ({ task, newTagIds }) => !!task.projectId && newTagIds.includes(TODAY_TAG.id),
+  //     ),
+  //     concatMap(({ task, newTagIds }) =>
+  //       this._projectService.getByIdOnce$(task.projectId as string).pipe(
+  //         map((project) => ({
+  //           project,
+  //           task,
+  //           newTagIds,
+  //         })),
+  //       ),
+  //     ),
+  //     filter(({ project }) => !project.taskIds.includes(TODAY_TAG.id)),
+  //     map(({ task, newTagIds, project }) =>
+  //       moveProjectTaskToTodayListAuto({
+  //         projectId: project.id,
+  //         taskId: task.id,
+  //         isMoveToTop: false,
+  //       }),
+  //     ),
+  //   ),
+  // );
 
   // @Effect()
   // moveToBacklogOnRemoveTodayTag: Observable<unknown> = this._actions$.pipe(
@@ -486,6 +485,7 @@ export class ProjectEffects {
     // remove archive
     await this._persistenceService.taskArchive.execAction(
       deleteTasks({ taskIds: archiveTaskIdsToDelete }),
+      true,
     );
   }
 

@@ -5,6 +5,7 @@
 /app-builds
 /tmp
 /out-tsc
+/logs
 
 # dependencies
 /node_modules
@@ -31,6 +32,8 @@
 .history
 
 # misc
+\\backups
+/backups
 /.angular/cache
 /.sass-cache
 /connect.lock
@@ -60,6 +63,7 @@ electron/**/*.js.map
 # mac os deployment
 *.provisionprofile
 *.Xprovisionprofile
+tools/mac-profiles
 all-certs.p12
 mac-cert.tar
 build/electron-builder.appx.yaml

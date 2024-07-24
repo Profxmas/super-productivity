@@ -1,8 +1,13 @@
 {
+  "ANDROID": {
+    "NOTIFICATIONS": {
+      "SYNC_CONFLICT_TITLE": "حدث تعارض في المزامنة"
+    }
+  },
   "APP": {
     "B_INSTALL": {
       "IGNORE": "تجاهل",
-      "INSTALL": "التثبت",
+      "INSTALL": "تثبيت",
       "MSG": "هل تريد تثبيت Super Productivity كـ PWA؟"
     },
     "B_OFFLINE": "أنت غير متصل بالإنترنت. لن تعمل مزامنة بيانات موفر المشكلة وطلبها.",
@@ -23,14 +28,14 @@
   },
   "DATETIME_INPUT": {
     "IN": "في {{time}}",
-    "TOMORROW": "غدا {{time}}"
+    "TOMORROW": "غداً {{time}}"
   },
   "DATETIME_SCHEDULE": {
     "LATER_TODAY": "لاحقا اليوم",
     "NEXT_WEEK": "الاسبوع القادم",
     "PLACEHOLDER": "يرجى تحديد تاريخ",
     "PRESS_ENTER_AGAIN": "اضغط على Enter مرة أخرى للحفظ",
-    "TOMORROW": "غدا"
+    "TOMORROW": "غداً"
   },
   "F": {
     "ATTACHMENT": {
@@ -197,26 +202,6 @@
       },
       "S": {
         "ERR_UNKNOWN": "جيتلاب: خطأ غير معروف {{statusCode}} {{errorMsg}}"
-      }
-    },
-    "GOOGLE": {
-      "BANNER": {
-        "AUTH_FAIL": "GoogleApi: فشل في المصادقة ، يرجى محاولة تسجيل الدخول مرة أخرى!"
-      },
-      "DIALOG": {
-        "CREATE_SYNC_FILE": "Google Drive: لم يتم العثور على ملف يحمل الاسم <strong>\"{{fileName}}\"</strong> . <strong>إنشاء</strong> كملف مزامنة على Google Drive؟",
-        "USE_EXISTING_SYNC_FILE": "Google Drive: استخدم <strong>ملف</strong> موجود <strong>\"{{fileName}}\"</strong> كملف مزامنة؟ إذا لم يكن الأمر كذلك ، يرجى تغيير اسم ملف المزامنة."
-      },
-      "S": {
-        "MULTIPLE_SYNC_FILES_WITH_SAME_NAME": "تم العثور على ملفات متعددة بالاسم \"{{newFileName}}\". يرجى حذف الكل ما عدا واحدًا أو اختيار اسم مختلف.",
-        "SYNC_FILE_CREATION_ERROR": "Google Drive: حدث خطأ أثناء إنشاء ملف المزامنة. {{err}}",
-        "UPDATED_SYNC_FILE_NAME": "Google Drive: تم تحديث اسم ملف المزامنة"
-      },
-      "S_API": {
-        "ERR": "خطأ GoogleApi: {{errStr}}",
-        "ERR_NO_FILE_ID": "GoogleApi: لم يتم تحديد معرف الملف",
-        "ERR_NO_FILE_NAME": "GoogleApi: لم يتم تحديد اسم ملف",
-        "SUCCESS_LOGIN": "GoogleApi: تم تسجيل الدخول بنجاح"
       }
     },
     "ISSUE": {
@@ -409,7 +394,7 @@
         "HELP_P1": "الوقت لتقييم الذات قليلا! يتم حفظ إجاباتك هنا وتوفر لك بعض الإحصاءات حول كيفية عملك في قسم المقاييس. علاوة على ذلك ، ستظهر اقتراحات الغد أعلى قائمة المهام في اليوم التالي.",
         "HELP_P2": "يهدف هذا إلى أن يكون أقل حول حساب المقاييس الدقيقة أو أن تصبح آلة مثل الكفاءة في كل ما تفعله أكثر مما يتعلق بتحسين شعورك تجاه عملك. قد يكون من المفيد تقييم نقاط الألم في روتينك اليومي ، وكذلك لإيجاد عوامل تساعدك. نأمل أن تكون منهجيًا قليلاً حول هذا الموضوع يساعد على الحصول على قبضة أفضل على هذه الأشياء وتحسين ما تستطيع.",
         "IMPROVEMENTS": "ما تحسن الإنتاجية الخاصة بك؟",
-        "IMPROVEMENTS_TOMORROW": "ماذا يمكنك أن تفعل لتحسين غدا؟",
+        "IMPROVEMENTS_TOMORROW": "ماذا يمكنك أن تفعل لتحسين غداً؟",
         "MOOD": "ما هو شعورك؟",
         "MOOD_HINT": "1: فظيعة - 10: رائع",
         "NOTES": "ويلاحظ ليوم غد",
@@ -425,7 +410,6 @@
       "D_ADD": {
         "NOTE_LABEL": "أدخل نصًا لحفظه كملاحظة ..."
       },
-      "EDIT_FULLSCREEN": "تحرير في وضع ملء الشاشة",
       "NOTES_CMP": {
         "ADD_BTN": "إضافة ملاحظة جديدة",
         "DROP_TO_ADD": "إسقاط هنا لإضافة ملاحظة جديدة",
@@ -434,7 +418,8 @@
       "NOTE_CMP": {
         "DISABLE_PARSE": "تعطيل تحليل تخفيض السعر",
         "ENABLE_PARSE": "تمكين تحليل تخفيض السعر"
-      }
+      },
+      "EDIT_FULLSCREEN": "تحرير في وضع ملء الشاشة"
     },
     "OPEN_PROJECT": {
       "DIALOG_INITIAL": {
@@ -657,12 +642,8 @@
           "L_ACCESS_TOKEN": "رمز الوصول (تم إنشاؤه من كود المصادقة)"
         },
         "GOOGLE": {
-          "L_IS_COMPRESS_DATA": "ضغط البيانات",
-          "L_SYNC_FILE_NAME": "مزامنة اسم الملف"
-        },
-        "LOCAL_FILE": {
-          "L_SYNC_FILE_PATH": "مسار ملف المزامنة",
-          "L_SYNC_FILE_PATH_DESCRIPTION": "المسار المطلق للملف الذي يجب استخدامه للمزامنة (سيتم إنشاؤه)."
+          "L_SYNC_FILE_NAME": "مزامنة اسم الملف",
+          "L_IS_COMPRESS_DATA": "ضغط البيانات"
         },
         "L_ENABLE_SYNCING": "تمكين المزامنة",
         "L_SYNC_INTERVAL": "فترة المزامنة",
@@ -672,8 +653,12 @@
           "CORS_INFO": "<strong>تجريبي !!</strong> لإنجاز هذا العمل ، تحتاج إلى تعطيل أو تقييد CORS لمثال Nextcloud الخاص بك ، والذي قد يكون له تداعيات أمنية سلبية! يرجى <a href='https://github.com/nextcloud/server/issues/3131'>الرجوع إلى هذا الموضوع</a> لمزيد من المعلومات. استخدام على مسؤوليتك الخاصة!",
           "L_BASE_URL": "عنوان Url الأساسي",
           "L_PASSWORD": "كلمه السر",
+          "L_USER_NAME": "اسم المستخدم",
+          "L_SYNC_FILE_PATH": "مسار ملف المزامنة"
+        },
+        "LOCAL_FILE": {
           "L_SYNC_FILE_PATH": "مسار ملف المزامنة",
-          "L_USER_NAME": "اسم المستخدم"
+          "L_SYNC_FILE_PATH_DESCRIPTION": "المسار المطلق للملف الذي يجب استخدامه للمزامنة (سيتم إنشاؤه)."
         }
       },
       "S": {
@@ -783,6 +768,7 @@
         "RO_30M": "30 دقيقة قبل أن يبدأ",
         "RO_5M": "5 دقائق قبل أن يبدأ",
         "RO_START": "عندما تبدأ",
+        "RO_NEVER": "أبداً",
         "SCHEDULE": "جدول",
         "UNSCHEDULE": "Unschedule"
       },
@@ -886,11 +872,11 @@
       "MENU_TITLE": "الجدول الزمني",
       "NOW": "الآن",
       "NO_TASKS": "حاليا لا توجد مهام. الرجاء إضافة بعض المهام عبر زر + في الشريط العلوي.",
+      "START": "بدء العمل",
+      "TASK_PROJECTION_INFO": "الإسقاط المستقبلي لمهمة مجدولة قابلة للتكرار",
       "S": {
         "CAL_PROVIDER_ERROR": "خطأ في موفر حساب الجدول الزمني: {{errTxt}}"
-      },
-      "START": "بدء العمل",
-      "TASK_PROJECTION_INFO": "الإسقاط المستقبلي لمهمة مجدولة قابلة للتكرار"
+      }
     },
     "TIME_TRACKING": {
       "B": {
@@ -912,8 +898,8 @@
         "SIMPLE_COUNTER_TOOLTIP_DISABLE": "انقر لعدم التعقب إلى {{title}}",
         "SKIP": "تخطى",
         "TASK": "مهمة",
-        "TASK_BREAK": "استراحة المهمة",
-        "TRACK_TO": "تتبع إلى:"
+        "TRACK_TO": "تتبع إلى:",
+        "TASK_BREAK": "استراحة المهمة"
       },
       "D_TRACKING_REMINDER": {
         "CREATE_AND_TRACK": "<em>أنشئ</em> وتتبع إلى",
@@ -978,6 +964,26 @@
         "NO_DATA": "لا توجد مهام هذا الأسبوع حتى الآن.",
         "TITLE": "عنوان"
       }
+    },
+    "GOOGLE": {
+      "BANNER": {
+        "AUTH_FAIL": "GoogleApi: فشل في المصادقة ، يرجى محاولة تسجيل الدخول مرة أخرى!"
+      },
+      "DIALOG": {
+        "CREATE_SYNC_FILE": "Google Drive: لم يتم العثور على ملف يحمل الاسم <strong>\"{{fileName}}\"</strong> . <strong>إنشاء</strong> كملف مزامنة على Google Drive؟",
+        "USE_EXISTING_SYNC_FILE": "Google Drive: استخدم <strong>ملف</strong> موجود <strong>\"{{fileName}}\"</strong> كملف مزامنة؟ إذا لم يكن الأمر كذلك ، يرجى تغيير اسم ملف المزامنة."
+      },
+      "S": {
+        "MULTIPLE_SYNC_FILES_WITH_SAME_NAME": "تم العثور على ملفات متعددة بالاسم \"{{newFileName}}\". يرجى حذف الكل ما عدا واحدًا أو اختيار اسم مختلف.",
+        "SYNC_FILE_CREATION_ERROR": "Google Drive: حدث خطأ أثناء إنشاء ملف المزامنة. {{err}}",
+        "UPDATED_SYNC_FILE_NAME": "Google Drive: تم تحديث اسم ملف المزامنة"
+      },
+      "S_API": {
+        "ERR": "خطأ GoogleApi: {{errStr}}",
+        "ERR_NO_FILE_ID": "GoogleApi: لم يتم تحديد معرف الملف",
+        "ERR_NO_FILE_NAME": "GoogleApi: لم يتم تحديد اسم ملف",
+        "SUCCESS_LOGIN": "GoogleApi: تم تسجيل الدخول بنجاح"
+      }
     }
   },
   "FILE_IMEX": {
@@ -987,13 +993,13 @@
   },
   "G": {
     "CANCEL": "إلغاء",
-    "CLICK_TO_EDIT": "إضغط للتعديل",
     "CLOSE": "قريب",
     "DELETE": "حذف",
     "DISMISS": "رفض",
     "DO_IT": "افعلها!",
     "EDIT": "تصحيح",
     "ENABLED": "تمكين",
+    "EXAMPLE_VAL": "إضغط للتعديل",
     "EXTENSION_INFO": "يرجى <a target=\"_blank\" href=\"https://chrome.google.com/webstore/detail/super-productivity/ljkbjodfmekklcoibdnhahlaalhihmlb'}\"> تنزيل ملحق chrome</a> للسماح بالتواصل مع Jira Api و Idle Time Handling. لاحظ أن هذا لا يعمل للجوال.",
     "LOGIN": "تسجيل الدخول",
     "LOGOUT": "الخروج",
@@ -1027,9 +1033,9 @@
       "HELP": "<div><p>عند تمكين معالجة وقت الخمول ، سيتم فتح مربع حوار بعد فترة زمنية محددة للتحقق مما إذا كانت المهمة التي ترغب في تتبع وقتك عليها ، وعندما تكون خاملة.</p></div>",
       "IS_ENABLE_IDLE_TIME_TRACKING": "تمكين معالجة وقت الخمول",
       "IS_ONLY_OPEN_IDLE_WHEN_CURRENT_TASK": "قم بتشغيل مربع حوار وقت الخمول فقط عند تحديد مهمة حالية",
-      "IS_UN_TRACKED_IDLE_RESETS_BREAK_TIMER": "إعادة تعيين وقت الخمول الذي لم يتم تتبعه تأخذ وقت استراحة",
       "MIN_IDLE_TIME": "الخمول الزناد بعد X",
-      "TITLE": "الخمول المناولة"
+      "TITLE": "الخمول المناولة",
+      "IS_UN_TRACKED_IDLE_RESETS_BREAK_TIMER": "إعادة تعيين وقت الخمول الذي لم يتم تتبعه تأخذ وقت استراحة"
     },
     "IMEX": {
       "HELP": "<p>هنا يمكنك تصدير جميع بياناتك كـ <strong>JSON</strong> للنسخ الاحتياطية ، ولكن أيضًا لاستخدامها في سياق مختلف (على سبيل المثال ، قد ترغب في تصدير مشاريعك في المتصفح واستيرادها في إصدار سطح المكتب ). </p> <p>يتوقع الاستيراد أن يتم نسخ JSON صالح في مساحة النص. <strong>ملاحظة: بمجرد الضغط على زر الاستيراد ، سيتم استبدال جميع الإعدادات والبيانات الحالية الخاصة بك!</strong></p>",
@@ -1139,9 +1145,9 @@
     "SOUND": {
       "DONE_SOUND": "المهمة تمت الصوت",
       "IS_INCREASE_DONE_PITCH": "زيادة الملعب لكل مهمة يتم القيام بها",
-      "IS_PLAY_DONE_SOUND": "تشغيل الصوت عندما يتم وضع علامة على المهمة \"تم\"",
       "TITLE": "صوت",
-      "VOLUME": "الصوت"
+      "VOLUME": "الصوت",
+      "IS_PLAY_DONE_SOUND": "تشغيل الصوت عندما يتم وضع علامة على المهمة \"تم\""
     },
     "TAKE_A_BREAK": {
       "HELP": "<div> <p>يتيح لك تكوين تذكير متكرر عندما تعمل لفترة زمنية محددة دون أخذ استراحة.</p> <p>يمكنك تعديل الرسالة المعروضة. سيتم استبدال ${duration} بالوقت الذي يستغرقه دون انقطاع.</p> </div>",
@@ -1156,16 +1162,16 @@
       "TITLE": "التذكير بالاستراحة"
     },
     "TIMELINE": {
-      "CAL_PROVIDERS": "موفرو التقويم (تجريبي واختياري)",
-      "CAL_PROVIDERS_ADD": "أضف مصدرًا",
-      "CAL_PROVIDERS_INFO": "يمكنك بشكل اختياري تكوين المخطط الزمني لتحميل البيانات وعرضها أيضًا من iCal (مثل تقويم Google).",
       "HELP": "يجب أن توفر لك ميزة الجدول الزمني نظرة عامة سريعة على كيفية أداء المهام المخططة بمرور الوقت. يمكنك العثور عليه في القائمة اليمنى ضمن <a href='#/timeline'>\"المخطط الزمني\"</a>.",
-      "L_CAL_PATH": "عنوان URL / مسار الملف لتقويم ICAL (اختياري)",
       "L_IS_WORK_START_END_ENABLED": "قصر تدفق المهام غير المجدولة على أوقات عمل محددة",
       "L_WORK_END": "نهاية يوم العمل",
       "L_WORK_START": "بداية يوم العمل",
       "TITLE": "الجدول الزمني",
-      "WORK_START_END_DESCRIPTION": "على سبيل المثال 17:00"
+      "WORK_START_END_DESCRIPTION": "على سبيل المثال 17:00",
+      "CAL_PROVIDERS": "موفرو التقويم (تجريبي واختياري)",
+      "CAL_PROVIDERS_ADD": "أضف مصدرًا",
+      "CAL_PROVIDERS_INFO": "يمكنك بشكل اختياري تكوين المخطط الزمني لتحميل البيانات وعرضها أيضًا من iCal (مثل تقويم Google).",
+      "L_CAL_PATH": "عنوان URL / مسار الملف لتقويم ICAL (اختياري)"
     },
     "TRACKING_REMINDER": {
       "HELP": "قم بتكوين لافتة لتظهر في حالة نسيان بدء تتبع الوقت.",
@@ -1191,13 +1197,13 @@
     "DBX_GEN_TOKEN": "Dropbox: إنشاء رمز مميز ...",
     "DBX_META": "Dropbox: احصل على ملف تعريف ...",
     "DBX_UPLOAD": "Dropbox: تحميل ملف ...",
-    "GDRIVE_DOWNLOAD": "Google Drive: تنزيل الملف ...",
-    "GDRIVE_UPLOAD": "Google Drive: تحميل ملف ...",
     "GITHUB_LOAD_ISSUE": "GitHub: تحميل بيانات العدد ...",
     "JIRA_LOAD_ISSUE": "Jira: تحميل بيانات العدد ...",
     "UNKNOWN": "تحميل البيانات البعيدة",
     "WEB_DAV_DOWNLOAD": "WebDAV: جاري تنزيل البيانات ...",
-    "WEB_DAV_UPLOAD": "WebDAV: تحميل البيانات ..."
+    "WEB_DAV_UPLOAD": "WebDAV: تحميل البيانات ...",
+    "GDRIVE_DOWNLOAD": "Google Drive: تنزيل الملف ...",
+    "GDRIVE_UPLOAD": "Google Drive: تحميل ملف ..."
   },
   "MH": {
     "ADD_NEW_TASK": "إضافة مهمة جديدة",
@@ -1294,9 +1300,9 @@
   "PS": {
     "GLOBAL_SETTINGS": "الاعدادات العامة",
     "ISSUE_INTEGRATION": "تكامل المشكلة",
-    "PRIVACY_POLICY": "سياسة خاصة",
+    "PRIVACY_POLICY": "سياسة الخصوصية",
     "PRODUCTIVITY_HELPER": "مساعد الإنتاجية",
-    "PROJECT_SETTINGS": "إعدادات المشروع",
+    "PROJECT_SETTINGS": "إعدادات محددة للمشروع",
     "PROVIDE_FEEDBACK": "تقديم التغذية الراجعة",
     "SYNC_EXPORT": "المزامنة والتصدير",
     "TAG_SETTINGS": "الإعدادات الخاصة بالعلامة",
@@ -1307,21 +1313,21 @@
     "START_TASK": "بدء المهمة الآن وإزالة تذكير"
   },
   "THEMES": {
-    "SELECT_THEME": "اختر نمطا",
+    "SELECT_THEME": "اختر مظهر",
     "amber": "كهرمان",
     "blue": "أزرق",
     "blue-grey": "رمادي مزرق",
     "cyan": "ازرق سماوي",
-    "deep-orange": "عميق البرتقالي",
-    "deep-purple": "عمق اللون الارجواني",
+    "deep-orange": "برتقالي غامق",
+    "deep-purple": "أرجواني غامق",
     "green": "أخضر",
-    "indigo": "اللون النيلي",
+    "indigo": "نيلي",
     "light-blue": "أزرق فاتح",
     "light-green": "اخضر فاتح",
-    "lime": "جير",
+    "lime": "ليمي",
     "pink": "زهري",
     "purple": "أرجواني",
-    "teal": "بط نهري صغير",
+    "teal": "شرشيري",
     "yellow": "الأصفر"
   },
   "V": {
@@ -1341,14 +1347,18 @@
     "ADD_SOME_TASKS": "أضف بعض المهام للتخطيط ليومك!",
     "COMPLETED_TASKS": "المهام المنجزة",
     "ESTIMATE_REMAINING": "الباقى من الوقت المتوقع:",
-    "FINISH_DAY": "انهاء اليوم",
-    "HELP_PROCRASTINATION": "مساعدة أنا اماطل!",
+    "FINISH_DAY": "إنهاء اليوم",
+    "FINISH_DAY_TOOLTIP": "قم بتقييم يومك، وانقل جميع المهام المنجزة إلى الأرشيف (اختياريًا)، و/أو خطط ليومك التالي.",
+    "FINISH_DAY_FOR_PROJECT": "إنهاء اليوم لهذا المشروع",
+    "FINISH_DAY_FOR_TAG": "إنهاء اليوم لهذه الوسم",
+    "HELP_PROCRASTINATION": "المساعدة أنا أماطل!",
     "NO_COMPLETED_TASKS": "لا توجد مهام مكتملة حاليًا",
     "NO_PLANNED_TASKS": "لا توجد مهام مخطط لها",
     "READY_TO_WORK": "على استعداد للعمل!",
     "RESET_BREAK_TIMER": "إعادة تعيين دون كسر الوقت",
     "TIME_ESTIMATED": "الوقت المقدر:",
     "WITHOUT_BREAK": "بدون انقطاع:",
-    "WORKING_TODAY": "عمل اليوم:"
+    "WORKING_TODAY": "عمل اليوم:",
+    "WORKING_TODAY_ARCHIVED": "وقت العمل اليوم على المهام المؤرشفة"
   }
 }

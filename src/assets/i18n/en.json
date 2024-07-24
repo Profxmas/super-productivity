@@ -119,6 +119,19 @@
         "ISSUE_NOT_FOUND": "CalDav: Todo \"{{issueId}}\" seems to be deleted on server."
       }
     },
+    "CALENDARS": {
+      "BANNER": {
+        "TXT": "<strong>{{title}}</strong> starts at <strong>{{start}}</strong>!",
+        "TXT_MULTIPLE": "<strong>{{title}}</strong> starts at <strong>{{start}}</strong>!<br> (and {{nrOfOtherBanners}} other events are due)",
+        "TXT_PAST": "<strong>{{title}}</strong> started at <strong>{{start}}</strong>!",
+        "TXT_PAST_MULTIPLE": "<strong>{{title}}</strong> started at <strong>{{start}}</strong>!<br> (and {{nrOfOtherBanners}} other events are due)",
+        "ADD_AS_TASK": "Add as Task",
+        "FOCUS_TASK": "Focus Task"
+      },
+      "S": {
+        "CAL_PROVIDER_ERROR": "Calendar Provider Error: {{errTxt}}"
+      }
+    },
     "CONFIG": {
       "S": {
         "UPDATE_SECTION": "Updated settings for <strong>{{sectionKey}}</strong>"
@@ -131,7 +144,8 @@
         "AUTH_ERROR": "Dropbox: Invalid access token provided",
         "AUTH_ERROR_ACTION": "Change Token",
         "OFFLINE": "Dropbox: Unable to sync, because offline",
-        "SYNC_ERROR": "Dropbox: Error while syncing"
+        "SYNC_ERROR": "Dropbox: Error while syncing",
+        "UNABLE_TO_GENERATE_PKCE_CHALLENGE": "Dropbox: Unable to generate PKCE challenge."
       }
     },
     "FINISH_DAY_BEFORE_EXIT": {
@@ -140,13 +154,13 @@
       }
     },
     "FOCUS_MODE": {
-      "BACK_TO_PLANNING": "Back to Planing",
+      "BACK_TO_PLANNING": "Back to Planning",
       "CANCEL_FOCUS_SESSION": "Cancel Focus Session",
       "CONGRATS": "Congrats for completing this session!",
       "CONTINUE_FOCUS_SESSION": "Continue Focus Session",
       "FINISH_TASK_AND_SELECT_NEXT": "Finish task and select next",
-      "GET_READY": "Get ready for your focus session!!!",
-      "GOGOGO": "Go go go!!!",
+      "GET_READY": "Get ready for your focus session!",
+      "GOGOGO": "Go, go, go!!!",
       "GO_TO_PROCRASTINATION": "Get help, when procrastinating",
       "NEXT": "Next",
       "ON": "on",
@@ -176,7 +190,6 @@
         "IS_SEARCH_ISSUES_FROM_GITEA": "Show issues from git as suggestions when adding new tasks",
         "HOST": "Host (e.g.: https://try.gitea.io)",
         "TOKEN": "Access Token",
-        "TOKEN_DESCRIPTION": "Required for private repository access",
         "REPO_FULL_NAME": "Username or Organization name/project",
         "REPO_FULL_NAME_DESCRIPTION": "Can be found as part of the url, when viewing the project in the Browser.",
         "SCOPE": "Scope",
@@ -275,6 +288,14 @@
       "DIALOG_INITIAL": {
         "TITLE": "Setup GitLab for Project"
       },
+      "DIALOG_SUBMIT_WORKLOG": {
+        "PAST_DAY_INFO": "The prefilled duration contains untracked data from past days.",
+        "TITLE": "Submit Time Spent on Issues to GitLab",
+        "T_ALREADY_TRACKED": "Already Tracked",
+        "T_TITLE": "Title",
+        "T_TO_BE_SUBMITTED": "To be submitted",
+        "TOTAL_MSG": "You will submit <em>{{totalTimeToSubmit}}</em> work time for today in total to <em>{{nrOfTasksToSubmit}}</em> different issues."
+      },
       "FORM": {
         "FILTER_USER": "Username (e.g. to filter out changes by yourself)",
         "GITLAB_BASE_URL": "Custom GitLab base URL (optional)",
@@ -290,6 +311,8 @@
         "SOURCE_GLOBAL": "All",
         "SOURCE_GROUP": "Group",
         "SOURCE_PROJECT": "Project",
+        "SUBMIT_TIMELOGS": "Submit timelogs to Gitlab",
+        "SUBMIT_TIMELOGS_DESCRIPTION": "Show Time Tracking Dialog after clicking on finish day",
         "TOKEN": "Access Token",
         "FILTER": "Custom Filter",
         "FILTER_DESCRIPTION": "See https://docs.gitlab.com/ee/api/issues.html#list-issues. Multiple can be combined by &"
@@ -323,6 +346,7 @@
       }
     },
     "ISSUE": {
+      "HOW_TO_GET_A_TOKEN": "How to get a token?",
       "DEFAULT": {
         "ISSUES_STR": "issues",
         "ISSUE_STR": "issue"
@@ -738,7 +762,13 @@
       "WEEK_TITLE": "Week {{nr}} ({{timeSpent}})"
     },
     "REMINDER": {
-      "S_REMINDER_ERR": "Error for reminder interface"
+      "S_REMINDER_ERR": "Error for reminder interface",
+      "COUNTDOWN_BANNER": {
+        "START_NOW": "Start now",
+        "HIDE": "Hide",
+        "TXT": "<strong>{{title}}</strong> starts at <strong>{{start}}</strong>!",
+        "TXT_MULTIPLE": "<strong>{{title}}</strong> starts at <strong>{{start}}</strong>!<br> (and {{nrOfOtherBanners}} other tasks are due)"
+      }
     },
     "SEARCH_BAR": {
       "INFO": "Click on the list icon to search for archived tasks",
@@ -773,6 +803,10 @@
       }
     },
     "SYNC": {
+      "A": {
+        "ARCHIVE_ONLY_UPLOADED": "Your data was only partially uploaded. Please try again later! Otherwise you will not be able to sync your data to other devices.",
+        "POSSIBLE_LEGACY_DATA": "Super Productivity has improved syncing by now using two separate files rather than a single one, allowing for much less data transfer. It is recommended to update all instances of Super Productivity and to first sync data from the app instance where the data is newest. If this is the data from your local device then please ignore this warning and just proceed to upload it by confirming the next dialog."
+      },
       "C": {
         "EMPTY_SYNC": "You're trying to sync an empty data object. If you are trying to setup syncing from a new app instance, just press OK to load the data from the server. Otherwise, please check your data.",
         "FORCE_IMPORT": "Import remote data anyway?",
@@ -780,7 +814,8 @@
         "FORCE_UPLOAD_AFTER_ERROR": "An Error occurred while uploading your local data. Try to force the update?",
         "MIGRATE_LEGACY": "Legacy data detected while importing, do you want to try to migrate it?",
         "NO_REMOTE_DATA": "No remote data found. Upload local to Remote?",
-        "TRY_LOAD_REMOTE_AGAIN": "Try to re-load data from remote once again?"
+        "TRY_LOAD_REMOTE_AGAIN": "Try to re-load data from remote once again?",
+        "UNABLE_TO_LOAD_REMOTE_DATA": "Unable to load data from remote. Do you want to try to overwrite the remote data with your local data? All remote data will be lost in the process."
       },
       "D_AUTH_CODE": {
         "FOLLOW_LINK": "Please open the following link and copy the auth code provided there into the the input field below.",
@@ -813,12 +848,14 @@
           "L_SYNC_FILE_NAME": "Sync File Name"
         },
         "LOCAL_FILE": {
-          "L_SYNC_FILE_PATH": "Sync file path",
-          "L_SYNC_FILE_PATH_DESCRIPTION": "Absolute path to the file that should be used for syncing (will be created).",
+          "L_SYNC_FOLDER_PATH": "Sync folder path",
           "L_SYNC_FILE_PATH_PERMISSION_VALIDATION": "Needs file access permission"
         },
-        "L_ENABLE_SYNCING": "Enable Syncing",
         "L_ENABLE_COMPRESSION": "Enable Compression (faster data transfer)",
+        "L_ENABLE_ENCRYPTION": "Enable end-to-end encryption (experimental) – Make your data inaccessible for your sync provider",
+        "L_ENABLE_SYNCING": "Enable Syncing",
+        "L_ENCRYPTION_NOTES": "IMPORTANT NOTES: You will need to set the same password on your other devices <strong>BEFORE</strong> the next sync for everything to work. Please select a password that is secure. Please also note that <strong>you will NOT be able to access your data, if you forget this password. There is NO recovery possible</strong>, since only you have the key. The encryption will probably be good enough to thwart of most attackers, but <strong>there is no guarantee.</strong>",
+        "L_ENCRYPTION_PASSWORD": "Encryption Password (DO NOT FORGET)",
         "L_SYNC_INTERVAL": "Sync Interval",
         "L_SYNC_PROVIDER": "Sync Provider",
         "TITLE": "Sync",
@@ -826,13 +863,16 @@
           "CORS_INFO": "<strong>Making it work in the browser:</strong> To make this work in the browser you need to whitelist Super Productivity for CORS requests for your Nextcloud instance. This can have negative security implications! Please <a href='https://github.com/nextcloud/server/issues/3131'>refer to this thread for more information</a>. One approach to make this work on mobile is whitelisting \"https://app.super-productivity.com\" via the nextcloud app <a href='https://apps.nextcloud.com/apps/webapppassword'>webapppassword<a>. Use at your own risk!</p>",
           "L_BASE_URL": "Base Url",
           "L_PASSWORD": "Password",
-          "L_SYNC_FILE_PATH": "Sync File Path",
+          "L_SYNC_FOLDER_PATH": "Sync Folder Path",
           "L_USER_NAME": "Username"
         }
       },
       "S": {
+        "ALREADY_IN_SYNC": "Already in sync",
+        "ALREADY_IN_SYNC_NO_LOCAL_CHANGES": "No local changes – Already in sync",
         "ERROR_FALLBACK_TO_BACKUP": "Something went wrong while importing the data. Falling back to local backup.",
         "ERROR_INVALID_DATA": "Error while syncing. Invalid data",
+        "ERROR_UNABLE_TO_READ_REMOTE_DATA": "Error while syncing. Unable to read remote data. Maybe you enabled encryption and your local password does not match the one used to encrypt the remote data?",
         "IMPORTING": "Importing data",
         "INCOMPLETE_CFG": "Authentication for sync failed. Please check your Config!",
         "INITIAL_SYNC_ERROR": "Initial Sync failed",
@@ -878,7 +918,8 @@
         "REPEAT": "Repeat",
         "SCHEDULE_TASK": "Schedule Task",
         "SUB_TASKS": "Sub Tasks ({{nr}})",
-        "TIME": "Time"
+        "TIME": "Time",
+        "TITLE_PLACEHOLDER": "Enter a title"
       },
       "ADD_TASK_BAR": {
         "ADD_EXISTING_TASK": "Add existing task \"{{taskTitle}}\"",
@@ -888,7 +929,7 @@
         "ADD_TASK_TO_TOP_OF_BACKLOG": "Add task to top of backlog",
         "ADD_TASK_TO_TOP_OF_TODAY": "Add task to top of list",
         "CREATE_TASK": "Create new task",
-        "EXAMPLE": "Example: \"Some task title @fri 4pm +projectName #some tag #some other tag 10m/3h\"",
+        "EXAMPLE": "Example: \"Some task title @fri 4pm +projectName #some-tag #some-other-tag 10m/3h\"",
         "START": "Press enter one more time to start",
         "TOGGLE_ADD_TO_BACKLOG_TODAY": "Toggle adding task to backlog / today's list'",
         "TOGGLE_ADD_TOP_OR_BOTTOM": "Toggle adding task to top & bottom of list"
@@ -927,6 +968,14 @@
         "TRACK_TIME_STOP": "Pause tracking time",
         "UPDATE_ISSUE_DATA": "Update issue data"
       },
+      "D_CONFIRM_SHORT_SYNTAX_NEW_TAG": {
+        "MSG": "Do you want to create the new tag {{tagsTxt}}?",
+        "OK": "Create tag"
+      },
+      "D_CONFIRM_SHORT_SYNTAX_NEW_TAGS": {
+        "MSG": "Do you want to create the new tags {{tagsTxt}}?",
+        "OK": "Create tags"
+      },
       "D_REMINDER_ADD": {
         "CONFIRM_REPEAT_OK": "Schedule",
         "CONFIRM_REPEAT_TXT": "You're trying to schedule this repeated task to another day. Repeated tasks are usually meant to be re-created on specified days and only scheduled on that day. Do you want to proceed anyway?",
@@ -940,6 +989,7 @@
         "RO_30M": "30 minutes before it starts",
         "RO_5M": "5 minutes before it starts",
         "RO_START": "when it starts",
+        "RO_NEVER": "Never",
         "SCHEDULE": "Schedule",
         "UNSCHEDULE": "Unschedule"
       },
@@ -968,7 +1018,7 @@
         "ESTIMATE": "Estimate",
         "TIME_SPENT": "Time Spent",
         "TIME_SPENT_ON": "Time Spent {{date}}",
-        "TITLE": "Time spent / Estimates"
+        "TITLE": "Duration"
       },
       "D_TIME_FOR_DAY": {
         "ADD_ENTRY_FOR": "Add new entry for {{date}}",
@@ -1093,11 +1143,9 @@
       "MENU_TITLE": "Timeline",
       "NOW": "Now",
       "NO_TASKS": "Currently there are no tasks. Please add some tasks via the + Button in the top bar.",
-      "S": {
-        "CAL_PROVIDER_ERROR": "Timeline Cal Provider Error: {{errTxt}}"
-      },
       "START": "Work Start",
-      "TASK_PROJECTION_INFO": "Future projection of a scheduled repeatable task"
+      "TASK_PROJECTION_INFO": "Future projection of a scheduled repeatable task",
+      "LUNCH_BREAK": "Lunch Break"
     },
     "TIME_TRACKING": {
       "B": {
@@ -1113,6 +1161,7 @@
         "BREAK": "Break",
         "CREATE_AND_TRACK": "<em>Create</em> and track to",
         "IDLE_FOR": "You have been idle for:",
+        "RESET_BREAK_REMINDER_TIMER": "Reset break reminder timer",
         "SIMPLE_CONFIRM_COUNTER_CANCEL": "Skip",
         "SIMPLE_CONFIRM_COUNTER_OK": "Track",
         "SIMPLE_COUNTER_CONFIRM_TXT": "You selected skip, but activated {{nr}} simple counter button(s). Do you want to track the idle time to them?",
@@ -1121,7 +1170,6 @@
         "SKIP": "Skip",
         "SPLIT_TIME": "Split time into multiples tasks and breaks",
         "TASK": "Task",
-        "TASK_BREAK": "Task+Break",
         "TRACK_TO": "Track to"
       },
       "D_TRACKING_REMINDER": {
@@ -1130,18 +1178,6 @@
         "TASK": "Task",
         "TRACK_TO": "Track to:",
         "UNTRACKED_TIME": "Untracked time:"
-      }
-    },
-    "WELCOME": {
-      "D_WELCOME": {
-        "L1": "Getting started",
-        "L2": "Introductory video on youtube",
-        "L3": "Ask a question",
-        "LETS_GO": "Let's go!!",
-        "MOBILE_INFO": "<strong>Swipe</strong> created tasks <strong>right, to mark them as done</strong>.\n    Swipe them left to schedule. Longpress them for more actions.",
-        "T1": "Great to see, that you decided to give this app a go! \uD83E\uDD84",
-        "T2": "If you're having trouble to find your way around here, there are several places you\n    can find help:",
-        "TITLE": "Welcome to Super Productivity!"
       }
     },
     "WORKLOG": {
@@ -1209,7 +1245,6 @@
   },
   "G": {
     "CANCEL": "Cancel",
-    "CLICK_TO_EDIT": "click to edit",
     "CLOSE": "Close",
     "DELETE": "Delete",
     "DISMISS": "Dismiss",
@@ -1217,7 +1252,9 @@
     "DO_IT": "Do it!",
     "EDIT": "Edit",
     "ENABLED": "Enabled",
+    "EXAMPLE_VAL": "e.g. 32m",
     "EXTENSION_INFO": "Please <a target=\"_blank\" href=\"https://chrome.google.com/webstore/detail/super-productivity/ljkbjodfmekklcoibdnhahlaalhihmlb\"> download the chrome extension</a> in order to allow communication with the Jira Api and Idle Time Handling. Note that this doesn't work for mobile.",
+    "HIDE": "Hide",
     "LOGIN": "Login",
     "LOGOUT": "Logout",
     "MINUTES": "{{m}} minutes",
@@ -1229,6 +1266,7 @@
     "REMOVE": "Remove",
     "RESET": "Reset",
     "SAVE": "Save",
+    "SUBMIT": "Submit",
     "TITLE": "Title",
     "TODAY_TAG_TITLE": "Today",
     "UNDO": "Undo",
@@ -1242,6 +1280,19 @@
       "LABEL_IS_ENABLED": "Enable automatic backups",
       "LOCATION_INFO": "Backups are saved to:",
       "TITLE": "Automatic Backups"
+    },
+    "CALENDARS": {
+      "BROWSER_WARNING": "<b>This will likely NOT work with the Browser version of Super Productivity.<br /> Please <a href=\"https://super-productivity.com/download/\">download the desktop version</a> to use this feature!</b>",
+      "CAL_PATH": "Url of the iCal source",
+      "CAL_PROVIDERS": "Calendar providers (experimental and optional)",
+      "CAL_PROVIDERS_ADD": "Add Calendar iCal source",
+      "CAL_PROVIDERS_INFO": "You can load calendar data as iCal (e.g. <a href=\"https://support.google.com/calendar/answer/37648?hl=en#zippy=%2Csync-your-google-calendar-view-edit%2Cget-your-calendar-view-only\">Google Calendar</a>, <a href=\"https://support.pushpay.com/s/article/How-do-I-get-an-iCal-link-from-Office-365\">Outlook 365</a>). The data will be integrated in the timeline and you will be prompted to create tasks for calendar events, if they are due.",
+      "CHECK_UPDATES": "Check for remote updates every X",
+      "DEFAULT_PROJECT": "Default Project for added calendar tasks",
+      "HELP": "You can integrate calendars to be reminded and add them as tasks within Super Productivity. The integration works by using the iCal format. For this to work your calendars need to be accessible either over the internet or via file system.",
+      "ICON": "Icon for Timeline",
+      "SHOW_BANNER_THRESHOLD": "Show a notification X before the event (blank for disabled)",
+      "TITLE": "Calendars"
     },
     "EVALUATION": {
       "IS_HIDE_EVALUATION_SHEET": "Hide evaluation sheet on daily summary",
@@ -1257,7 +1308,6 @@
       "HELP": "<div><p>When idle time handling is enabled a dialog will open after a specified amount of time to check if and on which task you want to track your time, when you have been idle.</p></div>",
       "IS_ENABLE_IDLE_TIME_TRACKING": "Enable idle time handling",
       "IS_ONLY_OPEN_IDLE_WHEN_CURRENT_TASK": "Only trigger idle time dialog when a current task is selected",
-      "IS_UN_TRACKED_IDLE_RESETS_BREAK_TIMER": "Untracked idle time resets take a break timer",
       "MIN_IDLE_TIME": "Trigger idle after X",
       "TITLE": "Idle Handling"
     },
@@ -1280,7 +1330,7 @@
       "GO_TO_SCHEDULED_VIEW": "Go to scheduled Tasks",
       "GO_TO_SETTINGS": "Go to Settings",
       "GO_TO_TIMELINE": "Go to Timeline",
-      "GO_TO_WORK_VIEW": "Go to Work View",
+      "GO_TO_WORK_VIEW": "Go to Work View and focus first task",
       "HELP": "<p>Here you can configure all keyboard shortcuts.</p> <p>Click on the text input and enter the desired keyboard combination. Hit enter to save and Escape to abort.</p> <p>There are three types of shortcuts:</p> <ul> <li> <strong>Global shortcuts:</strong> When the app is running it will trigger the action from every other application. </li> <li> <strong>Application level shortcuts:</strong> Will trigger from every screen of the application, but not if you're currently editing a text field. </li> <li> <strong>Task level shortcuts:</strong> They will only trigger if you have selected a task via mouse or keyboard and usually trigger an action specifically related to that one task. </li> </ul><p>You can <strong>press Escape to remove a shortcut.</strong>",
       "MOVE_TASK_DOWN": "Move Task down in List",
       "MOVE_TASK_UP": "Move Task up in List",
@@ -1289,6 +1339,7 @@
       "MOVE_TO_BACKLOG": "Move Task to Task Backlog",
       "MOVE_TO_TODAYS_TASKS": "Move Task to Today\"s Task List",
       "OPEN_PROJECT_NOTES": "Show/Hide Notes",
+      "SAVE_NOTE": "Save note",
       "SELECT_NEXT_TASK": "Select next Task",
       "SELECT_PREVIOUS_TASK": "Select previous Task",
       "SHOW_SEARCH_BAR": "Show search bar",
@@ -1310,12 +1361,14 @@
       "TOGGLE_BOOKMARKS": "Show/Hide Bookmark Bar",
       "TOGGLE_PLAY": "Start/Stop Task",
       "TOGGLE_SIDE_NAV": "Show & Focus/Hide Sidenav",
+      "TRIGGER_SYNC": "Trigger sync (if configured)",
       "ZOOM_DEFAULT": "Zoom default (Desktop only)",
       "ZOOM_IN": "Zoom in (Desktop only)",
       "ZOOM_OUT": "Zoom out (Desktop only)"
     },
     "LANG": {
       "AR": "Arabic",
+      "CZ": "Czech",
       "DE": "German",
       "EN": "English",
       "ES": "Spanish",
@@ -1374,6 +1427,11 @@
       "LONGER_BREAK_DURATION": "Duration of longer breaks",
       "TITLE": "Pomodoro Timer"
     },
+    "REMINDER": {
+      "IS_COUNTDOWN_BANNER_ENABLED": "Show countdown banner before reminders are due",
+      "COUNTDOWN_DURATION": "Show banner X before the actual reminder",
+      "TITLE": "Reminders"
+    },
     "SOUND": {
       "BREAK_REMINDER_SOUND": "Take a break reminder sound",
       "DONE_SOUND": "Task marked done sound",
@@ -1397,16 +1455,16 @@
       "TITLE": "Break Reminder"
     },
     "TIMELINE": {
-      "CAL_PROVIDERS": "Calendar providers (experimental and optional)",
-      "CAL_PROVIDERS_ADD": "Add ical source",
-      "CAL_PROVIDERS_INFO": "You can optionally configure the timeline to also load and display data from iCal (e.g. <a href=\"https://support.google.com/calendar/answer/37648?hl=en#zippy=%2Csync-your-google-calendar-view-edit%2Cget-your-calendar-view-only\">Google Calendar</a>).",
       "HELP": "The timeline feature should provide you with a quick overview over how your planned tasks play out over time. You can find it in the left hand menu under <a href='#/timeline'>'Timeline'</a>. ",
-      "L_CAL_PATH": "Url/File path for calendar ICAL (optional)",
       "L_IS_WORK_START_END_ENABLED": "Limit unscheduled task flow to specific work times",
       "L_WORK_END": "Work Day End",
       "L_WORK_START": "Work Day Start",
       "TITLE": "Timeline",
-      "WORK_START_END_DESCRIPTION": "e.g. 17:00"
+      "WORK_START_END_DESCRIPTION": "e.g. 17:00",
+      "L_IS_LUNCH_BREAK_ENABLED": "Enable lunch break",
+      "L_LUNCH_BREAK_END": "Lunch break end",
+      "L_LUNCH_BREAK_START": "Lunch break start",
+      "LUNCH_BREAK_START_END_DESCRIPTION": "e.g. 13:00"
     },
     "TRACKING_REMINDER": {
       "HELP": "Configure a banner to show up in case you forgot to start time tracking.",
@@ -1421,6 +1479,7 @@
     "ERR_COMPRESSION": "Error for compression interface",
     "FILE_DOWNLOADED": "{{fileName}} downloaded",
     "FILE_DOWNLOADED_BTN": "Open folder",
+    "NAVIGATE_TO_TASK_ERR": "Could not focus to task. Did you delete it?",
     "PERSISTENCE_DISALLOWED": "Data will be not persisted permanently. Be aware that this can lead to data loss!!",
     "PERSISTENCE_ERROR": "Error when requesting to persist data: {{err}}",
     "RUNNING_X": "Running \"{{str}}\".",
@@ -1434,6 +1493,7 @@
     "DBX_UPLOAD": "Dropbox: Upload file...",
     "GITHUB_LOAD_ISSUE": "GitHub: Load issue data...",
     "JIRA_LOAD_ISSUE": "Jira: Load issue data...",
+    "SYNC": "Syncing data...",
     "UNKNOWN": "Loading remote data",
     "WEB_DAV_DOWNLOAD": "WebDAV: Downloading data...",
     "WEB_DAV_UPLOAD": "WebDAV: Uploading data..."
@@ -1444,8 +1504,18 @@
     "CREATE_TAG": "Create Tag",
     "DELETE_TAG": "Delete Tag",
     "GO_TO_TASK_LIST": "Go to task list",
-    "HELP": "Help",
+    "HM": {
+      "CALENDARS": "Howto: Connect Calendars",
+      "CONTRIBUTE": "Contribute",
+      "GET_HELP_ONLINE": "Get help online",
+      "KEYBOARD": "Howto: Advanced Keyboard",
+      "REPORT_A_PROBLEM": "Report a problem",
+      "START_WELCOME": "Start Welcome Tour",
+      "SYNC": "Howto: Configure Sync"
+    },
     "MANAGE_PROJECTS": "Manage Projects",
+    "NO_TAG_INFO": "There are currently no tags. You can add tags by entering `#yourTagName` when adding or editing tasks.",
+    "HELP": "Help",
     "METRICS": "Metrics",
     "NOTES": "Notes",
     "NOTES_PANEL_INFO": "Notes can only be shown from the timeline and the regular task list views.",
@@ -1598,6 +1668,7 @@
     "RESET_BREAK_TIMER": "Reset without break timer",
     "TIME_ESTIMATED": "Time Estimated:",
     "WITHOUT_BREAK": "Without break:",
-    "WORKING_TODAY": "Working today:"
+    "WORKING_TODAY": "Working today:",
+    "WORKING_TODAY_ARCHIVED": "Time worked today on archived tasks"
   }
 }

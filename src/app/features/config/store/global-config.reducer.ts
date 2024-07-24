@@ -1,6 +1,7 @@
 import { updateGlobalConfigSection } from './global-config.actions';
 import { createFeatureSelector, createReducer, createSelector, on } from '@ngrx/store';
 import {
+  CalendarProvider,
   DominaModeConfig,
   EvaluationConfig,
   FocusModeConfig,
@@ -8,6 +9,7 @@ import {
   IdleConfig,
   MiscConfig,
   PomodoroConfig,
+  ReminderConfig,
   SoundConfig,
   SyncConfig,
   TakeABreakConfig,
@@ -67,6 +69,21 @@ export const selectPomodoroConfig = createSelector(
 export const selectIsPomodoroEnabled = createSelector(
   selectConfigFeatureState,
   (cfg): boolean => cfg.pomodoro.isEnabled,
+);
+export const selectReminderConfig = createSelector(
+  selectConfigFeatureState,
+  (cfg): ReminderConfig => cfg.reminder,
+);
+
+export const selectCalendarProviders = createSelector(
+  selectConfigFeatureState,
+  (cfg): CalendarProvider[] => cfg.calendarIntegration.calendarProviders,
+);
+
+export const selectCalendarProviderById = createSelector(
+  selectCalendarProviders,
+  (calProviders, props: { id: string }): CalendarProvider | undefined =>
+    calProviders.find((calProvider) => calProvider.id === props.id),
 );
 
 export const initialGlobalConfigState: GlobalConfigState = {

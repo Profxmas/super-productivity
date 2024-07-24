@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { ElectronService } from '../electron/electron.service';
 import { IS_ELECTRON } from '../../app.constants';
 import { devError } from '../../util/dev-error';
 import { TranslateService } from '@ngx-translate/core';
@@ -20,11 +19,11 @@ export class DatabaseService {
   private _adapter: DBAdapter = this._indexedDbAdapterService;
 
   constructor(
-    private _electronService: ElectronService,
     private _translateService: TranslateService,
     private _indexedDbAdapterService: IndexedDBAdapterService,
     private _androidDbAdapterService: AndroidDbAdapterService,
   ) {
+    this._adapter = this._indexedDbAdapterService;
     this._init().then();
   }
 
@@ -76,7 +75,6 @@ export class DatabaseService {
       console.error('_lastParams', this._lastParams);
       console.error(e);
       alert('DB INIT Error');
-      // TODO fix typing issue
       throw new Error(e as any);
     }
   }
@@ -100,8 +98,8 @@ export class DatabaseService {
 
   private _restartApp(): void {
     if (IS_ELECTRON) {
-      this._electronService.remote.app.relaunch();
-      this._electronService.remote.app.exit(0);
+      window.ea.relaunch();
+      window.ea.exit(0);
     } else {
       window.location.reload();
     }

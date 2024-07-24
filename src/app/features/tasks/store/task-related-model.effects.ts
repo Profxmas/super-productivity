@@ -1,45 +1,30 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import {
-  addTask,
   addTimeSpent,
-  moveToArchive,
+  moveToArchive_,
   moveToOtherProject,
   restoreTask,
-  scheduleTask,
   updateTask,
   updateTaskTags,
 } from './task.actions';
-import {
-  concatMap,
-  filter,
-  map,
-  mapTo,
-  mergeMap,
-  switchMap,
-  tap,
-  withLatestFrom,
-} from 'rxjs/operators';
+import { concatMap, filter, first, map, mergeMap, switchMap, tap } from 'rxjs/operators';
 import { PersistenceService } from '../../../core/persistence/persistence.service';
-import { Task, TaskArchive, TaskReminderOptionId, TaskWithSubTasks } from '../task.model';
+import { Task, TaskArchive, TaskCopy, TaskWithSubTasks } from '../task.model';
 import { ReminderService } from '../../reminder/reminder.service';
 import { moveTaskInTodayList } from '../../work-context/store/work-context-meta.actions';
 import { taskAdapter } from './task.adapter';
 import { flattenTasks } from './task.selectors';
 import { GlobalConfigService } from '../../config/global-config.service';
-import { TODAY_TAG } from '../../tag/tag.const';
+import { NO_LIST_TAG, TODAY_TAG } from '../../tag/tag.const';
 import { unique } from '../../../util/unique';
 import { TaskService } from '../task.service';
 import { EMPTY, Observable, of } from 'rxjs';
 import { createEmptyEntity } from '../../../util/create-empty-entity';
-import { ProjectService } from '../../project/project.service';
-import { TagService } from '../../tag/tag.service';
-import { shortSyntax } from '../short-syntax.util';
-import { remindOptionToMilliseconds } from '../util/remind-option-to-milliseconds';
-import { environment } from '../../../../environments/environment';
 import { moveProjectTaskToTodayList } from '../../project/store/project.actions';
 import { SnackService } from '../../../core/snack/snack.service';
 import { T } from '../../../t.const';
+import { upsertTag } from '../../tag/store/tag.actions';
 
 @Injectable()
 export class TaskRelatedModelEffects {
@@ -49,7 +34,7 @@ export class TaskRelatedModelEffects {
   moveToArchive$: any = createEffect(
     () =>
       this._actions$.pipe(
-        ofType(moveToArchive),
+        ofType(moveToArchive_),
         tap(({ tasks }) => this._moveToArchive(tasks)),
       ),
     { dispatch: false },
@@ -74,10 +59,21 @@ export class TaskRelatedModelEffects {
       this._actions$.pipe(
         ofType(addTimeSpent),
         switchMap(({ task }) =>
-          task.parentId ? this._taskService.getByIdOnce$(task.parentId) : of(task),
+          task.parentId
+            ? this._taskService.getByIdOnce$(task.parentId).pipe(
+                map((parent) => ({
+                  parent,
+                  task,
+                })),
+              )
+            : of({ parent: undefined, task }),
         ),
-        filter((task: Task) => !task.tagIds.includes(TODAY_TAG.id)),
-        map((task) =>
+        filter(
+          ({ task, parent }: { task: TaskCopy; parent?: TaskCopy }) =>
+            !task.tagIds.includes(TODAY_TAG.id) &&
+            (!parent || !parent.tagIds.includes(TODAY_TAG.id)),
+        ),
+        map(({ task }) =>
           updateTaskTags({
             task,
             newTagIds: unique([...task.tagIds, TODAY_TAG.id]),
@@ -147,142 +143,143 @@ export class TaskRelatedModelEffects {
     ),
   );
 
-  shortSyntax$: any = createEffect(() =>
+  preventAndRevertLastTagDeletion$: any = createEffect(() =>
     this._actions$.pipe(
-      ofType(addTask, updateTask),
-      filter((action): boolean => {
-        if (action.type !== updateTask.type) {
-          return true;
-        }
-        const changeProps = Object.keys(action.task.changes);
-        // we only want to execute this for task title updates
-        return changeProps.length === 1 && changeProps[0] === 'title';
-      }),
-      // dirty fix to execute this after setDefaultProjectId$ effect
-      concatMap((originalAction): Observable<any> => {
-        return this._taskService.getByIdOnce$(originalAction.task.id as string).pipe(
-          map((task) => ({
-            task,
-            originalAction,
-          })),
-        );
-      }),
-      withLatestFrom(
-        this._tagService.tags$,
-        this._projectService.list$,
-        this._globalConfigService.misc$.pipe(
-          map((misc) => misc.defaultProjectId),
-          concatMap((defaultProjectId) =>
-            defaultProjectId
-              ? this._projectService.getByIdOnce$(defaultProjectId).pipe(
-                  tap((project) => {
-                    if (!project) {
-                      // to avoid further data inconsistencies
-                      throw new Error('Default Project not found');
-                    }
-                  }),
-                  mapTo(defaultProjectId),
-                )
-              : of(defaultProjectId),
-          ),
-        ),
+      ofType(updateTaskTags),
+      filter(
+        ({ newTagIds, task }) =>
+          newTagIds.length === 0 && !task.projectId && !task.parentId,
       ),
-      mergeMap(([{ task, originalAction }, tags, projects, defaultProjectId]) => {
-        const r = shortSyntax(task, tags, projects);
-        if (environment.production) {
-          console.log('shortSyntax', r);
-        }
-        const isAddDefaultProjectIfNecessary: boolean =
-          !!defaultProjectId &&
-          !task.projectId &&
-          !task.parentId &&
-          task.projectId !== defaultProjectId &&
-          originalAction.type === addTask.type;
+      // tap(() => console.log('preventAndRevertLastTagDeletion$')),
+      mergeMap(({ oldTagIds, newTagIds, task }) => [
+        upsertTag({
+          tag: NO_LIST_TAG,
+        }),
+        updateTaskTags({
+          task: task,
+          oldTagIds: newTagIds,
+          newTagIds: [NO_LIST_TAG.id],
+          isSkipExcludeCheck: true,
+        }),
+      ]),
+      // tap(() => {
+      //   // NOTE: timeout to make sure this is shown after other messages
+      //   setTimeout(() => {
+      //     this._snackService.open({
+      //       type: 'ERROR',
+      //       msg: T.F.TASK.S.LAST_TAG_DELETION_WARNING ,
+      //     });
+      //   }, 0);
+      // }),
+    ),
+  );
 
-        if (!r) {
-          if (isAddDefaultProjectIfNecessary) {
-            return [
-              moveToOtherProject({
-                task,
-                targetProjectId: defaultProjectId as string,
-              }),
-            ];
-          }
-          return EMPTY;
-        }
+  removeUnlistedTagWheneverTagIsAdded: any = createEffect(() =>
+    this._actions$.pipe(
+      ofType(updateTaskTags),
+      filter(
+        ({ newTagIds, task }) =>
+          newTagIds.includes(NO_LIST_TAG.id) && newTagIds.length >= 2,
+      ),
+      // tap(() => console.log('removeUnlistedTagWheneverTagIsAdded')),
+      map(({ oldTagIds, newTagIds, task }) =>
+        updateTaskTags({
+          task: task,
+          oldTagIds: newTagIds,
+          newTagIds: newTagIds.filter((id) => id !== NO_LIST_TAG.id),
+          isSkipExcludeCheck: true,
+        }),
+      ),
+    ),
+  );
+  removeUnlistedTagWheneverProjectIsAssigned: any = createEffect(() =>
+    this._actions$.pipe(
+      ofType(moveToOtherProject),
+      filter(
+        ({ targetProjectId, task }) =>
+          !!targetProjectId && task.tagIds.includes(NO_LIST_TAG.id),
+      ),
+      // tap(() => console.log('removeUnlistedTagWheneverProjectIsAssigned')),
+      map(({ task, targetProjectId }) =>
+        updateTaskTags({
+          task: { ...task, projectId: targetProjectId },
+          oldTagIds: task.tagIds,
+          newTagIds: task.tagIds.filter((id) => id !== NO_LIST_TAG.id),
+          isSkipExcludeCheck: true,
+        }),
+      ),
+    ),
+  );
 
-        const actions: any[] = [];
-        const tagIds: string[] = [...(r.taskChanges.tagIds || task.tagIds)];
-        const { taskChanges } = r;
+  excludeNewTagsFromParentOrChildren$: any = createEffect(() =>
+    this._actions$.pipe(
+      ofType(updateTaskTags),
+      filter(({ isSkipExcludeCheck }) => !isSkipExcludeCheck),
+      switchMap(({ task, newTagIds, oldTagIds }) => {
+        if (task.parentId) {
+          return this._taskService.getByIdOnce$(task.parentId).pipe(
+            switchMap((parentTask) => {
+              const isNewTagsConflictWithParent = !!(
+                parentTask && parentTask.tagIds.find((ptid) => newTagIds.includes(ptid))
+              );
 
-        actions.push(
-          updateTask({
-            task: {
-              id: task.id,
-              changes: r.taskChanges,
-            },
-          }),
-        );
-        if (taskChanges.plannedAt && !taskChanges.reminderId) {
-          const { plannedAt } = taskChanges;
-          const schedule = scheduleTask({
-            task,
-            plannedAt,
-            remindAt: remindOptionToMilliseconds(plannedAt, TaskReminderOptionId.AtStart),
-            isMoveToBacklog: false,
-          });
-          actions.push(schedule);
+              if (isNewTagsConflictWithParent) {
+                const freeTags = parentTask.tagIds.filter(
+                  (ptid) => !newTagIds.includes(ptid),
+                );
+                const isTagCanBeRemoved = parentTask.projectId || freeTags.length;
+
+                if (isTagCanBeRemoved) {
+                  return of(
+                    updateTaskTags({
+                      task: parentTask,
+                      oldTagIds: parentTask.tagIds,
+                      newTagIds: freeTags,
+                      isSkipExcludeCheck: true,
+                    }),
+                  );
+                } else {
+                  this._snackService.open({
+                    type: 'ERROR',
+                    msg: T.F.TASK.S.LAST_TAG_DELETION_WARNING,
+                  });
+                  const freeTagsForSub = task.tagIds.filter(
+                    (sttid) => !parentTask.tagIds.includes(sttid),
+                  );
+                  // reverse previous updateTaskTags action since not possible
+                  return of(
+                    updateTaskTags({
+                      task: task,
+                      oldTagIds: newTagIds,
+                      newTagIds: freeTagsForSub,
+                      isSkipExcludeCheck: true,
+                    }),
+                  );
+                }
+              }
+              return EMPTY;
+            }),
+          );
         }
-        if (r.projectId && r.projectId !== task.projectId && !task.parentId) {
-          if (task.repeatCfgId) {
-            this._snackService.open({
-              ico: 'warning',
-              msg: T.F.TASK.S.CANNOT_ASSIGN_PROJECT_FOR_REPEATABLE_TASK,
-            });
-          } else {
-            actions.push(
-              moveToOtherProject({
-                task,
-                targetProjectId: r.projectId,
-              }),
-            );
-          }
-        } else if (isAddDefaultProjectIfNecessary) {
-          actions.push(
-            moveToOtherProject({
-              task,
-              targetProjectId: defaultProjectId as string,
+        if (task.subTaskIds.length) {
+          return this._taskService.getByIdsLive$(task.subTaskIds).pipe(
+            first(),
+            concatMap((subTasks) => {
+              return subTasks
+                .filter((subTask) => subTask.tagIds.length)
+                .map((subTask) => {
+                  return updateTaskTags({
+                    task: subTask,
+                    oldTagIds: subTask.tagIds,
+                    newTagIds: subTask.tagIds.filter((id) => !newTagIds.includes(id)),
+                    isSkipExcludeCheck: true,
+                  });
+                });
             }),
           );
         }
 
-        if (r.newTagTitles.length) {
-          r.newTagTitles.forEach((newTagTitle) => {
-            const { action, id } = this._tagService.getAddTagActionAndId({
-              title: newTagTitle,
-            });
-            tagIds.push(id);
-            actions.push(action);
-          });
-        }
-
-        if (tagIds && tagIds.length) {
-          const isEqualTags = JSON.stringify(tagIds) === JSON.stringify(task.tagIds);
-          if (!task.tagIds) {
-            throw new Error('Task Old TagIds need to be passed');
-          }
-          if (!isEqualTags) {
-            actions.push(
-              updateTaskTags({
-                task,
-                newTagIds: unique(tagIds),
-                oldTagIds: task.tagIds,
-              }),
-            );
-          }
-        }
-
-        return actions;
+        return EMPTY;
       }),
     ),
   );
@@ -291,8 +288,6 @@ export class TaskRelatedModelEffects {
     private _actions$: Actions,
     private _reminderService: ReminderService,
     private _taskService: TaskService,
-    private _tagService: TagService,
-    private _projectService: ProjectService,
     private _globalConfigService: GlobalConfigService,
     private _persistenceService: PersistenceService,
     private _snackService: SnackService,
@@ -322,6 +317,7 @@ export class TaskRelatedModelEffects {
   }
 
   private async _moveToArchive(tasks: TaskWithSubTasks[]): Promise<unknown> {
+    const now = Date.now();
     const flatTasks = flattenTasks(tasks);
     if (!flatTasks.length) {
       return;
@@ -336,6 +332,12 @@ export class TaskRelatedModelEffects {
         reminderId: null,
         isDone: true,
         plannedAt: null,
+        doneOn:
+          task.isDone && task.doneOn
+            ? task.doneOn
+            : task.parentId
+              ? flatTasks.find((t) => t.id === task.parentId)?.doneOn || now
+              : now,
       })),
       currentArchive,
     );

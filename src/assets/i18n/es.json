@@ -1,4 +1,9 @@
 {
+  "ANDROID": {
+    "NOTIFICATIONS": {
+      "SYNC_CONFLICT_TITLE": "Se produjo un conflicto de sincronización"
+    }
+  },
   "APP": {
     "B_INSTALL": {
       "IGNORE": "Ignorar",
@@ -197,26 +202,6 @@
       },
       "S": {
         "ERR_UNKNOWN": "GitLab: error desconocido {{statusCode}} {{errorMsg}}"
-      }
-    },
-    "GOOGLE": {
-      "BANNER": {
-        "AUTH_FAIL": "GoogleApi: no se pudo autenticar, por favor intente iniciar sesión nuevamente."
-      },
-      "DIALOG": {
-        "CREATE_SYNC_FILE": "Google Drive: no se encontró ningún archivo con el nombre <strong>\"{{fileName}}\"</strong> . <strong>¿Crear</strong> como archivo de sincronización en Google Drive?",
-        "USE_EXISTING_SYNC_FILE": "Google Drive: usar <strong>archivo</strong> existente <strong>\"{{fileName}}\"</strong> como archivo de sincronización? Si no es así, cambie el nombre del archivo de sincronización."
-      },
-      "S": {
-        "MULTIPLE_SYNC_FILES_WITH_SAME_NAME": "Se encontraron varios archivos con el nombre \"{{newFileName}}\". Elimine todos menos uno o elija un nombre diferente.",
-        "SYNC_FILE_CREATION_ERROR": "Google Drive: Error al crear el archivo de sincronización. {{err}}",
-        "UPDATED_SYNC_FILE_NAME": "Google Drive: nombre de archivo de sincronización actualizado"
-      },
-      "S_API": {
-        "ERR": "Error de GoogleApi: {{errStr}}",
-        "ERR_NO_FILE_ID": "GoogleApi: no se ha especificado ningún ID de archivo",
-        "ERR_NO_FILE_NAME": "GoogleApi: no se ha especificado ningún nombre de archivo",
-        "SUCCESS_LOGIN": "GoogleApi: Inicio de sesión exitoso"
       }
     },
     "ISSUE": {
@@ -425,7 +410,6 @@
       "D_ADD": {
         "NOTE_LABEL": "Introduzca algún texto para guardar como nota ..."
       },
-      "EDIT_FULLSCREEN": "Editar en pantalla completa",
       "NOTES_CMP": {
         "ADD_BTN": "Agregar nueva nota",
         "DROP_TO_ADD": "Suelta aquí para agregar una nueva nota",
@@ -434,7 +418,8 @@
       "NOTE_CMP": {
         "DISABLE_PARSE": "Deshabilitar el análisis de rebajas",
         "ENABLE_PARSE": "Habilitar el análisis de rebajas"
-      }
+      },
+      "EDIT_FULLSCREEN": "Editar en pantalla completa"
     },
     "OPEN_PROJECT": {
       "DIALOG_INITIAL": {
@@ -655,12 +640,8 @@
           "L_ACCESS_TOKEN": "Token de acceso (generado a partir del código de autenticación)"
         },
         "GOOGLE": {
-          "L_IS_COMPRESS_DATA": "Comprimir datos",
-          "L_SYNC_FILE_NAME": "Sincronizar nombre de archivo"
-        },
-        "LOCAL_FILE": {
-          "L_SYNC_FILE_PATH": "Ruta del archivo de sincronización",
-          "L_SYNC_FILE_PATH_DESCRIPTION": "Ruta absoluta al archivo que se debe utilizar para la sincronización (se creará)."
+          "L_SYNC_FILE_NAME": "Sincronizar nombre de archivo",
+          "L_IS_COMPRESS_DATA": "Comprimir datos"
         },
         "L_ENABLE_SYNCING": "Habilitar sincronización",
         "L_SYNC_INTERVAL": "Intervalo de sincronización",
@@ -670,8 +651,12 @@
           "CORS_INFO": "<strong>¡Experimental!</strong> Para que esto funcione, debe deshabilitar o limitar CORS para su instancia de Nextcloud, lo que puede tener implicaciones de seguridad negativas. <a href='https://github.com/nextcloud/server/issues/3131'>Consulte este hilo</a> para obtener más información. ¡Úselo bajo su propio riesgo!",
           "L_BASE_URL": "URL base",
           "L_PASSWORD": "Contraseña",
+          "L_USER_NAME": "Nombre de usuario",
+          "L_SYNC_FILE_PATH": "Ruta del archivo de sincronización"
+        },
+        "LOCAL_FILE": {
           "L_SYNC_FILE_PATH": "Ruta del archivo de sincronización",
-          "L_USER_NAME": "Nombre de usuario"
+          "L_SYNC_FILE_PATH_DESCRIPTION": "Ruta absoluta al archivo que se debe utilizar para la sincronización (se creará)."
         }
       },
       "S": {
@@ -781,6 +766,7 @@
         "RO_30M": "30 minutos antes de que comience",
         "RO_5M": "5 minutos antes de que comience",
         "RO_START": "cuando empieza",
+        "RO_NEVER": "Nunca",
         "SCHEDULE": "Programar",
         "UNSCHEDULE": "Desprogramar"
       },
@@ -842,7 +828,7 @@
       }
     },
     "TASK_REPEAT": {
-        "ADD_INFO_PANEL": {
+      "ADD_INFO_PANEL": {
         "CUSTOM": "Configurar repetición personalizada",
         "CUSTOM_AND_TIME": "Personalizada, {{timeStr}}",
         "CUSTOM_WEEKLY": "{{daysStr}}",
@@ -906,11 +892,12 @@
       "MENU_TITLE": "Línea de tiempo",
       "NOW": "ahora",
       "NO_TASKS": "Actualmente no hay tareas. Agregue algunas tareas a través del botón + en la barra superior.",
+      "START": "Inicio del trabajo",
+      "TASK_PROJECTION_INFO": "Proyección futura de una tarea repetible programada",
+      "LUNCH_BREAK": "Pausa comida",
       "S": {
         "CAL_PROVIDER_ERROR": "Error del proveedor de la escala de tiempo: {{errTxt}}"
-      },
-      "START": "Inicio del trabajo",
-      "TASK_PROJECTION_INFO": "Proyección futura de una tarea repetible programada"
+      }
     },
     "TIME_TRACKING": {
       "B": {
@@ -932,8 +919,8 @@
         "SIMPLE_COUNTER_TOOLTIP_DISABLE": "Haga clic para NO rastrear a {{title}}",
         "SKIP": "Saltar",
         "TASK": "Tarea",
-        "TASK_BREAK": "Pausa + tarea",
-        "TRACK_TO": "Seguimiento a:"
+        "TRACK_TO": "Seguimiento a:",
+        "TASK_BREAK": "Pausa + tarea"
       },
       "D_TRACKING_REMINDER": {
         "CREATE_AND_TRACK": "<em>Crear</em> y realizar un seguimiento de",
@@ -998,6 +985,26 @@
         "NO_DATA": "No hay tareas esta semana todavía.",
         "TITLE": "Título"
       }
+    },
+    "GOOGLE": {
+      "BANNER": {
+        "AUTH_FAIL": "GoogleApi: no se pudo autenticar, por favor intente iniciar sesión nuevamente."
+      },
+      "DIALOG": {
+        "CREATE_SYNC_FILE": "Google Drive: no se encontró ningún archivo con el nombre <strong>\"{{fileName}}\"</strong> . <strong>¿Crear</strong> como archivo de sincronización en Google Drive?",
+        "USE_EXISTING_SYNC_FILE": "Google Drive: usar <strong>archivo</strong> existente <strong>\"{{fileName}}\"</strong> como archivo de sincronización? Si no es así, cambie el nombre del archivo de sincronización."
+      },
+      "S": {
+        "MULTIPLE_SYNC_FILES_WITH_SAME_NAME": "Se encontraron varios archivos con el nombre \"{{newFileName}}\". Elimine todos menos uno o elija un nombre diferente.",
+        "SYNC_FILE_CREATION_ERROR": "Google Drive: Error al crear el archivo de sincronización. {{err}}",
+        "UPDATED_SYNC_FILE_NAME": "Google Drive: nombre de archivo de sincronización actualizado"
+      },
+      "S_API": {
+        "ERR": "Error de GoogleApi: {{errStr}}",
+        "ERR_NO_FILE_ID": "GoogleApi: no se ha especificado ningún ID de archivo",
+        "ERR_NO_FILE_NAME": "GoogleApi: no se ha especificado ningún nombre de archivo",
+        "SUCCESS_LOGIN": "GoogleApi: Inicio de sesión exitoso"
+      }
     }
   },
   "FILE_IMEX": {
@@ -1007,13 +1014,13 @@
   },
   "G": {
     "CANCEL": "Cancelar",
-    "CLICK_TO_EDIT": "Haz clic para editar",
     "CLOSE": "Cerrar",
     "DELETE": "Borrar",
     "DISMISS": "Descartar",
     "DO_IT": "¡Hazlo!",
     "EDIT": "Editar",
     "ENABLED": "Habilitado",
+    "EXAMPLE_VAL": "Haz clic para editar",
     "EXTENSION_INFO": "Por favor descargue <a target=\"_blank\" href=\"https://chrome.google.com/webstore/detail/super-productivity/ljkbjodfmekklcoibdnhahlaalhihmlb\"> la extensión de Chrome</a> para permitir la comunicación con Jira Api y Idle Time Handling. Tenga en cuenta que esto no funciona para móviles.",
     "LOGIN": "Iniciar sesión",
     "LOGOUT": "Cerrar sesión",
@@ -1047,9 +1054,9 @@
       "HELP": "<div><p>Cuando se habilita el manejo del tiempo de inactividad, se abrirá un cuadro de diálogo después de un período de tiempo específico para verificar si y en qué tarea desea realizar un seguimiento de su tiempo, cuando ha estado inactivo.</p></div>",
       "IS_ENABLE_IDLE_TIME_TRACKING": "Habilitar el manejo del tiempo de inactividad",
       "IS_ONLY_OPEN_IDLE_WHEN_CURRENT_TASK": "Solo se activa el diálogo de tiempo de inactividad cuando se selecciona una tarea actual",
-      "IS_UN_TRACKED_IDLE_RESETS_BREAK_TIMER": "El tiempo de inactividad no rastreado se restablece, toma un temporizador de interrupción",
       "MIN_IDLE_TIME": "Disparar inactividad después de",
-      "TITLE": "Manejo de inactividad"
+      "TITLE": "Manejo de inactividad",
+      "IS_UN_TRACKED_IDLE_RESETS_BREAK_TIMER": "El tiempo de inactividad no rastreado se restablece, toma un temporizador de interrupción"
     },
     "IMEX": {
       "HELP": "<p>Aquí puede exportar todos sus datos como <strong>JSON</strong> para copias de seguridad, pero también para usarlos en un contexto diferente (por ejemplo, es posible que desee exportar sus proyectos en el navegador e importarlos a la versión de escritorio) ). </p> <p>La importación espera que JSON válido se copie en el área de texto. <strong>NOTA: Una vez que presiona el botón de importación, se sobrescribirán todos sus ajustes y datos actuales.</strong></p>",
@@ -1158,9 +1165,9 @@
     "SOUND": {
       "DONE_SOUND": "Sonido de tarea realizada",
       "IS_INCREASE_DONE_PITCH": "Aumente el tono para cada tarea realizada",
-      "IS_PLAY_DONE_SOUND": "Reproducir sonido cuando la tarea esté marcada como terminada",
       "TITLE": "Sonido",
-      "VOLUME": "Volumen"
+      "VOLUME": "Volumen",
+      "IS_PLAY_DONE_SOUND": "Reproducir sonido cuando la tarea esté marcada como terminada"
     },
     "TAKE_A_BREAK": {
       "HELP": "<div> <p>Le permite configurar un recordatorio recurrente cuando ha trabajado durante un período de tiempo específico sin tomar un descanso.</p> <p>Puede modificar el mensaje que se muestra. ${duration} será reemplazado con el tiempo dedicado sin descanso.</p> </div>",
@@ -1175,16 +1182,20 @@
       "TITLE": "Recordatorio de descanso"
     },
     "TIMELINE": {
-      "CAL_PROVIDERS": "Proveedores de calendario (experimentales y opcionales)",
-      "CAL_PROVIDERS_ADD": "Agregar fuente ical",
-      "CAL_PROVIDERS_INFO": "Opcionalmente, puede configurar la línea de tiempo para que también cargue y muestre datos de iCal (por ejemplo, Google Calendar).",
       "HELP": "La función de línea de tiempo debe proporcionarle una descripción general rápida de cómo se desarrollan sus tareas planificadas a lo largo del tiempo. Puede encontrarlo en el menú de la izquierda en <a href='#/timeline'>\"Cronología\"</a>.",
-      "L_CAL_PATH": "URL / ruta de archivo para el calendario ICAL (opcional)",
       "L_IS_WORK_START_END_ENABLED": "Limite el flujo de tareas no programadas a tiempos de trabajo específicos",
       "L_WORK_END": "Fin del día laboral",
       "L_WORK_START": "Inicio del día laboral",
       "TITLE": "Línea de tiempo",
-      "WORK_START_END_DESCRIPTION": "p.ej. 17:00"
+      "WORK_START_END_DESCRIPTION": "p.ej. 17:00",
+      "L_IS_LUNCH_BREAK_ENABLED": "Activar el descanso de la comida",
+      "L_LUNCH_BREAK_END": "Fin del descanso de la comida",
+      "L_LUNCH_BREAK_START": "Inicio del descanso de la comida",
+      "LUNCH_BREAK_START_END_DESCRIPTION": "p.ej. 13:00",
+      "CAL_PROVIDERS": "Proveedores de calendario (experimentales y opcionales)",
+      "CAL_PROVIDERS_ADD": "Agregar fuente ical",
+      "CAL_PROVIDERS_INFO": "Opcionalmente, puede configurar la línea de tiempo para que también cargue y muestre datos de iCal (por ejemplo, Google Calendar).",
+      "L_CAL_PATH": "URL / ruta de archivo para el calendario ICAL (opcional)"
     },
     "TRACKING_REMINDER": {
       "HELP": "Establecer un recordatorio para que aparezca en caso de que haya olvidado iniciar el seguimiento del tiempo.",
@@ -1210,13 +1221,13 @@
     "DBX_GEN_TOKEN": "Dropbox: Generar token ...",
     "DBX_META": "Dropbox: Obtener meta del archivo ...",
     "DBX_UPLOAD": "Dropbox: Subir archivo ...",
-    "GDRIVE_DOWNLOAD": "Google Drive: Descargar archivo ...",
-    "GDRIVE_UPLOAD": "Google Drive: Subir archivo ...",
     "GITHUB_LOAD_ISSUE": "GitHub: cargar datos de problemas ...",
     "JIRA_LOAD_ISSUE": "Jira: cargar datos de problemas ...",
     "UNKNOWN": "Cargando datos remotos",
     "WEB_DAV_DOWNLOAD": "WebDAV: Descargando datos ...",
-    "WEB_DAV_UPLOAD": "WebDAV: Subiendo datos ..."
+    "WEB_DAV_UPLOAD": "WebDAV: Subiendo datos ...",
+    "GDRIVE_DOWNLOAD": "Google Drive: Descargar archivo ...",
+    "GDRIVE_UPLOAD": "Google Drive: Subir archivo ..."
   },
   "MH": {
     "ADD_NEW_TASK": "Agregar nueva tarea",
@@ -1327,7 +1338,6 @@
     "REPEATED_TASKS": "Tareas repetidas",
     "SCHEDULED_TASKS": "Tareas programadas",
     "START_TASK": "Inicie la tarea ahora y elimine el recordatorio"
-
   },
   "THEMES": {
     "SELECT_THEME": "Selecciona el tema",

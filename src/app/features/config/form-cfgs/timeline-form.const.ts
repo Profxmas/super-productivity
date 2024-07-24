@@ -45,52 +45,40 @@ export const TIMELINE_FORM_CFG: ConfigFormSection<TimelineConfig> = {
       },
     },
     {
-      type: 'tpl',
-      className: 'tpl',
+      key: 'isLunchBreakEnabled',
+      type: 'checkbox',
       templateOptions: {
-        tag: 'h3',
-        class: 'extra-margin-top',
-        text: T.GCF.TIMELINE.CAL_PROVIDERS,
+        label: T.GCF.TIMELINE.L_IS_LUNCH_BREAK_ENABLED,
       },
     },
     {
-      type: 'tpl',
-      className: 'tpl',
+      hideExpression: (m, v, field) => !field?.model.isLunchBreakEnabled,
+      key: 'lunchBreakStart',
+      type: 'input',
       templateOptions: {
-        tag: 'p',
-        text: T.GCF.TIMELINE.CAL_PROVIDERS_INFO,
+        required: true,
+        label: T.GCF.TIMELINE.L_LUNCH_BREAK_START,
+        description: T.GCF.TIMELINE.LUNCH_BREAK_START_END_DESCRIPTION,
+      },
+      validators: {
+        validTimeString: (c: { value: string | undefined }) => {
+          return isValidSplitTime(c.value);
+        },
       },
     },
     {
-      key: 'calendarProviders',
-      type: 'repeat',
+      hideExpression: (m, v, field) => !field?.model.isLunchBreakEnabled,
+      key: 'lunchBreakEnd',
+      type: 'input',
       templateOptions: {
-        addText: T.GCF.TIMELINE.CAL_PROVIDERS_ADD,
+        required: true,
+        label: T.GCF.TIMELINE.L_LUNCH_BREAK_END,
+        description: T.GCF.TIMELINE.LUNCH_BREAK_START_END_DESCRIPTION,
       },
-      fieldArray: {
-        fieldGroup: [
-          {
-            type: 'checkbox',
-            key: 'isEnabled',
-            templateOptions: {
-              label: T.F.SIMPLE_COUNTER.FORM.L_IS_ENABLED,
-            },
-          },
-          {
-            type: 'input',
-            key: 'icalUrl',
-            templateOptions: {
-              label: T.GCF.TIMELINE.L_CAL_PATH,
-            },
-          },
-          {
-            type: 'icon',
-            key: 'icon',
-            templateOptions: {
-              label: T.F.SIMPLE_COUNTER.FORM.L_ICON,
-            },
-          },
-        ],
+      validators: {
+        validTimeString: (c: { value: string | undefined }) => {
+          return isValidSplitTime(c.value);
+        },
       },
     },
   ],

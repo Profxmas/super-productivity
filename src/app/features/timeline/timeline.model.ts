@@ -1,6 +1,7 @@
 import { TaskCopy, TaskPlanned } from '../tasks/task.model';
 import { TimelineViewEntryType } from './timeline.const';
 import { TaskRepeatCfg } from '../task-repeat-cfg/task-repeat-cfg.model';
+import { CalendarIntegrationEvent } from '../calendar-integration/calendar-integration.model';
 
 interface TimelineViewEntryBase {
   id: string;
@@ -35,14 +36,12 @@ export interface TimelineViewEntrySplitTaskContinued extends TimelineViewEntryBa
   };
 }
 
-export interface TimelineFromCalendarEvent {
-  title: string;
-  start: number;
-  duration: number;
+export interface TimelineFromCalendarEvent extends CalendarIntegrationEvent {
   icon?: string;
 }
 
-export interface TimelineCustomEvent extends TimelineFromCalendarEvent {
+export interface TimelineCustomEvent
+  extends Omit<TimelineFromCalendarEvent, 'calProviderId'> {
   icon: string;
 }
 
@@ -61,6 +60,11 @@ export interface TimelineWorkStartEndCfg {
   endTime: string;
 }
 
+export interface TimelineLunchBreakCfg {
+  startTime: string;
+  endTime: string;
+}
+
 interface TimelineViewEntryWorkStart extends TimelineViewEntryBase {
   type: TimelineViewEntryType.WorkdayStart;
   data: TimelineWorkStartEndCfg;
@@ -69,6 +73,11 @@ interface TimelineViewEntryWorkStart extends TimelineViewEntryBase {
 interface TimelineViewEntryWorkEnd extends TimelineViewEntryBase {
   type: TimelineViewEntryType.WorkdayEnd;
   data: TimelineWorkStartEndCfg;
+}
+
+interface TimelineViewEntryLunchBreak extends TimelineViewEntryBase {
+  type: TimelineViewEntryType.LunchBreak;
+  data: TimelineLunchBreakCfg;
 }
 
 export interface TimelineDayCrossing extends TimelineViewEntryBase {
@@ -83,6 +92,7 @@ export type TimelineViewEntry =
   | TimelineViewEntryCalendarEvent
   | TimelineViewEntryWorkStart
   | TimelineViewEntryWorkEnd
+  | TimelineViewEntryLunchBreak
   | TimelineDayCrossing;
 
 // -----------------
@@ -92,6 +102,7 @@ export enum BlockedBlockType {
   ScheduledRepeatProjection = 'ScheduledRepeatProjection',
   CalendarEvent = 'CalendarEvent',
   WorkdayStartEnd = 'WorkdayStartEnd',
+  LunchBreak = 'LunchBreak',
 }
 
 export interface BlockedBlockEntryScheduledTask {
@@ -122,11 +133,19 @@ export interface BlockedBlockEntryWorkdayStartEnd {
   data: TimelineWorkStartEndCfg;
 }
 
+export interface BlockedBlockEntryLunchBreak {
+  start: number;
+  end: number;
+  type: BlockedBlockType.LunchBreak;
+  data: TimelineLunchBreakCfg;
+}
+
 export type BlockedBlockEntry =
   | BlockedBlockEntryScheduledTask
   | BlockedBlockEntryScheduledRepeatProjection
   | BlockedBlockEntryCalendarEvent
-  | BlockedBlockEntryWorkdayStartEnd;
+  | BlockedBlockEntryWorkdayStartEnd
+  | BlockedBlockEntryLunchBreak;
 
 export interface BlockedBlock {
   start: number;

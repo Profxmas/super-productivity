@@ -45,6 +45,7 @@ enum TaskActionTypes {
   'MoveToOtherProject' = '[Task] Move tasks to other project',
   'ToggleStart' = '[Task] Toggle start',
   'RoundTimeSpentForDay' = '[Task] RoundTimeSpentForDay',
+  'AddNewTagsFromShortSyntax' = '[Task] Add new tags form short syntax',
 }
 
 export const setCurrentTask = createAction(
@@ -73,12 +74,16 @@ export const addTask = createAction(
     workContextType: WorkContextType;
     isAddToBacklog: boolean;
     isAddToBottom: boolean;
+    isIgnoreShortSyntax?: boolean;
   }>(),
 );
 
 export const updateTask = createAction(
   TaskActionTypes.UpdateTask,
-  props<{ task: Update<Task> }>(),
+  props<{
+    task: Update<Task>;
+    isIgnoreShortSyntax?: boolean;
+  }>(),
 );
 
 export const updateTaskUi = createAction(
@@ -88,7 +93,12 @@ export const updateTaskUi = createAction(
 
 export const updateTaskTags = createAction(
   TaskActionTypes.UpdateTaskTags,
-  props<{ task: Task; newTagIds: string[]; oldTagIds: string[] }>(),
+  props<{
+    task: Task;
+    newTagIds: string[];
+    oldTagIds: string[];
+    isSkipExcludeCheck?: boolean;
+  }>(),
 );
 
 export const removeTagsForAllTasks = createAction(
@@ -212,7 +222,8 @@ export const convertToMainTask = createAction(
   props<{ task: Task; parentTagIds: string[] }>(),
 );
 
-export const moveToArchive = createAction(
+// the _ indicates that it should not be used directly, but always over the service instead
+export const moveToArchive_ = createAction(
   TaskActionTypes.MoveToArchive,
 
   props<{ tasks: TaskWithSubTasks[] }>(),
@@ -235,5 +246,14 @@ export const roundTimeSpentForDay = createAction(
     roundTo: RoundTimeOption;
     isRoundUp: boolean;
     projectId?: string | null;
+  }>(),
+);
+
+export const addNewTagsFromShortSyntax = createAction(
+  TaskActionTypes.AddNewTagsFromShortSyntax,
+
+  props<{
+    task: Task;
+    newTitles: string[];
   }>(),
 );

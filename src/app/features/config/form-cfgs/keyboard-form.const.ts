@@ -8,6 +8,7 @@ export const KEYBOARD_SETTINGS_FORM_CFG: ConfigFormSection<KeyboardConfig> = {
   title: T.GCF.KEYBOARD.TITLE,
   key: 'keyboard',
   help: T.GCF.KEYBOARD.HELP,
+  isHideForAndroidApp: true,
   items: [
     // SYSTEM WIDE
     ...((IS_ELECTRON
@@ -118,6 +119,13 @@ export const KEYBOARD_SETTINGS_FORM_CFG: ConfigFormSection<KeyboardConfig> = {
       },
     },
     {
+      key: 'goToWorkView',
+      type: 'keyboard',
+      templateOptions: {
+        label: T.GCF.KEYBOARD.GO_TO_WORK_VIEW,
+      },
+    },
+    {
       key: 'goToFocusMode',
       type: 'keyboard',
       templateOptions: {
@@ -180,6 +188,22 @@ export const KEYBOARD_SETTINGS_FORM_CFG: ConfigFormSection<KeyboardConfig> = {
         label: T.GCF.KEYBOARD.ZOOM_DEFAULT,
       },
     },
+    // TODO implement somehow
+    // {
+    //   key: 'saveNote',
+    //   type: 'keyboard',
+    //   templateOptions: {
+    //     label: T.GCF.KEYBOARD.SAVE_NOTE,
+    //   },
+    // },
+    {
+      key: 'triggerSync',
+      type: 'keyboard',
+      templateOptions: {
+        label: T.GCF.KEYBOARD.TRIGGER_SYNC,
+      },
+    },
+
     // TASKS
     {
       type: 'tpl',

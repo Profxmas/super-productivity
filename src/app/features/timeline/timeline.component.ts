@@ -1,10 +1,13 @@
 import { ChangeDetectionStrategy, Component, OnDestroy } from '@angular/core';
+import { TimelineCalendarMapEntry, TimelineViewEntry } from './timeline.model';
 import {
-  TimelineCalendarMapEntry,
-  TimelineFromCalendarEvent,
-  TimelineViewEntry,
-} from './timeline.model';
-import { catchError, debounceTime, map, startWith, switchMap, tap } from 'rxjs/operators';
+  debounceTime,
+  distinctUntilChanged,
+  map,
+  startWith,
+  switchMap,
+  tap,
+} from 'rxjs/operators';
 import { TaskService } from '../tasks/task.service';
 import { combineLatest, forkJoin, Observable, of } from 'rxjs';
 import { mapToTimelineViewEntries } from './map-timeline-data/map-to-timeline-view-entries';
@@ -15,16 +18,19 @@ import { TimelineViewEntryType } from './timeline.const';
 import { GlobalConfigService } from '../config/global-config.service';
 import { MatDialog } from '@angular/material/dialog';
 import { LS } from '../../core/persistence/storage-keys.const';
-import { DialogTimelineInitialSetupComponent } from './dialog-timeline-initial-setup/dialog-timeline-initial-setup.component';
+import { DialogTimelineSetupComponent } from './dialog-timeline-setup/dialog-timeline-setup.component';
 import { WorkContextService } from '../work-context/work-context.service';
 import { TaskRepeatCfgService } from '../task-repeat-cfg/task-repeat-cfg.service';
 import { Task } from '../tasks/task.model';
 import { DialogAddTaskReminderComponent } from '../tasks/dialog-add-task-reminder/dialog-add-task-reminder.component';
 import { AddTaskReminderInterface } from '../tasks/dialog-add-task-reminder/add-task-reminder-interface';
-import { HttpClient } from '@angular/common/http';
-import { getRelevantEventsFromIcal } from './ical/get-relevant-events-from-ical';
-import { SnackService } from '../../core/snack/snack.service';
 import { loadFromRealLs, saveToRealLs } from '../../core/persistence/local-storage';
+import { Store } from '@ngrx/store';
+import { selectCalendarProviders } from '../config/store/global-config.reducer';
+import { CalendarIntegrationService } from '../calendar-integration/calendar-integration.service';
+import { selectAllCalendarTaskEventIds } from '../tasks/store/task.selectors';
+import { CalendarIntegrationEvent } from '../calendar-integration/calendar-integration.model';
+import { distinctUntilChangedObject } from '../../util/distinct-until-changed-object';
 
 @Component({
   selector: 'timeline',
@@ -36,39 +42,38 @@ import { loadFromRealLs, saveToRealLs } from '../../core/persistence/local-stora
 export class TimelineComponent implements OnDestroy {
   T: typeof T = T;
   TimelineViewEntryType: typeof TimelineViewEntryType = TimelineViewEntryType;
-  icalEvents$: Observable<TimelineCalendarMapEntry[]> =
-    this._globalConfigService.timelineCfg$.pipe(
-      switchMap((cfg) => {
-        return cfg.calendarProviders && cfg.calendarProviders.length
+  icalEvents$: Observable<TimelineCalendarMapEntry[]> = this._store
+    .select(selectCalendarProviders)
+    .pipe(
+      switchMap((calendarProviders) =>
+        this._store.select(selectAllCalendarTaskEventIds).pipe(
+          map((allCalendarTaskEventIds) => ({
+            allCalendarTaskEventIds,
+            calendarProviders,
+          })),
+        ),
+      ),
+      distinctUntilChanged(distinctUntilChangedObject),
+      switchMap(({ allCalendarTaskEventIds, calendarProviders }) => {
+        return calendarProviders && calendarProviders.length
           ? forkJoin(
-              cfg.calendarProviders
+              calendarProviders
                 .filter((calProvider) => calProvider.isEnabled)
                 .map((calProvider) =>
-                  this._http.get(calProvider.icalUrl, { responseType: 'text' }).pipe(
-                    map(getRelevantEventsFromIcal),
-                    map((items: TimelineFromCalendarEvent[]) => ({
-                      items,
-                      icon: calProvider.icon,
-                    })),
-                    catchError((err) => {
-                      console.error(err);
-                      this._snackService.open({
-                        type: 'ERROR',
-                        msg: T.F.TIMELINE.S.CAL_PROVIDER_ERROR,
-                        translateParams: {
-                          errTxt:
-                            err?.toString() ||
-                            err?.status ||
-                            err?.message ||
-                            'UNKNOWN :(',
-                        },
-                      });
-                      return of({
-                        items: [],
-                        icon: '',
-                      });
-                    }),
-                  ),
+                  this._calendarIntegrationService
+                    .requestEventsForTimeline(calProvider)
+                    .pipe(
+                      // filter out items already added as tasks
+                      map((calEvs) =>
+                        calEvs.filter(
+                          (calEv) => !allCalendarTaskEventIds.includes(calEv.id),
+                        ),
+                      ),
+                      map((items: CalendarIntegrationEvent[]) => ({
+                        items,
+                        icon: calProvider.icon || null,
+                      })),
+                    ),
                 ),
             ).pipe(
               tap((val) => {
@@ -101,6 +106,12 @@ export class TimelineComponent implements OnDestroy {
               endTime: timelineCfg.workEnd,
             }
           : undefined,
+        timelineCfg?.isLunchBreakEnabled
+          ? {
+              startTime: timelineCfg.lunchBreakStart,
+              endTime: timelineCfg.lunchBreakEnd,
+            }
+          : undefined,
       ),
     ),
 
@@ -119,13 +130,14 @@ export class TimelineComponent implements OnDestroy {
     private _workContextService: WorkContextService,
     private _globalConfigService: GlobalConfigService,
     private _matDialog: MatDialog,
-    private _http: HttpClient,
-    private _snackService: SnackService,
+    private _store: Store,
+    private _calendarIntegrationService: CalendarIntegrationService,
   ) {
     if (!localStorage.getItem(LS.WAS_TIMELINE_INITIAL_DIALOG_SHOWN)) {
-      this._matDialog.open(DialogTimelineInitialSetupComponent);
+      this._matDialog.open(DialogTimelineSetupComponent, {
+        data: { isInfoShownInitially: true },
+      });
     }
-    this.icalEvents$.subscribe((v) => console.log(`icalEvents$`, v));
   }
 
   ngOnDestroy(): void {
@@ -137,31 +149,49 @@ export class TimelineComponent implements OnDestroy {
     return item.id;
   }
 
+  getSizeClass(timelineEntry: TimelineViewEntry): string {
+    // TODO fix that this is being reRendered on every hover
+    const d =
+      // @ts-ignore
+      timelineEntry?.data?.timeEstimate ||
+      // @ts-ignore
+      timelineEntry?.data?.timeToGo ||
+      // @ts-ignore
+      timelineEntry?.data?.defaultEstimate;
+    const h = d && d / 60 / 60 / 1000;
+
+    // if (h && h >= 4.5) return 'xxxl row';
+    if (h && h >= 3.5) return 'xxl row';
+    if (h && h >= 2.5) return 'xl row';
+    if (h && h >= 1.5) return 'l row';
+    return 'row';
+  }
+
   async moveUp(task: Task): Promise<void> {
-    if (task.parentId) {
-      const parentTask = await this.taskService.getByIdOnce$(task.parentId).toPromise();
-      if (parentTask.subTaskIds[0] === task.id) {
-        this.taskService.moveUp(task.parentId, undefined, false);
-        window.clearTimeout(this._moveUpTimeout);
-        window.setTimeout(() => this.taskService.focusTask(task.id), 50);
-        return;
-      }
-    }
+    // if (task.parentId) {
+    //   const parentTask = await this.taskService.getByIdOnce$(task.parentId).toPromise();
+    //   if (parentTask.subTaskIds[0] === task.id) {
+    //     this.taskService.moveUp(task.parentId, undefined, false);
+    //     window.clearTimeout(this._moveUpTimeout);
+    //     window.setTimeout(() => this.taskService.focusTask(task.id), 50);
+    //     return;
+    //   }
+    // }
     this.taskService.moveUp(task.id, task.parentId, false);
     window.clearTimeout(this._moveUpTimeout);
     window.setTimeout(() => this.taskService.focusTask(task.id), 50);
   }
 
   async moveDown(task: Task): Promise<void> {
-    if (task.parentId) {
-      const parentTask = await this.taskService.getByIdOnce$(task.parentId).toPromise();
-      if (parentTask.subTaskIds[parentTask.subTaskIds.length - 1] === task.id) {
-        this.taskService.moveDown(task.parentId, undefined, false);
-        window.clearTimeout(this._moveDownTimeout);
-        window.setTimeout(() => this.taskService.focusTask(task.id), 50);
-        return;
-      }
-    }
+    // if (task.parentId) {
+    //   const parentTask = await this.taskService.getByIdOnce$(task.parentId).toPromise();
+    //   if (parentTask.subTaskIds[parentTask.subTaskIds.length - 1] === task.id) {
+    //     this.taskService.moveDown(task.parentId, undefined, false);
+    //     window.clearTimeout(this._moveDownTimeout);
+    //     window.setTimeout(() => this.taskService.focusTask(task.id), 50);
+    //     return;
+    //   }
+    // }
 
     this.taskService.moveDown(task.id, task.parentId, false);
     window.clearTimeout(this._moveDownTimeout);

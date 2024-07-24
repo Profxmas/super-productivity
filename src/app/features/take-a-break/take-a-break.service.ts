@@ -24,13 +24,10 @@ import { BannerService } from '../../core/banner/banner.service';
 import { BannerId } from '../../core/banner/banner.model';
 import { GlobalConfigState, TakeABreakConfig } from '../config/global-config.model';
 import { T } from '../../t.const';
-import { IPC } from '../../../../electron/shared-with-frontend/ipc-events.const';
 import { NotifyService } from '../../core/notify/notify.service';
-import { ElectronService } from '../../core/electron/electron.service';
 import { UiHelperService } from '../ui-helper/ui-helper.service';
 import { WorkContextService } from '../work-context/work-context.service';
 import { Tick } from '../../core/global-tracking-interval/tick.model';
-import { ipcRenderer } from 'electron';
 import { PomodoroService } from '../pomodoro/pomodoro.service';
 import { Actions, ofType } from '@ngrx/effects';
 import { triggerResetBreakTimer } from '../idle/store/idle.actions';
@@ -67,8 +64,8 @@ export class TakeABreakService {
 
   private _isIdleResetEnabled$: Observable<boolean> = this._configService.idle$.pipe(
     switchMap((idleCfg) => {
-      const isConfigured =
-        idleCfg.isEnableIdleTimeTracking && idleCfg.isUnTrackedIdleResetsBreakTimer;
+      const isConfigured = idleCfg.isEnableIdleTimeTracking;
+      // return [true];
       if (IS_ELECTRON) {
         return [isConfigured];
       } else if (isConfigured) {
@@ -200,7 +197,6 @@ export class TakeABreakService {
     private _actions$: Actions,
     private _configService: GlobalConfigService,
     private _workContextService: WorkContextService,
-    private _electronService: ElectronService,
     private _notifyService: NotifyService,
     private _pomodoroService: PomodoroService,
     private _bannerService: BannerService,
@@ -220,7 +216,7 @@ export class TakeABreakService {
 
     if (IS_ELECTRON) {
       this._triggerLockScreenThrottledAndDelayed$.subscribe(() => {
-        (this._electronService.ipcRenderer as typeof ipcRenderer).send(IPC.LOCK_SCREEN);
+        window.ea.lockScreen();
       });
 
       this._triggerFullscreenBlockerThrottledAndDelayed$
@@ -229,13 +225,10 @@ export class TakeABreakService {
         )
         .subscribe(([, takeABreakCfg, timeWorkingWithoutABreak]) => {
           const msg = this._createMessage(timeWorkingWithoutABreak, takeABreakCfg);
-          (this._electronService.ipcRenderer as typeof ipcRenderer).send(
-            IPC.FULL_SCREEN_BLOCKER,
-            {
-              msg,
-              takeABreakCfg,
-            },
-          );
+          window.ea.showFullScreenBlocker({
+            msg,
+            takeABreakCfg,
+          });
         });
     }
 
@@ -243,7 +236,10 @@ export class TakeABreakService {
       const msg = this._createMessage(timeWithoutBreak, cfg.takeABreak);
       this._notifyService.notifyDesktop({
         tag: 'TAKE_A_BREAK',
-        renotify: true,
+        // Todo: check if applicable
+        ...({
+          renotify: true,
+        } as any),
         title: T.GCF.TAKE_A_BREAK.NOTIFICATION_TITLE,
         body: msg,
       });

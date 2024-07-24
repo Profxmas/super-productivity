@@ -24,11 +24,11 @@ import { expandFadeHorizontalAnimation } from '../../ui/animations/expand.ani';
 import { SimpleCounterService } from '../../features/simple-counter/simple-counter.service';
 import { SimpleCounter } from '../../features/simple-counter/simple-counter.model';
 import { SyncProviderService } from '../../imex/sync/sync-provider.service';
-import { IS_TOUCH_ONLY } from 'src/app/util/is-touch-only';
 import { SnackService } from '../../core/snack/snack.service';
 import { NavigationEnd, Router } from '@angular/router';
 import { FocusModeService } from '../../features/focus-mode/focus-mode.service';
 import { GlobalConfigService } from '../../features/config/global-config.service';
+import { KeyboardConfig } from 'src/app/features/config/keyboard-config.model';
 
 @Component({
   selector: 'main-header',
@@ -41,7 +41,6 @@ export class MainHeaderComponent implements OnInit, OnDestroy {
   T: typeof T = T;
   progressCircleRadius: number = 10;
   circumference: number = this.progressCircleRadius * Math.PI * 2;
-  IS_TOUCH_ONLY: boolean = IS_TOUCH_ONLY;
   isShowSimpleCounterBtnsMobile: boolean = false;
 
   @ViewChild('circleSvg', { static: true }) circleSvg?: ElementRef;
@@ -95,6 +94,7 @@ export class MainHeaderComponent implements OnInit, OnDestroy {
     private readonly _snackService: SnackService,
     private readonly _router: Router,
     private readonly _focusModeService: FocusModeService,
+    private readonly _configService: GlobalConfigService,
   ) {}
 
   ngOnDestroy(): void {
@@ -124,7 +124,7 @@ export class MainHeaderComponent implements OnInit, OnDestroy {
 
   sync(): void {
     this.syncProviderService.sync().then((r) => {
-      if (r === 'SUCCESS' || r === 'NO_UPDATE_REQUIRED') {
+      if (r === 'SUCCESS') {
         this._snackService.open({ type: 'SUCCESS', msg: T.F.SYNC.S.SUCCESS_VIA_BUTTON });
       }
     });
@@ -136,5 +136,9 @@ export class MainHeaderComponent implements OnInit, OnDestroy {
 
   enableFocusMode(): void {
     this._focusModeService.showFocusOverlay();
+  }
+
+  get kb(): KeyboardConfig {
+    return (this._configService.cfg?.keyboard as KeyboardConfig) || {};
   }
 }
